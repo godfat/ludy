@@ -22,7 +22,12 @@ class TestThis < Test::Unit::TestCase
   def test_fact
     assert_equal(120, fact(5))
     assert_equal(3628800, fact(10))
-    assert_equal(5040, lambda{|n| return n*this[n-1] if n>0; 1}[7])
+    assert_equal(5040, lambda{|n| n==1 ? 1 : n*this[n-1]}[7])
+
+    # who ate lambda??
+    assert_equal([1,1,2,3,5,8,13,21,34,55],
+      # (0...10).map(&lambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}))
+      (0...1).map(&lambda{|n| puts callstack(nil).inspect}))
   end
   def fact n
     return n*this[n-1] if n > 0

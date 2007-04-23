@@ -14,25 +14,24 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
+require 'rubygems'
+require 'ruby2ruby'
+require 'ludy_ext'
+
 module Ludy
-  TRACE_EVENT   = 0
-  TRACE_FILE    = 1
-  TRACE_LINE    = 2
-  TRACE_MSG     = 3
-  TRACE_BINDING = 4
-  TRACE_CLASS   = 5
 
-  def callstack levels = -1
-    st = Thread.current[:callstack]
-    if levels then st && st[levels - 2] else st end
+  class Rambda
+    def initialize &block
+      @this = eval block.to_ruby
+      define_instance_method :call, &@this
+      alias_instance_method :[], :call
+    end
+    def this; @this; end
+    alias_method :to_proc, :this
   end
+
+  def rambda &block
+    Rambda.new &block
+  end
+
 end # of Ludy
-
-set_trace_func lambda{ |*args|
-  case args[Ludy::TRACE_EVENT]
-    when /call$/
-      (Thread.current[:callstack] ||= []).push args
-    when /return$/
-      (Thread.current[:callstack] ||= []).pop
-  end
-}
