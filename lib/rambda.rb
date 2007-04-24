@@ -26,7 +26,7 @@ module Ludy
       define_instance_method :call, &@this
       alias_instance_method :[], :call
     end
-    def this; @this; end
+    attr_reader :this
     alias_method :to_proc, :this
   end
 
