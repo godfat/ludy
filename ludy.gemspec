@@ -18,7 +18,7 @@ require 'rubygems'
 
 spec = Gem::Specification.new{|s|
   s.name     = 'ludy'
-  s.version  = '0.0.0'
+  s.version  = '0.0.1'
   s.author   = 'Lin Jen-Shin(a.k.a. godfat)'
   s.email    = 'strip number: 135godfat7911@246gmail.890com'
   s.homepage = 'http://ludy.rubyforge.org/'
