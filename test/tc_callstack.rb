@@ -14,15 +14,20 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-require 'callstack'
-
-module Ludy
-  def this
-    info = callstack(-2)
-    # lambda{ |*args|
-      # Thread.current[:temp_args] = args
-      # eval("send :#{info[3]}, *Thread.current[:temp_args]", info[4])
-    # }
-    eval('self', info[TRACE_BINDING]).method(info[TRACE_MSG])
+require 'test/unit'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'callstack'
+include Ludy
+class TestCallstack < Test::Unit::TestCase
+  def setup; @binding = 'XD' end
+  def test_callstack
+    called_line = __LINE__-1
+    top = callstack
+    assert_equal 'call', top[TRACE_EVENT]
+    assert_equal __FILE__, top[TRACE_FILE]
+    assert_equal called_line, top[TRACE_LINE]
+    assert_equal :test_callstack, top[TRACE_MSG]
+    assert_equal 'XD', eval('@binding', top[TRACE_BINDING])
+    assert_equal self.class, top[TRACE_CLASS]
   end
-end # of Ludy
+end

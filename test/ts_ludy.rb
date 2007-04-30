@@ -14,14 +14,5 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-File.open('test_log.log', 'a'){ |log|
-  log << "\nstart testing at #{Time.new}\n\n"
-  Dir.foreach('test'){ |f|
-    next if f == '.' || f == '..'
-    IO.popen("test/#{f}"){ |p|
-      log << "\n----------running #{f}----------\n\n"
-      log << p.read << "\n"
-    }
-  }
-  log << "\nstop testing at #{Time.new}\n\n"
-}
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_all_in_dir __FILE__

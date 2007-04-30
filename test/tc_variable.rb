@@ -14,14 +14,31 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'ludy_ext'
-class TestLudyExt < Test::Unit::TestCase
-  def test_tap
-    assert_equal '11', 10.tap{|i| assert_equal '10', i.to_s}.succ.to_s
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'variable'
+include Ludy
+class TestVariable < Test::Unit::TestCase
+  class Qoo
+    def cool
+      'cool ~~~~'
+    end
   end
-  def test_nil
-    assert_nil nil.XD.Orz.zzz
+
+  def test_variable
+    x = var Qoo.new
+    y = x
+
+    assert_equal x.__obj__, y.__obj__
+    assert_equal Qoo, x.__obj__.class
+    assert_equal Qoo, x.class
+
+    assert_equal 'cool ~~~~', x.cool
+    assert_equal 'cool ~~~~', y.cool
+
+    x.__obj__ = nil
+
+    assert x.nil?
+    assert y.nil?
   end
 end

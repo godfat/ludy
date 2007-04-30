@@ -14,24 +14,20 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-require 'rubygems'
-require 'ruby2ruby'
-require 'ludy_ext'
-
-module Ludy
-
-  class Rambda
-    def initialize &block
-      @this = eval block.to_ruby
-      define_instance_method :call, &@this
-      alias_instance_method :[], :call
-    end
-    attr_reader :this
-    alias_method :to_proc, :this
+require 'test/unit'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'lazy'
+include Ludy
+class TestLazy < Test::Unit::TestCase
+  def setup; @data = 0; end
+  def get; @data += 1; end
+  def test_lazy
+    assert_equal 0, @data
+    v = lazy{get}
+    assert_equal 0, @data
+    assert_equal 1, v
+    assert_equal '1', v.to_s
+    assert_equal 1, v
+    assert_equal '1', v.to_s
   end
-
-  def rambda &block
-    Rambda.new &block
-  end
-
-end # of Ludy
+end

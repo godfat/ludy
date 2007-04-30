@@ -14,9 +14,9 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'dice'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'dice'
 include Ludy
 class TestDice < Test::Unit::TestCase
   def test_dice

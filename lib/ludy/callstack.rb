@@ -26,6 +26,7 @@ module Ludy
     st = Thread.current[:callstack]
     if levels then st && st[levels - 2] else st end
   end
+  module_function :callstack
 end # of Ludy
 
 set_trace_func lambda{ |*args|

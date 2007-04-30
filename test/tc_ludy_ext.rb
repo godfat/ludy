@@ -14,19 +14,14 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'rambda'
-include Ludy
-class TestRambda < Test::Unit::TestCase
-  def test_rambda
-    assert_equal(3628800, rambda{|n| n==1 ? 1 : n*this[n-1]}[10])
-    assert_equal([1,1,2,3,5,8,13,21,34,55],
-      (0...10).map(&rambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}))
-
-    v = "can't refer v"
-    assert_raise(NameError){
-      rambda{v}.call
-    }
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'ludy_ext'
+class TestLudyExt < Test::Unit::TestCase
+  def test_tap
+    assert_equal '11', 10.tap{|i| assert_equal '10', i.to_s}.succ.to_s
+  end
+  def test_nil
+    assert_nil nil.XD.Orz.zzz
   end
 end

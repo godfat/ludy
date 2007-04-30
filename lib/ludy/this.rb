@@ -14,20 +14,20 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
-require 'test/unit'
-require 'lazy'
-include Ludy
-class TestLazy < Test::Unit::TestCase
-  def setup; @data = 0; end
-  def get; @data += 1; end
-  def test_lazy
-    assert_equal 0, @data
-    v = lazy{get}
-    assert_equal 0, @data
-    assert_equal 1, v
-    assert_equal '1', v.to_s
-    assert_equal 1, v
-    assert_equal '1', v.to_s
-  end
+begin
+  require_ludy 'callstack'
+rescue NameError
+  raise LoadError.new('please require "ludy" first')
 end
+
+module Ludy
+  def this
+    info = callstack(-2)
+    # lambda{ |*args|
+      # Thread.current[:temp_args] = args
+      # eval("send :#{info[3]}, *Thread.current[:temp_args]", info[4])
+    # }
+    eval('self', info[TRACE_BINDING]).method(info[TRACE_MSG])
+  end
+  module_function :this
+end # of Ludy

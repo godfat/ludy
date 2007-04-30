@@ -14,12 +14,22 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-require 'lazy'
+require 'test/unit'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'z_combinator'
+include Ludy
+class TestZCombinator < Test::Unit::TestCase
+  def test_z_combinator
+    fact_ = lambda{|this|
+      lambda{|n| n==1 ? 1 : n*this[n-1]}
+    }
+    fact = Z[fact_]
+    assert_equal(3628800, fact[10])
 
-module Ludy
-
-  Y = lambda{|f|
-    lambda{|x| lazy{f[x[x]]} }[lambda{|x| lazy{f[x[x]]} }]
-  }
-
+    fib_ = lambda{|this|
+      lambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}
+    }
+    fib = Z[fib_]
+    assert_equal([1,1,2,3,5,8,13,21,34,55], (0...10).map(&fib))
+  end
 end

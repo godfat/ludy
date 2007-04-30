@@ -14,22 +14,28 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
-require 'test/unit'
-require 'y_combinator'
-include Ludy
-class TestYCombinator < Test::Unit::TestCase
-  def test_y_combinator
-    fact_ = lambda{|this|
-      lambda{|n| n==1 ? 1 : n*this[n-1]}
-    }
-    fact = Y[fact_]
-    assert_equal(3628800, fact[10])
-
-    fib_ = lambda{|this|
-      lambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}
-    }
-    fib = Y[fib_]
-    assert_equal([1,1,2,3,5,8,13,21,34,55], (0...10).map(&fib))
-  end
+require 'rubygems'
+raise LoadError.new('you need ruby2ruby gem to use this tool') unless require 'ruby2ruby'
+begin
+  require_ludy 'ludy_ext'
+rescue NameError
+  raise LoadError.new('please require "ludy" first')
 end
+
+module Ludy
+
+  class Rambda
+    def initialize &block
+      @this = eval block.to_ruby
+      define_instance_method :call, &@this
+      alias_instance_method :[], :call
+    end
+    attr_reader :this
+    alias_method :to_proc, :this
+  end
+
+  def rambda &block
+    Rambda.new &block
+  end
+
+end # of Ludy

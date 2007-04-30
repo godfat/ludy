@@ -14,31 +14,19 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'variable'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'rambda'
 include Ludy
-class TestVariable < Test::Unit::TestCase
-  class Qoo
-    def cool
-      'cool ~~~~'
-    end
-  end
+class TestRambda < Test::Unit::TestCase
+  def test_rambda
+    assert_equal(3628800, rambda{|n| n==1 ? 1 : n*this[n-1]}[10])
+    assert_equal([1,1,2,3,5,8,13,21,34,55],
+      (0...10).map(&rambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}))
 
-  def test_variable
-    x = var Qoo.new
-    y = x
-
-    assert_equal x.__obj__, y.__obj__
-    assert_equal Qoo, x.__obj__.class
-    assert_equal Qoo, x.class
-
-    assert_equal 'cool ~~~~', x.cool
-    assert_equal 'cool ~~~~', y.cool
-
-    x.__obj__ = nil
-
-    assert x.nil?
-    assert y.nil?
+    v = "can't refer v"
+    assert_raise(NameError){
+      rambda{v}.call
+    }
   end
 end

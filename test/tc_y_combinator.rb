@@ -14,20 +14,22 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'callstack'
+require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require_ludy 'y_combinator'
 include Ludy
-class TestCallstack < Test::Unit::TestCase
-  def setup; @binding = 'XD' end
-  def test_callstack
-    called_line = __LINE__-1
-    top = callstack
-    assert_equal 'call', top[TRACE_EVENT]
-    assert_equal __FILE__, top[TRACE_FILE]
-    assert_equal called_line, top[TRACE_LINE]
-    assert_equal :test_callstack, top[TRACE_MSG]
-    assert_equal 'XD', eval('@binding', top[TRACE_BINDING])
-    assert_equal self.class, top[TRACE_CLASS]
+class TestYCombinator < Test::Unit::TestCase
+  def test_y_combinator
+    fact_ = lambda{|this|
+      lambda{|n| n==1 ? 1 : n*this[n-1]}
+    }
+    fact = Y[fact_]
+    assert_equal(3628800, fact[10])
+
+    fib_ = lambda{|this|
+      lambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}
+    }
+    fib = Y[fib_]
+    assert_equal([1,1,2,3,5,8,13,21,34,55], (0...10).map(&fib))
   end
 end
