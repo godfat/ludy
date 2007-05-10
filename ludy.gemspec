@@ -25,7 +25,10 @@ spec = Gem::Specification.new{|s|
   s.platform = Gem::Platform::RUBY
   s.summary  = 'Aims to extend Ruby standard library, providing some useful tools that\'s not existed in the standard library.'
   candidates = Dir.glob '{bin,doc,lib,test}/**/*'
-  s.files    = candidates.delete_if{|item| item.include?('CVS') || item.include?('rdoc') }
+  candidates+= Dir.glob '*'
+  s.files    = candidates.delete_if{|item|
+                 item.include?('CVS') || item.include?('rdoc') || File.extname(item) == '.gem'
+               }
 
   s.require_path = 'lib'
   s.autorequire  = 'ludy'

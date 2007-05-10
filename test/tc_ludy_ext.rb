@@ -24,4 +24,10 @@ class TestLudyExt < Test::Unit::TestCase
   def test_nil
     assert_nil nil.XD.Orz.zzz
   end
+  def test_fixnum
+    a, b, c = 3.collect{|i| i}
+    assert_equal 0, a
+    assert_equal 1, b
+    assert_equal 2, c
+  end
 end

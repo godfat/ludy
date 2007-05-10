@@ -32,3 +32,11 @@ class NilClass
     self
   end
 end
+
+class Fixnum
+  def collect
+    result = []
+    self.times{|i| result.push(yield(i))}
+    result
+  end
+end
