@@ -18,16 +18,27 @@ require 'test/unit'
 require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
 require_ludy 'ludy_ext'
 class TestLudyExt < Test::Unit::TestCase
-  def test_tap
+  def test_object_tap
     assert_equal '11', 10.tap{|i| assert_equal '10', i.to_s}.succ.to_s
   end
   def test_nil
     assert_nil nil.XD.Orz.zzz
   end
-  def test_fixnum
+  def test_fixnum_collect
     a, b, c = 3.collect{|i| i}
     assert_equal 0, a
     assert_equal 1, b
     assert_equal 2, c
+
+    array = 5.collect{Array.new}
+    assert_equal 5, array.size
+    5.times{|y|
+      5.times{|x|
+        break if x == y
+        assert_not_equal array[x].object_id, array[y].object_id
+      }
+      assert Array, array[y].class
+    }
+    
   end
 end
