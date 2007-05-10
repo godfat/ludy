@@ -37,7 +37,7 @@ class TestLudyExt < Test::Unit::TestCase
         break if x == y
         assert_not_equal array[x].object_id, array[y].object_id
       }
-      assert Array, array[y].class
+      assert_equal Array, array[y].class
     }
     
   end
