@@ -39,6 +39,15 @@ class TestLudyExt < Test::Unit::TestCase
       }
       assert_equal Array, array[y].class
     }
-    
+  end
+  def test_if
+    assert_equal  "XD", (true ).if{"XD"}
+    assert            ! (false).if{"XD"}
+    assert_equal "Orz", (false).if{"XD"}.else{"Orz"}
+    assert_equal  "XD", (true ).if{"XD"}.else{"Orz"}
+    assert_equal  "XD", (true ).if{"xd"}.upcase
+    assert            ! (false).if{"xd"}.upcase
+    assert_equal "OTL", (false).if{"xd"}.else{"otl"}.upcase
+    assert_equal  "XD", (true ).if{"xd"}.else{"otl"}.upcase
   end
 end

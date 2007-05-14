@@ -25,6 +25,13 @@ class Object
   def alias_instance_method new_msg, old_msg
     self.class.send :alias_method, new_msg, old_msg
   end
+  def if
+    yield if self
+  end
+  def else
+    if self then self
+    else yield end
+  end
 end
 
 class NilClass
