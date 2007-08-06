@@ -52,8 +52,55 @@ class TestLudyExt < Test::Unit::TestCase
     assert_equal "OTL", (false).if{"xd"}.else{"otl"}.upcase
     assert_equal  "XD", (true ).if{"xd"}.else{"otl"}.upcase
   end
+  def test_filter
+    assert_equal [1,2,3], [1,18,29,9,4,3,2,1,3,7].filter{|i| i<=3}.sort.uniq
+  end
   def test_folds
     assert_equal  6, [1,2,3].foldl(:+.to_proc, 0)
     assert_equal -6, [1,2,3].foldl(:-.to_proc, 0)
+    assert_equal  6, [1,2,3].foldr(:+.to_proc, 0)
+    assert_equal  2, [1,2,3].foldr(:-.to_proc, 0)
+  end
+  def test_proc_curry
+    multiply = lambda{|l,r| l*r}
+
+    double = multiply.curry 2
+    assert_equal 8, double[4]
+    assert_equal 6, double[3]
+
+    xd = multiply.curry 'XD', 5
+    assert_equal 'XDXDXDXDXD', xd.call
+  end
+
+  def test_proc_chain
+    f1 = lambda{|v| v+1}
+    assert_equal 5, f1[4]
+
+    f2 = lambda{|v| v+2}
+    assert_equal 6, f2[4]
+
+    f3 = f1.chain f2
+    assert_equal [6,7], f3[5]
+
+    f4 = f3.chain f1
+    assert_equal [2,3,2], f4[1]
+
+    f5 = f4.chain{|v|[10,11,v]}
+    assert_equal [1,2,1,10,11,0], f5[0]
+  end
+
+  def test_proc_compose
+    f1 = lambda{|v| v+1}
+    f2 = lambda{|v| v*2}
+    f3 = f1.compose f2
+    assert_equal 21, f3[10]
+
+    f4 = lambda{|a,b| a*b}
+    f5 = lambda{|a,b| [a*b, a-b]}
+    f6 = f4.compose f5
+    assert_equal -30, f6[3,5]
+
+    f7 = lambda{|a| a*2}.compose f6.compose{|a,b| [b,a]}
+    assert_equal 60, f7[3,5]
   end
 end

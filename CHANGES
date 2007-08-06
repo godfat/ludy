@@ -1,0 +1,25 @@
+
+==============================
+ludy 0.0.3, 2007.08
+
+ludy_ext:
+  added:
+    1. Proc#curry
+    2. Proc#compose
+    3. Proc#chain
+    4. Symbol#to_proc
+    5. Array#foldl
+    6. Array#foldr
+    7. Array#filter
+
+  removed:
+    1. Fixnum#collect # see tc_ludy_ext.rb#test_fixnum_collect for reason
+
+  info:
+    1. ruby2ruby has NilClass#method_missing return nil,
+       so i can't just make it return blackhole
+
+4. module Curry
+
+see unit test for usage
+==============================

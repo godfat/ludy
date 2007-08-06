@@ -69,4 +69,34 @@ end
 class Array
   alias_method :filter, :select
   def foldl func, init; self.inject init, &func; end
+  def foldr func, init
+    self.reverse_each{ |i|
+      init = func[i, init]
+    }
+    init
+  end
+end
+
+class Proc
+  def curry *pre
+    lambda{ |*post| self[*(pre + post)] }
+  end
+  def chain *procs, &block
+    procs << block if block
+    lambda{ |*args|
+      result = []
+      ([self] + procs).each{ |i|
+        result += [i[*args]].flatten
+      }
+      result
+    }
+  end
+  def compose *procs, &block
+    procs << block if block
+    lambda{ |*args|
+      ([self] + procs).reverse.inject(args){ |val, fun|
+        fun[*val]
+      }
+    }
+  end
 end
