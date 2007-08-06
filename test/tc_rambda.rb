@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 #    Copyright (c) 2007, Lin Jen-Shin（a.k.a. godfat 真常）
 #
@@ -25,8 +25,6 @@ class TestRambda < Test::Unit::TestCase
       (0...10).map(&rambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}))
 
     v = "can't refer v"
-    assert_raise(NameError){
-      rambda{v}.call
-    }
+    assert_equal nil, rambda{v}.call
   end
 end

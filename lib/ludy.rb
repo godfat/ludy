@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 #    Copyright (c) 2007, Lin Jen-Shin¡]a.k.a. godfat ¯u±`¡^
 #

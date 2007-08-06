@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 #    Copyright (c) 2007, Lin Jen-Shin（a.k.a. godfat 真常）
 #
@@ -13,6 +13,8 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
+
+require 'singleton'
 
 class Object
   def tap
@@ -34,16 +36,37 @@ class Object
   end
 end
 
+=begin
+class Blackhole # < NilClass
+  include Singleton
+  def method_missing msg, *arg, &block; self; end
+  def nil?; true; end
+  def null?; true; end
+  def blackhole?; true; end
+  def to_bool; false; end
+end
+=end
+
+# module Kernel; def blackhole; Blackhole.instance; end; end
 class NilClass
-  def method_missing msg, *arg, &block
-    self
-  end
+  def method_missing msg, *arg, &block; self; end
 end
 
+=begin
 class Fixnum
   def collect
     result = []
     self.times{|i| result.push(yield(i))}
     result
   end
+end
+=end
+
+class Symbol
+  def to_proc; lambda{|*args| args.shift.__send__ self, *args }; end
+end
+
+class Array
+  alias_method :filter, :select
+  def foldl func, init; self.inject init, &func; end
 end
