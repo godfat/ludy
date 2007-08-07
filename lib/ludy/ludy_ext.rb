@@ -81,6 +81,7 @@ class Proc
   def curry *pre
     lambda{ |*post| self[*(pre + post)] }
   end
+  # missing traversal of chain
   def chain *procs, &block
     procs << block if block
     lambda{ |*args|
