@@ -20,6 +20,7 @@ ludy_ext:
        so i can't just make it return blackhole
 
 4. module Curry
+  see test/tc_curry.rb for usage
 
 see unit test for usage
 ==============================
