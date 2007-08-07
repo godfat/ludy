@@ -27,7 +27,7 @@ spec = Gem::Specification.new{|s|
   candidates = Dir.glob '{bin,doc,lib,test}/**/*'
   candidates+= Dir.glob '*'
   s.files    = candidates.delete_if{|item|
-                 item.include?('CVS') || item.include?('rdoc') || File.extname(item) == '.gem'
+                 item.include?('rdoc') || File.extname(item) == '.gem'
                }
 
   s.require_path = 'lib'
