@@ -70,6 +70,8 @@ class TestLudyExt < Test::Unit::TestCase
 
     xd = multiply.curry 'XD', 5
     assert_equal 'XDXDXDXDXD', xd.call
+
+    assert_equal 29, :+.to_proc.curry(18)[11]
   end
 
   def test_proc_chain
