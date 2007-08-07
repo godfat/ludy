@@ -2,7 +2,7 @@
 ==============================
 ludy 0.0.3, 2007.08
 
-ludy_ext:
+1. ludy_ext:
   added:
     1. Proc#curry
     2. Proc#compose
@@ -19,7 +19,7 @@ ludy_ext:
     1. ruby2ruby has NilClass#method_missing return nil,
        so i can't just make it return blackhole
 
-4. module Curry
+2. module Curry:
   see test/tc_curry.rb for usage
 
 see unit test for usage
