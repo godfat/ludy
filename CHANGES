@@ -1,5 +1,18 @@
 
 ==============================
+ludy 0.0.4, 2007.08.12
+
+1. ludy_ext:
+  renamed:
+    1. Proc#curry => Proc#__curry__
+
+  added:
+    1. Kernel#curry
+
+strongly suggest that use Kernel#curry instead of Proc#__curry__,
+see unit test for usage and changes
+
+==============================
 ludy 0.0.3, 2007.08.07
 
 1. ludy_ext:
@@ -23,4 +36,5 @@ ludy 0.0.3, 2007.08.07
   see test/tc_curry.rb for usage
 
 see unit test for usage
+
 ==============================

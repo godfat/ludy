@@ -64,14 +64,15 @@ class TestLudyExt < Test::Unit::TestCase
   def test_proc_curry
     multiply = lambda{|l,r| l*r}
 
-    double = multiply.curry 2
+    double = multiply.curry[2]
     assert_equal 8, double[4]
     assert_equal 6, double[3]
 
-    xd = multiply.curry 'XD', 5
-    assert_equal 'XDXDXDXDXD', xd.call
+    xd = multiply['XD', 5]
+    assert_equal 'XDXDXDXDXD', xd
 
-    assert_equal 29, :+.to_proc.curry(18)[11]
+    assert_equal 29, :+.to_proc.curry[18][11]
+    assert_equal (0..4).to_a, lambda{|a,b,c,d,e|[a,b,c,d,e]}.curry[0][1][2][3][4]
   end
 
   def test_proc_chain

@@ -30,7 +30,7 @@ class TestCurry < Test::Unit::TestCase
     func1 = [1,2,3].cfoldr[:-.to_proc]
     assert_equal 2, func1[0]
 
-    assert_equal [8,10,12], [4,5,6].cmap(&:*.to_proc.curry(2))
+    assert_equal [8,10,12], [4,5,6].cmap(&:*.to_proc.curry[2])
 
     result = [2,3,4,5,6]
     func2 = result.ctest_curry[2]

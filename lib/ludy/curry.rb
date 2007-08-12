@@ -32,7 +32,7 @@ module Ludy
               if args.size == method(:#{m}).arity
                 self.__send__ :#{m}, *args, &block
               else
-                method(:c#{m}).to_proc.curry *args
+                method(:c#{m}).to_proc.send :__curry__, *args
               end
             end
           END
@@ -42,3 +42,7 @@ module Ludy
   end
 
 end
+
+=begin
+              method(:#{m}).to_proc.curry.call *args, &block
+=end
