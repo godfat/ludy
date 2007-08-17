@@ -17,8 +17,9 @@
 require 'test/unit'
 require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
 require_ludy 'z_combinator'
-include Ludy
+
 class TestZCombinator < Test::Unit::TestCase
+  include Ludy
   def test_z_combinator
     fact_ = lambda{|this|
       lambda{|n| n==1 ? 1 : n*this[n-1]}

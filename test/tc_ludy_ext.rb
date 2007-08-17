@@ -15,8 +15,9 @@
 #    limitations under the License.
 
 require 'test/unit'
-require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'ludy_ext'
+
 class TestLudyExt < Test::Unit::TestCase
   def test_object_tap
     assert_equal '11', 10.tap{|i| assert_equal '10', i.to_s}.succ.to_s

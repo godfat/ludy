@@ -15,17 +15,19 @@
 #    limitations under the License.
 
 require 'test/unit'
-require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'curry'
 require_ludy 'ludy_ext'
-include Ludy
+
 class Array
   def test_curry a, b, c, d, e
     [a, b, c, d, e]
   end
-  include Curry
+  include Ludy::Curry
 end
+
 class TestCurry < Test::Unit::TestCase
+  include Ludy
   def test_curry
     func1 = [1,2,3].cfoldr[:-.to_proc]
     assert_equal 2, func1[0]

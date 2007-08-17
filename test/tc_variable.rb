@@ -17,8 +17,9 @@
 require 'test/unit'
 require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
 require_ludy 'variable'
-include Ludy
+
 class TestVariable < Test::Unit::TestCase
+  include Ludy
   class Qoo
     def cool
       'cool ~~~~'

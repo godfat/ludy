@@ -17,7 +17,9 @@
 require 'test/unit'
 require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
 require_ludy 'y_combinator'
-include Ludy
+
+include Ludy # why should this be here?
+
 class TestYCombinator < Test::Unit::TestCase
   def test_y_combinator
     fact_ = lambda{|this|

@@ -17,8 +17,9 @@
 require 'test/unit'
 require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
 require_ludy 'this'
-include Ludy
+
 class TestThis < Test::Unit::TestCase
+  include Ludy
   def test_fact
     assert_equal(120, fact(5))
     assert_equal(3628800, fact(10))

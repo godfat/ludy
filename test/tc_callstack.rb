@@ -15,10 +15,11 @@
 #    limitations under the License.
 
 require 'test/unit'
-require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'callstack'
-include Ludy
+
 class TestCallstack < Test::Unit::TestCase
+  include Ludy
   def setup; @binding = 'XD' end
   def test_callstack
     called_line = __LINE__-1

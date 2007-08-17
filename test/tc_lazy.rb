@@ -15,10 +15,11 @@
 #    limitations under the License.
 
 require 'test/unit'
-require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'lazy'
-include Ludy
+
 class TestLazy < Test::Unit::TestCase
+  include Ludy
   def setup; @data = 0; end
   def get; @data += 1; end
   def test_lazy

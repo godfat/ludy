@@ -15,10 +15,11 @@
 #    limitations under the License.
 
 require 'test/unit'
-require(File.join(File.dirname(__FILE__), '..', 'lib', 'ludy'))
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'dice'
-include Ludy
+
 class TestDice < Test::Unit::TestCase
+  include Ludy
   def test_dice
     50.times{ assert((1..20).include?(1.roll)) }
     50.times{ assert((2..40).include?(2.roll)) }

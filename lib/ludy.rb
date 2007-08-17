@@ -21,11 +21,3 @@ def require_ludy target = nil
     require_all_in_dir __FILE__, 'ludy'
   end
 end
-
-def require_all_in_dir target_file, *dirs
-  dir = File.join(File.dirname(target_file), *dirs)
-  Dir.foreach(dir){ |f|
-    next unless f =~ /.rb$/
-    require(File.join(dir, f))
-  }
-end
