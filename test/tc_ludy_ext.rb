@@ -107,4 +107,9 @@ class TestLudyExt < Test::Unit::TestCase
     f7 = lambda{|a| a*2}.compose f6.compose{|a,b| [b,a]}
     assert_equal 60, f7[3,5]
   end
+
+  def test_symbol_to_msg
+    assert_equal [3, 7], [[1,2],[3,4]].map(&:'inject(&:+)')
+    assert_equal 29, :'to_i*2+9'.to_msg['10']
+  end
 end
