@@ -63,7 +63,11 @@ end
 =end
 
 class Symbol
-  def to_proc; lambda{|*args| args.shift.__send__ self, *args}; end
+  # def to_proc; lambda{|*args| args.shift.__send__ self, *args}; end
+  def to_proc
+    lambda{|*args| eval "args[0].#{self.to_s} #{args[1..-1].join ', '}" }
+  end
+  alias_method :to_msg, :to_proc
 end
 
 class Array
