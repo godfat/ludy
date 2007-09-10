@@ -26,6 +26,6 @@ class TestRambda < Test::Unit::TestCase
       (0...10).map(&rambda{|n| n<=1 ? 1 : this[n-2]+this[n-1]}))
 
     v = "can't refer v"
-    assert_equal nil, rambda{v}.call
+    assert_raise(NameError){ rambda{v}.call }
   end
 end

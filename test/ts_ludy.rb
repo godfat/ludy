@@ -18,7 +18,7 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require_ludy 'ludy_ext'
 
 dir = File.dirname __FILE__
-File.open('test_result.log', 'a+'){ |log|
+lambda{ |log|
   result = [0]*4
   start = Time.new
   log << "---- Start testing at #{start} ----\n"
@@ -35,7 +35,6 @@ File.open('test_result.log', 'a+'){ |log|
     # result = result.zip(match[1..4].map(&:to_i)).map{|data| data.inject(&:+)}
     result = result.zip(match[1..4].map(&:to_i)).map(&:'inject(&:+)')
   }
-  log << "Total: #{result[0]} tests, #{result[1]} assertions, #{result[2]} failures, #{result[3]} errors\n"
+  log << "Total: #{result[0]} tests, #{result[1]} assertions, #{result[2]} failures, #{result[3]} errors\n\n"
   log << "---- End testing in #{Time.new - start} seconds. ----\n\n\n\n\n"
-  puts "see #{log.inspect} for result"
-}
+}[STDOUT || $stdout]
