@@ -109,7 +109,16 @@ class TestLudyExt < Test::Unit::TestCase
   end
 
   def test_symbol_to_msg
-    assert_equal [3, 7], [[1,2],[3,4]].map(&:'inject(&:+)')
+    assert_equal [3, 7], [[1,2],[3,4]].map(&:'inject &:+'.to_msg)
     assert_equal 29, :'to_i*2+9'.to_msg['10']
+  end
+
+  def test_combine
+    assert_equal [4, 6], [1,2].combine([3,4])
+    assert_equal [9, 12], [1,2].combine([3,4], [5,6])
+
+    a = [[1,2],[3,4],[5,6]]
+    assert_equal [9, 12], a.inject(&:combine)
+    assert_equal [9, 12], a.shift.combine(*a)
   end
 end

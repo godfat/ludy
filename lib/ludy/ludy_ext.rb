@@ -63,22 +63,18 @@ end
 =end
 
 class Symbol
-  # def to_proc; lambda{|*args| args.shift.__send__ self, *args}; end
-  def to_proc
-    lambda{|*args| eval "args[0].#{self.to_s} #{args[1..-1].join ', '}" }
-  end
-  alias_method :to_msg, :to_proc
+  def to_proc; lambda{ |*args| args.shift.__send__ self, *args }; end
+  def to_msg; lambda{ |*args| eval "args[0].#{self.to_s} #{args[1..-1].join ', '}" }; end
 end
 
 class Array
   alias_method :filter, :select
   def foldl func, init; self.inject init, &func; end
   def foldr func, init
-    self.reverse_each{ |i|
-      init = func[i, init]
-    }
+    self.reverse_each{ |i| init = func[i, init] }
     init
   end
+  def combine *target; self.zip(*target).map &:'inject &:+'.to_msg; end
 end
 
 class Proc
@@ -99,11 +95,7 @@ class Proc
   end
   def compose *procs, &block
     procs << block if block
-    lambda{ |*args|
-      ([self] + procs).reverse.inject(args){ |val, fun|
-        fun[*val]
-      }
-    }
+    lambda{ |*args| ([self] + procs).reverse.inject(args){ |val, fun| fun[*val] } }
   end
 end
 

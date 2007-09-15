@@ -1,5 +1,23 @@
 
 ==============================
+ludy 0.0.6, 2007.09.15
+
+1. ludy_ext:
+  added:
+    1. Array#combine
+
+  moved:
+    1. move Symbol#to_proc to Symbol#to_msg,
+       and take back the original Symbol#to_proc implementation.
+
+==============================
+ludy 0.0.5, 2007.09.15
+
+i forgot what i'd done... (days ago)
+but sure there's Symbol#to_proc and Symbol#to_msg,
+also, please read unit test.
+
+==============================
 ludy 0.0.4, 2007.08.12
 
 1. ludy_ext:
