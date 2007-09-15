@@ -10,6 +10,8 @@ ludy 0.0.6, 2007.09.15
     1. move Symbol#to_proc to Symbol#to_msg,
        and take back the original Symbol#to_proc implementation.
 
+2. change the way we require
+
 ==============================
 ludy 0.0.5, 2007.09.15
 

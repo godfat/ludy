@@ -17,7 +17,8 @@
 begin
   require_ludy 'lazy'
 rescue NameError
-  raise LoadError.new('please require "ludy" first')
+  require(File.join(File.dirname(__FILE__), '../', 'ludy'))
+  require_ludy 'lazy'
 end
 
 module Ludy

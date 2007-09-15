@@ -19,7 +19,8 @@ raise LoadError.new('you need ruby2ruby gem to use this tool') unless require 'r
 begin
   require_ludy 'ludy_ext'
 rescue NameError
-  raise LoadError.new('please require "ludy" first')
+  require(File.join(File.dirname(__FILE__), '../', 'ludy'))
+  require_ludy 'ludy_ext'
 end
 
 module Ludy
