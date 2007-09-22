@@ -75,6 +75,14 @@ class Array
     init
   end
   def combine *target; self.zip(*target).map &:'inject &:+'.to_msg; end
+  def unzip
+    result = ([nil]*self.first.size).map{[]}
+    self.each{ |zipped|
+      zipped = zipped.clone
+      result.each{ |r| r << zipped.shift }
+    }
+    result
+  end
 end
 
 class Proc

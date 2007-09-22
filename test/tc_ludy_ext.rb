@@ -121,4 +121,13 @@ class TestLudyExt < Test::Unit::TestCase
     assert_equal [9, 12], a.inject(&:combine)
     assert_equal [9, 12], a.shift.combine(*a)
   end
+
+  def test_unzip
+    a = [1,2,3]
+    b = %w{a b c}
+    assert_equal [a, b], a.zip(b).unzip
+
+    c = [nil, false, true]
+    assert_equal [a, b, c], a.zip(b, c).unzip
+  end
 end
