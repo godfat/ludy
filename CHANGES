@@ -1,5 +1,15 @@
 
 ==============================
+ludy 0.0.7
+
+1. ludy_ext:
+  added:
+    1. Array#untranspose
+    2. Array#unzip
+    3. Object#m
+    4. Kernel#id
+
+==============================
 ludy 0.0.6, 2007.09.15
 
 1. ludy_ext:

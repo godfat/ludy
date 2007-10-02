@@ -17,6 +17,7 @@
 # require 'singleton'
 
 class Object
+  alias_method :m, :method
   def tap
     yield self
     self
@@ -75,7 +76,7 @@ class Array
     init
   end
   def combine *target; self.zip(*target).map &:'inject &:+'.to_msg; end
-  def unzip
+  def untranspose
     result = ([nil]*self.first.size).map{[]}
     self.each{ |zipped|
       zipped = zipped.clone
@@ -83,6 +84,7 @@ class Array
     }
     result
   end
+  def unzip; self.untranspose.first; end
 end
 
 class Proc
@@ -108,6 +110,7 @@ class Proc
 end
 
 module Kernel
+  def id a = nil; a.nil? ? self : a; end
   def curry
     class << self
       alias_method :orig_call, :call

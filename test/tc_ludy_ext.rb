@@ -122,12 +122,23 @@ class TestLudyExt < Test::Unit::TestCase
     assert_equal [9, 12], a.shift.combine(*a)
   end
 
-  def test_unzip
+  def test_unzip_and_untranspose
     a = [1,2,3]
     b = %w{a b c}
-    assert_equal [a, b], a.zip(b).unzip
+    assert_equal [a, b], a.zip(b).untranspose
+    assert_equal [a, b], [a, b].transpose.untranspose
+    assert_equal a, a.zip(b).unzip
 
     c = [nil, false, true]
-    assert_equal [a, b, c], a.zip(b, c).unzip
+    assert_equal [a, b, c], a.zip(b, c).untranspose
+    assert_equal [a, b, c], [a, b, c].transpose.untranspose
+    assert_equal a, a.zip(b, c).unzip
+  end
+
+  def test_id_and_m
+    assert_equal 'XD', id('XD')
+    assert_equal 'Orz', 'Orz'.id
+    assert_equal [1,3], [1,3].map(&m(:id))
+    assert_equal [2,4], [2,4].map(&:id)
   end
 end
