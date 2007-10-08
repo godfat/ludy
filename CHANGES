@@ -6,8 +6,9 @@ ludy 0.0.7
   added:
     1. Array#untranspose
     2. Array#unzip
-    3. Object#m
-    4. Kernel#id
+    3. Array#combine!
+    4. Object#m
+    5. Kernel#id
 
 ==============================
 ludy 0.0.6, 2007.09.15

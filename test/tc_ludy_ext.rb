@@ -120,6 +120,10 @@ class TestLudyExt < Test::Unit::TestCase
     a = [[1,2],[3,4],[5,6]]
     assert_equal [9, 12], a.inject(&:combine)
     assert_equal [9, 12], a.shift.combine(*a)
+
+    a = [18,29]
+    a.combine! [12, 1]
+    assert_equal [30, 30], a
   end
 
   def test_unzip_and_untranspose

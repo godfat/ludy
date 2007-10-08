@@ -76,6 +76,7 @@ class Array
     init
   end
   def combine *target; self.zip(*target).map &:'inject &:+'.to_msg; end
+  def combine! *target; replace combine(*target); end
   def untranspose
     result = ([nil]*self.first.size).map{[]}
     self.each{ |zipped|
