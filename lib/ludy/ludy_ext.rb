@@ -85,7 +85,9 @@ class Array
     }
     result
   end
-  def unzip; self.untranspose.first; end
+  def untranspose!; replace untranspose; end
+  def unzip; untranspose.first; end
+  def unzip!; replace unzip; end
 end
 
 class Proc
@@ -113,7 +115,8 @@ end
 module Kernel
   def id a = nil; a.nil? ? self : a; end
   def curry
-    class << self
+    result = self.kind_of?(Symbol) ? self.to_proc : self
+    class << result
       alias_method :orig_call, :call
       def call *args, &block
         if self.arity == -1
@@ -137,6 +140,6 @@ module Kernel
       end
       alias_method :[], :call
     end
-    self
+    result
   end
 end

@@ -76,6 +76,12 @@ class TestLudyExt < Test::Unit::TestCase
     assert_equal (0..4).to_a, lambda{|a,b,c,d,e|[a,b,c,d,e]}.curry[0][1][2][3][4]
   end
 
+  def test_symbol_curry
+    a = [1,2,3]
+    assert_equal nil, a.find(&:==.curry[0])
+    assert_equal 2, a.find(&:==.curry[2])
+  end
+
   def test_proc_chain
     f1 = lambda{|v| v+1}
     assert_equal 5, f1[4]

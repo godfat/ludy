@@ -1,6 +1,20 @@
 
 ==============================
-ludy 0.0.7
+ludy TODO
+  Proc#bind
+  multi
+  chain travel
+  method hook
+
+==============================
+ludy 0.0.8, CHANGE_ME
+
+  Array#untranspose!
+  Array#unzip!
+  Kernel#curry support Symbol
+
+==============================
+ludy 0.0.7, 2007.10.08
 
 1. ludy_ext:
   added:
