@@ -1,5 +1,5 @@
 
-require 'misc'
+require 'puzzle_generator/misc'
 
 module PuzzleGenerator
 
@@ -16,9 +16,6 @@ module PuzzleGenerator
       }
       resolve_map
       @result_map = GenerationFailed.new("ColoredMap: last result_map: #{@result_map.inspect}") unless check_answer_correctness
-    end
-    def check_answer_correctness
-      true
     end
   end
 

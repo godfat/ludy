@@ -1,5 +1,5 @@
 
-require 'misc'
+require 'puzzle_generator/misc'
 
 module PuzzleGenerator
 

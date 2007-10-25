@@ -1,6 +1,6 @@
 
-require 'misc'
-require 'chain'
+require 'puzzle_generator/misc'
+require 'puzzle_generator/chain'
 
 require 'rubygems'
 
@@ -17,7 +17,6 @@ require 'facets'        # for Array#combos
 module PuzzleGenerator
 
   class Map
-    # include Enumerable
     attr_reader :chains
     def initialize option = {}
       @option = DefaultOption.merge option
@@ -79,8 +78,11 @@ module PuzzleGenerator
       # e.g., [[[0, 0], Up], [[0, 0], Right], [[0, 0], Left], [[1, 0], Up], ...]
     end
     def to_chains target
-      target.map{ |pos| Chain.new pos.first, pos.last, @option[:invoke] }
+      target.map{ |pos| Chain.new pos.first, pos.last, gen_chain_length }
       # e.g., [Chain#0x000, Chain#0x001, ...]
+    end
+    def gen_chain_length
+      @option[:invoke] + rand(@option[:invoke_max] - @option[:invoke]).to_i # prevent rand 0
     end
     def strip_duplicated_chain target
       # target.uniq never works for non-num nor non-string :(

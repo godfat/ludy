@@ -21,12 +21,14 @@ require 'facets/timer'
 
 module PuzzleGenerator
 
-  def self.generate_puzzle option = {}
+  def self.generate_puzzle      option = {}; generate_klass Puzzle, option; end
+  def self.generate_chained_map option = {}; generate_klass ChainedMap, option; end
+  def self.generate_klass klass, option = {}
     option.reverse_merge! :timeout => 5
-    generate lambda{Puzzle.new option}
+    generate{ klass.new option }
   end
 
-  def generate generator, timeout = 5
+  def generate timeout = 5, &generator
     timer = Timer.new(timeout).start
     tried_times = 1
     result = generator.call

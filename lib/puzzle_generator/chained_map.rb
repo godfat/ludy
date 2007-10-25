@@ -1,7 +1,7 @@
 
-require 'misc'
-require 'chain'
-require 'map'
+require 'puzzle_generator/misc'
+require 'puzzle_generator/chain'
+require 'puzzle_generator/map'
 
 require 'rubygems'
 
@@ -45,8 +45,9 @@ module PuzzleGenerator
       put_picked_chain_on @maps
       resolve_map
     end
+    # please make this init chain to variable length chain
     def make_init_chains positions
-      positions.inject([]){ |result, pos| result << Chain.new(pos, Right) }
+      positions.inject([]){ |result, pos| result << Chain.new(pos, Right, @option[:invoke]) }
     end
 
     def chain_ok?
@@ -56,7 +57,7 @@ module PuzzleGenerator
 
       result = check_overlap_and_resolve_it &&
                check_broken_except_last     &&
-               check_answer_correctness
+               check_answer_correctness # need this if you gen variable length chain
 
       @maps_preview = nil
       @result_map_preview = nil
@@ -73,7 +74,7 @@ module PuzzleGenerator
       @picked_chain = nil
       resolve_map
     end
-    def put_answer; next_level Map.new(@option.merge(:invoke => 1)); end
+    def put_answer; next_level Map.new(@option.merge(:invoke => 1, :invoke_max => 1)); end
     def put_picked_chain_on maps
       maps.last.chains << @picked_chain
       @picked_chain.each{ |pos|
@@ -108,29 +109,6 @@ module PuzzleGenerator
         }
         result
       }
-    end
-    def check_left_chain map, x, y
-      left = x - @option[:invoke] + 1
-      return false if left < 0
-      map[left..x, y].all?{ |i| i == map[x, y] }
-    end
-    def check_right_chain map, x, y
-      right = x + @option[:invoke] - 1
-      return false if right >= @option[:width]
-      map[x..right, y].all?{ |i| i == map[x, y] }
-    end
-    def check_up_chain map, x, y
-      up = y + @option[:invoke] - 1
-      return false if up >= @option[:height]
-      map[x, y..up].all?{ |i| i == map[x, y] }
-    end
-    def check_down_chain map, x, y
-      down = y - @option[:invoke] - 1
-      return false if down < 0
-      map[x, down..y].all?{ |i| i == map[x, y] }
-    end
-    def check_answer_correctness
-      true
     end
   end
 

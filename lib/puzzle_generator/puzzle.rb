@@ -1,8 +1,8 @@
 
-require 'misc'
-require 'chained_map'
-require 'colored_map'
-require '../puzzle_generator'
+require 'puzzle_generator/misc'
+require 'puzzle_generator/chained_map'
+require 'puzzle_generator/colored_map'
+# require '../puzzle_generator'
 
 require 'rubygems'
 require 'facets'       # for Array#rotate
@@ -40,13 +40,13 @@ module PuzzleGenerator
     private
     Chain, Color = 0, 1
     def make_chain
-      @result_chain, info = generate lambda{ChainedMap.new @option},
-                                     @option[:timeout] - @tried_duration[Chain]
+      @result_chain, info = generate(@option[:timeout] - @tried_duration[Chain]){
+                                     ChainedMap.new @option }
       update_info Chain, info
     end
     def make_color colors
-      @result_color, info = generate lambda{ColoredMap.new @result_chain, colors},
-                                     @option[:timeout] - @tried_duration[Color]
+      @result_color, info = generate(@option[:timeout] - @tried_duration[Color]){
+                                     ColoredMap.new @result_chain, colors } 
       update_info Color, info
     end
     def update_info index, info
