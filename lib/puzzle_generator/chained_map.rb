@@ -27,7 +27,7 @@ module PuzzleGenerator
       @option = DefaultOption.merge option
       raise_if_bad_argument
       init_map
-      @result_map = begin  next_level until @maps.size >= @option[:level]; put_answer
+      @result_map = begin  next_level until @maps.size >= @option[:level]; put_fire_point
                     rescue GenerationFailed; $! end
     end
 
@@ -57,7 +57,7 @@ module PuzzleGenerator
 
       result = check_overlap_and_resolve_it &&
                check_broken_except_last     &&
-               check_answer_correctness # need this if you gen variable length chain
+               check_answer_correctness(@result_map_preview) # need this if you gen variable length chain
 
       @maps_preview = nil
       @result_map_preview = nil
@@ -74,7 +74,7 @@ module PuzzleGenerator
       @picked_chain = nil
       resolve_map
     end
-    def put_answer; next_level Map.new(@option.merge(:invoke => 1, :invoke_max => 1)); end
+    def put_fire_point; next_level Map.new(@option.merge(:invoke => 1, :invoke_max => 1)); end
     def put_picked_chain_on maps
       maps.last.chains << @picked_chain
       @picked_chain.each{ |pos|

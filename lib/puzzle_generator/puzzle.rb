@@ -45,9 +45,11 @@ module PuzzleGenerator
       update_info Chain, info
     end
     def make_color colors
-      @result_color, info = generate(@option[:timeout] - @tried_duration[Color]){
-                                     ColoredMap.new @result_chain, colors } 
-      update_info Color, info
+      # @result_color, info = generate(@option[:timeout] - @tried_duration[Color]){
+      #                                ColoredMap.new @result_chain, colors }
+      start = Time.now
+      @result_color = ColoredMap.new @result_chain, colors
+      update_info Color, {:tried_times => 1, :tried_duration => Time.now - start}
     end
     def update_info index, info
       @tried_times[index]    += info[:tried_times]
