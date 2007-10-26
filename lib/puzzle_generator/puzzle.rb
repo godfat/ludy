@@ -1,8 +1,7 @@
 
-require 'puzzle_generator/misc'
-require 'puzzle_generator/chained_map'
-require 'puzzle_generator/colored_map'
-# require '../puzzle_generator'
+require File.join(File.dirname(__FILE__), 'misc')
+require File.join(File.dirname(__FILE__), 'chained_map')
+require File.join(File.dirname(__FILE__), 'colored_map')
 
 require 'rubygems'
 require 'facets'       # for Array#rotate

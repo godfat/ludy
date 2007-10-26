@@ -1,6 +1,7 @@
 
 require 'rubygems'
-require 'facets'   # for Array#deep_clone
+require 'facets'          # for Array#deep_clone
+# require 'ludy/ludy_ext' # for Kernel#curry
 
 module PuzzleGenerator
   Up, Right, Left = (0..2).to_a
@@ -80,26 +81,43 @@ module PuzzleGenerator
       # this should be rewrited
       left = x - @option[:invoke] + 1
       return nil if left < 0
-      chain = map[left..x, y]
-      chain if chain.all?{ |i| i == map[x, y] }
+      # chain = map[left..x, y]
+      # chain if chain.all?{ |i| i == map[x, y] }
+      # map[0..x, y].inject([]){ |result, value| result << value if value == map[x, y] }
+      do_check_chain map[0..x, y].reverse, map[x, y]
     end
     def check_right_chain map, x, y
       right = x + @option[:invoke] - 1
       return nil if right >= @option[:width]
-      chain = map[x..right, y]
-      chain if chain.all?{ |i| i == map[x, y] }
+      # chain = map[x..right, y]
+      # chain if chain.all?{ |i| i == map[x, y] }
+      do_check_chain map[x...@option[:width], y], map[x, y]
     end
     def check_up_chain map, x, y
       up = y + @option[:invoke] - 1
       return nil if up >= @option[:height]
-      chain = map[x, y..up]
-      chain if chain.all?{ |i| i == map[x, y] }
+      # chain = map[x, y..up]
+      # chain if chain.all?{ |i| i == map[x, y] }
+      do_check_chain map[x, y...@option[:height]], map[x, y]
     end
     def check_down_chain map, x, y
       down = y - @option[:invoke] - 1
       return nil if down < 0
-      chain = map[x, down..y]
-      chain if chain.all?{ |i| i == map[x, y] }
+      # chain = map[x, down..y]
+      # chain if chain.all?{ |i| i == map[x, y] }
+      do_check_chain map[x, 0..y].reverse, map[x, y]
+    end
+    # def check_chain target_color, result, value; result << value if value == target_color; end
+    def do_check_chain target, target_color
+      # target.inject([], &method(:check_chain).curry[target_color])
+      chain = target.inject([]){ |result, value|
+        if value == target_color
+          result << value
+        else
+          break result
+        end
+      }
+      chain.size >= @option[:invoke] ? chain : nil
     end
   end
 

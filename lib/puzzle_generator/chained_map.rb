@@ -1,7 +1,9 @@
 
-require 'puzzle_generator/misc'
-require 'puzzle_generator/chain'
-require 'puzzle_generator/map'
+pwd = File.dirname __FILE__
+
+require File.join(pwd, 'misc')
+require File.join(pwd, 'chain')
+require File.join(pwd, 'map')
 
 require 'rubygems'
 

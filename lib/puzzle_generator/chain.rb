@@ -1,5 +1,5 @@
 
-require 'puzzle_generator/misc'
+require File.join(File.dirname(__FILE__), 'misc')
 
 module PuzzleGenerator
 
