@@ -1,50 +1,11 @@
 
 # alpha at 2007.10.14
 
-# require 'puzzle_generator/puzzle'
 require File.join(File.dirname(__FILE__), 'puzzle_generator', 'puzzle')
 
 require 'rubygems'
 require 'facets'   # for Hash#reverse_merge
 require 'facets/timer'
-
-# level => 7
-# 0  0  0  0  0  0
-# 0  0  0  0  0  0
-# 0  0  3  0  0  0
-# 0  0  1  0  0  0
-# 1  3  4  0  0  0
-# 2  1  1  0  0  0
-# 2  3  2  0  0  0
-# 3  4  3  0  0  0
-# 3  1  2  4  0  0
-# 2  4  2  1  0  0
-
-# level => 15
-# 0  0  1  0  0  0
-# 2  0  2  1  0  0
-# 1  0  4  1  0  0
-# 2  0  3  3  1  0
-# 2  4  1  4  4  0
-# 3  2  4  2  2  1
-# 4  1  1  3  3  2
-# 3  3  2  3  4  3
-# 3  1  3  4  1  2
-# 2  3  4  1  4  2
-
-# level => 7
-#  0  0  0  0  0  0
-#  0  0  0  0  0  0
-#  0  0  0  0  0  0
-#  0  0  0  0  0  0
-#  0  0  1  0  0  0
-#  0  0  2  2  0  0
-#  0  1  3  4  4  0
-#  1  2  4  1  1  0
-#  3  3  2  2  3  1
-#  2  2  3  3  4  3
-# [20, 9]
-# [1.630587, 0.151272]
 
 module PuzzleGenerator
 
