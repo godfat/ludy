@@ -1,10 +1,16 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'puzzle_generator')
 
-p = PuzzleGenerator::Puzzle.new :level => 7, :timeout => 5, :invoke_max => 5
-p.display_map
-p p.tried_times
-p p.tried_duration
+p = PuzzleGenerator::Puzzle.new :level => 12, :timeout => 15, :invoke_max => 5
+begin
+  p.generate
+  p.display_map
+rescue Timeout::Error
+  puts 'Timeout!!'
+ensure
+  p p.tried_times
+  p p.tried_duration
+end
 
 # level => 7
 # 0  0  0  0  0  0

@@ -10,14 +10,15 @@ require 'facets/timer'
 module PuzzleGenerator
 
   class Puzzle
-    include DisplayMap, PuzzleGenerator
+    include DisplayMap
     attr_reader :tried_times, :tried_duration
     def initialize option = {}
       @option = DefaultOption.merge option
       @tried_times, @tried_duration = [0, 0], [0, 0]
+    end
+    def generate
       raw_colors = (1..@option[:colors]).to_a
       step_colors = raw_colors.rotate
-      timer = Timer.new(@option[:timeout]).start
 
       make_chain
       make_color raw_colors
@@ -32,23 +33,27 @@ module PuzzleGenerator
         end
       end
 
-      timer.stop
       @result_map = @result_color.result_map
     end
 
     private
     Chain, Color = 0, 1
     def make_chain
-      @result_chain, info = generate(@option[:timeout] - @tried_duration[Chain]){
-                                     ChainedMap.new @option }
-      update_info Chain, info
+      begin
+        @result_chain =
+          PuzzleGenerator::generate(
+            @option[:timeout] - @tried_duration[Chain]){ ChainedMap.new @option }
+      ensure
+        update_info Chain, LastTriedInfo
+      end
     end
     def make_color colors
-      # @result_color, info = generate(@option[:timeout] - @tried_duration[Color]){
-      #                                ColoredMap.new @result_chain, colors }
       start = Time.now
-      @result_color = ColoredMap.new @result_chain, colors
-      update_info Color, {:tried_times => 1, :tried_duration => Time.now - start}
+      begin
+        @result_color = ColoredMap.new @result_chain, colors
+      ensure
+        update_info Color, {:tried_times => 1, :tried_duration => Time.now - start}
+      end
     end
     def update_info index, info
       @tried_times[index]    += info[:tried_times]

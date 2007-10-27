@@ -15,22 +15,21 @@ module PuzzleGenerator
     generate(option[:timeout]){ klass.new option }
   end
 
-  def generate timeout = 5, &generator
+  LastTriedInfo = {}
+  def self.generate timeout = 5, &generator
     timer = Timer.new(timeout).start
     tried_times = 1
     begin
       result = generator.call
       until result.result_map.kind_of? Array
         tried_times += 1
-        begin; result = generator.call
-        rescue; timer.stop; raise
-        end
+        result = generator.call
       end
-    rescue; timer.stop; raise
+    ensure
+      timer.stop
+      LastTriedInfo.merge! :tried_times => tried_times, :tried_duration => timer.total_time
     end
-    timer.stop
-    [result, {:tried_times => tried_times, :tried_duration => timer.total_time}]
+    result
   end
-  module_function :generate
 
 end
