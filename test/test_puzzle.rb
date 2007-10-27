@@ -1,7 +1,7 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'puzzle_generator')
 
-p = PuzzleGenerator::Puzzle.new :level => 12, :timeout => 15, :invoke_max => 5
+p = PuzzleGenerator::Puzzle.new :level => 14, :timeout => 20, :invoke_max => 5
 begin
   p.generate
   p.display_map
@@ -105,3 +105,17 @@ end
 #  1  2  2  3  1  1
 # [53, 17]
 # [4.614123, 0.264156]
+
+# level => 14
+#  0  0  0  0  0  0
+#  0  0  1  0  0  0
+#  1  0  4  0  2  0
+#  1  0  2  4  3  0
+#  2  1  3  2  3  0
+#  2  3  1  4  4  1
+#  3  1  4  3  3  2
+#  2  4  1  4  3  2
+#  3  2  2  1  1  3
+#  2  4  4  1  1  2
+# [123, 1]
+# [14.940386, 0.077763]
