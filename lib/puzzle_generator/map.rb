@@ -101,7 +101,7 @@ module PuzzleGenerator
       # e.g., [Chain#0x000, Chain#0x001, ...]
     end
     def gen_chain_length
-      @option[:invoke] + (maybe ? 0 : 1 + rand(@option[:invoke_max] - @option[:invoke]).to_i) # prevent rand 0
+      @option[:invoke] + (maybe ? 0 : rand(@option[:invoke_max] - @option[:invoke] + 1))
     end
     def strip_duplicated_chain target
       # target.uniq never works for non-num nor non-string :(
