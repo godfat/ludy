@@ -30,7 +30,7 @@ module PuzzleGenerator
       @debug_answer = @chained_map.maps.last.each_with_index_2d{ |i, x, y| break i if i != 0 }
     end
     def check_no_invoke
-      m = Map.new :data => @result_map
+      m = Map.new :data => @result_map, :option => @option
       m.each_with_index_2d{ |i, x, y|
         return false if check_left_chain( m, x, y) ||
                         check_right_chain(m, x, y) ||

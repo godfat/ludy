@@ -83,6 +83,7 @@ module PuzzleGenerator
     end
     def check_left_chain map, x, y
       # this should be rewrited
+      return nil if map[x, y] == 0
       left = x - @option[:invoke] + 1
       return nil if left < 0
       # chain = map[left..x, y]
@@ -91,6 +92,7 @@ module PuzzleGenerator
       do_check_chain map[0..x, y].reverse, map[x, y]
     end
     def check_right_chain map, x, y
+      return nil if map[x, y] == 0
       right = x + @option[:invoke] - 1
       return nil if right >= @option[:width]
       # chain = map[x..right, y]
@@ -98,6 +100,7 @@ module PuzzleGenerator
       do_check_chain map[x...@option[:width], y], map[x, y]
     end
     def check_up_chain map, x, y
+      return nil if map[x, y] == 0
       up = y + @option[:invoke] - 1
       return nil if up >= @option[:height]
       # chain = map[x, y..up]
@@ -105,6 +108,7 @@ module PuzzleGenerator
       do_check_chain map[x, y...@option[:height]], map[x, y]
     end
     def check_down_chain map, x, y
+      return nil if map[x, y] == 0
       down = y - @option[:invoke] - 1
       return nil if down < 0
       # chain = map[x, down..y]

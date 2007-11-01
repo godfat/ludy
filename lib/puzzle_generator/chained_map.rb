@@ -103,7 +103,6 @@ module PuzzleGenerator
       @maps_preview.body.all?{ |map|
         result = true
         map.each_with_index_2d{ |i, x, y|
-          next if i == 0 # empty
           result &&= !check_left_chain( map, x, y) &&
                      !check_right_chain(map, x, y) &&
                      !check_up_chain(   map, x, y) &&
