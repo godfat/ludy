@@ -2,7 +2,6 @@
 require File.join(File.dirname(__FILE__), 'misc')
 
 module PuzzleGenerator
-
   class ColoredMap
     include DisplayMap, MapUtils
     def initialize chained_map, colors = (1..chained_map.option[:colors]).to_a
@@ -10,6 +9,9 @@ module PuzzleGenerator
       @maps = []
       @chained_map = chained_map
       @option = @chained_map.option
+
+      debug_init if PuzzleGenerator.debug
+
       chained_map.maps.each_with_index{ |map, index|
         @maps << map.clone_with_map{ |color|
           color == 0 ? 0 : colors[index % @option[:colors]]
@@ -24,6 +26,9 @@ module PuzzleGenerator
     end
 
     private
+    def debug_init
+      @debug_answer = @chained_map.maps.last.each_with_index_2d{ |i, x, y| break i if i != 0 }
+    end
     def check_fire_point_and_strip_it
       @x, @y = @chained_map.maps.last.each_with_index_2d{ |i, x, y| break [x, y] if i != 0 }
       map = Map.new :data => @result_map, :option => @option
@@ -38,7 +43,7 @@ module PuzzleGenerator
       @result_map[@x][@y] = 0
     end
     def put_answer_back
-      @result_map[@x][@y] = @answer_color
+      @result_map[@x][@y] = @debug_answer || @answer_color
       @x, @y, @answer_color = nil
       @result_map
     end

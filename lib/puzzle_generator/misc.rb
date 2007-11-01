@@ -8,6 +8,10 @@ module PuzzleGenerator
   DefaultOption = {:width => 6, :height => 10, :level => 4, :colors => 4,
                    :invoke => 3, :invoke_max => 5, :timeout => 5}
   class GenerationFailed < RuntimeError; end
+  class << self
+    attr_writer :debug
+    def debug; @debug || false; end
+  end
 
   module DisplayMap
     attr_reader :result_map
