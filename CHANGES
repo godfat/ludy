@@ -7,11 +7,17 @@ ludy TODO
   method hook
 
 ==============================
-ludy 0.0.8, CHANGE_ME
+ludy 0.0.8, 2007.12.06
 
-  Array#untranspose!
-  Array#unzip!
-  Kernel#curry support Symbol
+1. ludy_ext:
+  added:
+    1. Array#untranspose!
+    2. Array#unzip!
+
+  changed:
+    1. Kernel#curry support Symbol
+
+2. puzzle_generator added...
 
 ==============================
 ludy 0.0.7, 2007.10.08
