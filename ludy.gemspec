@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 #    Copyright (c) 2007, Lin Jen-Shin（a.k.a. godfat 真常）
 #
@@ -17,8 +17,9 @@
 require 'rubygems'
 
 spec = Gem::Specification.new{|s|
+  s.rubyforge_project = 'ludy'
   s.name     = 'ludy'
-  s.version  = '0.0.8'
+  s.version  = '0.0.9'
   s.author   = 'Lin Jen-Shin(a.k.a. godfat)'
   s.email    = 'strip number: 135godfat7911@246godfat.890org'
   s.homepage = 'http://ludy.rubyforge.org/'
@@ -31,7 +32,6 @@ spec = Gem::Specification.new{|s|
                }
 
   s.require_path = 'lib'
-  s.autorequire  = 'ludy'
   s.test_file    = 'test/ts_ludy.rb'
   s.has_rdoc     = false
   # s.extra_rdoc_files = []

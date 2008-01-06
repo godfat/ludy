@@ -1,10 +1,14 @@
 
 ==============================
 ludy TODO
-  Proc#bind
   multi
   chain travel
   method hook
+
+==============================
+ludy 0.0.9, 2008.01.07
+
+Proc#bind added, see test/tc_bind.rb
 
 ==============================
 ludy 0.0.8, 2007.12.06
