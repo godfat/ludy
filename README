@@ -6,7 +6,7 @@
   
 Aims to extend Ruby standard library, providing some useful tools that's not existed in the standard library.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
   
 * ludy standard library extension
 * puzzle_generator

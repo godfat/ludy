@@ -14,7 +14,7 @@ module Rake
       @title = nil
       @template = 'html'
       @external = false
-      @options = ['--charset', 'utf-8']
+      @options = ['--charset', 'utf-8', '--inline-numbers', '--inline-source']
       yield self if block_given?
       define
     end
@@ -36,7 +36,7 @@ PROJ.authors = 'Lin Jen-Shin(a.k.a. godfat 真常）'
 PROJ.email = 'strip number: 135godfat7911@246godfat.890org'
 PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = paragraphs_of('README', 1).join("\n\n")
-PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
+PROJ.changes = paragraphs_of('CHANGELOG', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = '0.1.0'
@@ -48,7 +48,5 @@ PROJ.rdoc_exclude << 'deprecated' << 'Manifest'
 PROJ.rdoc_include << '\w+'
 
 PROJ.spec_opts << '--color'
-
-
 
 # EOF
