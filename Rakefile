@@ -21,7 +21,7 @@ PROJ.rubyforge_name = 'ludy'
 PROJ.version = '0.1.0'
 PROJ.exclude << '.DS_Store' # %w(tmp$ bak$ ~$ CVS .svn/ ^pkg/ ^doc/)
 PROJ.dependencies += ['rake']
-PROJ.rdoc_exclude << 'deprecated'
+PROJ.rdoc_exclude << 'deprecated' << 'Manifest'
 PROJ.rdoc_include << '\w+'
 
 PROJ.spec_opts << '--color'

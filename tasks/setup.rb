@@ -33,7 +33,7 @@ PROJ.rcov_opts = ['--sort', 'coverage', '-T']
 # Rdoc
 PROJ.rdoc_opts = []
 PROJ.rdoc_include = %w(^lib/ ^bin/ ^ext/ .txt$)
-PROJ.rdoc_exclude = %w(extconf.rb$ ^Manifest$)
+PROJ.rdoc_exclude = %w(extconf.rb$ ^Manifest.txt$)
 PROJ.rdoc_main = 'README'
 PROJ.rdoc_dir = 'doc'
 PROJ.rdoc_remote_dir = nil
@@ -46,8 +46,8 @@ PROJ.libs = []
 
 # Gem Packaging
 PROJ.files =
-  if test ?f, 'Manifest'
-    files = File.readlines('Manifest').map {|fn| fn.chomp.strip}
+  if test ?f, 'Manifest.txt'
+    files = File.readlines('Manifest.txt').map {|fn| fn.chomp.strip}
     files.delete ''
     files
   else [] end
