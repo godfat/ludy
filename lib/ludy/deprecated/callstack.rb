@@ -1,11 +1,11 @@
 
 module Ludy
-  TRACE_EVENT   = 0
-  TRACE_FILE    = 1
-  TRACE_LINE    = 2
-  TRACE_MSG     = 3
-  TRACE_BINDING = 4
-  TRACE_CLASS   = 5
+  # TRACE_EVENT   = 0
+  # TRACE_FILE    = 1
+  # TRACE_LINE    = 2
+  # TRACE_MSG     = 3
+  # TRACE_BINDING = 4
+  # TRACE_CLASS   = 5
 
   def callstack levels = -1
     st = Thread.current[:callstack]
@@ -15,7 +15,7 @@ module Ludy
 end # of Ludy
 
 set_trace_func lambda{ |*args|
-  case args[Ludy::TRACE_EVENT]
+  case args[0]
     when /call$/
       (Thread.current[:callstack] ||= []).push args
     when /return$/

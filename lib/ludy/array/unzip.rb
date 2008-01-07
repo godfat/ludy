@@ -1,5 +1,5 @@
 
-require 'ludy/arry/untranspose'
+require 'ludy/array/untranspose'
 
 class Array
   def unzip; untranspose.first; end

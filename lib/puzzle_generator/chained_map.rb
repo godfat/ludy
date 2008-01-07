@@ -12,6 +12,7 @@ require 'ludy/ludy_ext'
 
 gem 'facets', '>=2.0.0' # for lots of things
 require 'facets/random' # for Array#pick
+require 'facets/enumerable/combos'
 
 module PuzzleGenerator
 

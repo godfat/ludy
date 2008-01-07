@@ -2,7 +2,7 @@
 require File.join(File.dirname(__FILE__), '..', 'lib', 'puzzle_generator')
 
 PuzzleGenerator.debug = true
-p = PuzzleGenerator::Puzzle.new :level => 15, :timeout => 600, :invoke_max => 5
+p = PuzzleGenerator::Puzzle.new :level => 4, :timeout => 600, :invoke_max => 5
 begin
   p.generate
   p.display_map

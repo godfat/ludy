@@ -2,9 +2,6 @@
 # configured in this Rakefile. The .rake files in the tasks directory
 # are where the options are used.
 
-require 'echoe'
-Echoe.new('gem_name')
-
 load 'tasks/setup.rb'
 
 ensure_in_path 'lib'

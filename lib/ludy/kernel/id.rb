@@ -1,4 +1,4 @@
 
-class Kernel
+module Kernel
   def id a = nil; a.nil? ? self : a; end
 end

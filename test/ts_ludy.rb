@@ -23,7 +23,7 @@ lambda{ |log|
   start = Time.new
   log << "---- Start testing at #{start} ----\n"
   Dir.foreach(dir){ |file|
-    next unless file =~ /^tc_/
+    next unless file =~ /^test_/
     test = File.join dir, file
     # require test
 
