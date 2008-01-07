@@ -24,6 +24,7 @@ namespace :doc do
     title = "#{PROJ.rubyforge_name}'s " + title if PROJ.rubyforge_name != title
 
     rd.options << "-t #{title}"
+    rd.options << '--charset' << 'utf-8'
   end
 
   desc 'Generate ri locally for testing'

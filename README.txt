@@ -1,5 +1,5 @@
-ludy
-    by Lin Jen-Shin(a.k.a. godfat)
+== ludy
+    by Lin Jen-Shin(a.k.a. godfat 真常）
     http://godfat.org/
 
 == DESCRIPTION:

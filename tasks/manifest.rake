@@ -17,13 +17,13 @@ namespace :manifest do
     end
 
     File.open(fn, 'w') {|fp| fp.puts files.sort}
-    system "#{DIFF} -du Manifest.txt #{fn}"
+    system "#{DIFF} -du Manifest #{fn}"
     rm fn rescue nil
   end
 
   desc 'Create a new manifest'
   task :create do
-    fn = 'Manifest.txt'
+    fn = 'Manifest'
     files = []
     exclude = Regexp.new(PROJ.exclude.join('|'))
     Find.find '.' do |path|

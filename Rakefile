@@ -11,16 +11,17 @@ task :default => 'spec:run'
 
 PROJ.name = 'ludy'
 PROJ.summary = 'Aims to extend Ruby standard library, providing some useful tools that\'s not existed in the standard library.'
-PROJ.authors = 'Lin Jen-Shin(a.k.a. godfat)'
+PROJ.authors = 'Lin Jen-Shin(a.k.a. godfat 真常）'
 PROJ.email = 'strip number: 135godfat7911@246godfat.890org'
 PROJ.url = 'http://ludy.rubyforge.org/'
-PROJ.description = paragraphs_of('README.txt', 1).join("\n\n")
-PROJ.changes = paragraphs_of('History.txt', 0..1).join("\n\n")
+PROJ.description = paragraphs_of('README', 1).join("\n\n")
+PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = '0.1.0'
 PROJ.exclude << '.DS_Store' # %w(tmp$ bak$ ~$ CVS .svn/ ^pkg/ ^doc/)
 PROJ.dependencies += ['rake']
+PROJ.rdoc_exclude << 'deprecated'
 
 PROJ.spec_opts << '--color'
 
