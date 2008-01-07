@@ -1,4 +1,6 @@
 
+require 'ludy/kernel/public_send'
+
 class Proc
   def __curry__ *pre
     lambda{ |*post| self[*(pre + post)] }
@@ -17,14 +19,14 @@ class Proc
             # i'd tried put hacks in Symbol#to_proc, but it's
             # difficult to implement in correct way
             # i would try it again in other day
-            self.__send__ :__call__, *args, &block
+            self.public_send :__call__, *args, &block
           rescue ArgumentError # oops, let's curry it
-            method(:call).to_proc.__send__ :__curry__, *args
+            method(:call).to_proc.public_send :__curry__, *args
           end
         elsif args.size == self.arity
-          self.__send__ :__call__, *args, &block
+          self.public_send :__call__, *args, &block
         else
-          method(:call).to_proc.__send__ :__curry__, *args
+          method(:call).to_proc.public_send :__curry__, *args
         end
       end
       alias_method :[], :call

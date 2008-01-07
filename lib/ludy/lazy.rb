@@ -1,8 +1,11 @@
 
+require 'ludy/kernel/public_send'
+require 'ludy/class/undef_all_methods'
+
 module Ludy
 
   class Lazy
-    instance_methods.each{|m| undef_method m unless (m =~ /^__/ || m.to_sym == :object_id)}
+    undef_all_methods
 
     def initialize func = nil, &block
       if block_given? then @func = block
@@ -13,7 +16,7 @@ module Ludy
     end
 
     def method_missing msg, *arg, &block
-      (@obj ||= @func.call).__send__ msg, *arg, &block
+      (@obj ||= @func.call).public_send msg, *arg, &block
     end
   end
 

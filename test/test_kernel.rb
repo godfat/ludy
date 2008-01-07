@@ -3,6 +3,17 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
 require 'ludy/kernel'
 
 class TestKernel < Test::Unit::TestCase
+  class C
+    def pub; 'pub'; end
+    def method_missing msg, *args, &block; args.unshift(msg.to_s.upcase).join(' '); end
+    private; def pri; 'pri'; end
+  end
+  def test_public_send
+    c = C.new
+    assert_equal 'pub', c.public_send(:pub)
+    assert_equal 'PRI', c.public_send(:pri)
+    assert_equal 'XD', c.public_send(:xd)
+  end
   def test_tap
     assert_equal '11', 10.tap{|i| assert_equal '10', i.to_s}.succ.to_s
   end
