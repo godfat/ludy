@@ -1,9 +1,9 @@
 CHANGES
 History.txt
 LICENSE
-Manifest.txt
+Manifest
 NOTICE
-README.txt
+README
 Rakefile
 bin/ludy
 lib/ludy.rb
@@ -69,6 +69,7 @@ test/deprecated/rambda.rb
 test/deprecated/this.rb
 test/deprecated/ts_ludy.rb
 test/example_puzzle.rb
+test/test_all.rb
 test/test_array.rb
 test/test_dice.rb
 test/test_kernel.rb
