@@ -1,6 +1,6 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
-require 'ludy/callstack'
+require 'ludy/deprecated/callstack'
 
 class TestCallstack < Test::Unit::TestCase
   include Ludy

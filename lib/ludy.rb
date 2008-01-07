@@ -2,7 +2,7 @@
 
 # Equivalent to a header guard in C/C++
 # Used to prevent the class/module from being loaded more than once
-unless defined? Ludy
+# unless defined? Ludy
 
 module Ludy
 
@@ -49,8 +49,8 @@ module Ludy
 
 end  # module Ludy
 
-Ludy.require_all_libs_relative_to __FILE__
+# Ludy.require_all_libs_relative_to __FILE__
 
-end  # unless defined?
+# end  # unless defined?
 
 # EOF

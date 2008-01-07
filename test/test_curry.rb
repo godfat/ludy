@@ -1,6 +1,6 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
-require 'ludy/curry'
+require 'ludy/deprecated/curry'
 
 class Array
   def test_curry a, b, c, d, e
