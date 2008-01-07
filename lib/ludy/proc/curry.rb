@@ -29,6 +29,6 @@ class Proc
       end
       alias_method :[], :call
     end
-    result
+    self
   end
 end

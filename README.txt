@@ -67,7 +67,8 @@ variable:
 
 == REQUIREMENTS:
 
-* ruby 1.8
+* ruby 1.8/1.9
+* rake
 * gem facets in some features
 
 == INSTALL:

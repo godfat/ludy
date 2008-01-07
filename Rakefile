@@ -19,6 +19,8 @@ PROJ.changes = paragraphs_of('History.txt', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = '0.1.0'
+PROJ.exclude << '.DS_Store' # %w(tmp$ bak$ ~$ CVS .svn/ ^pkg/ ^doc/)
+PROJ.dependencies += ['rake']
 
 PROJ.spec_opts << '--color'
 

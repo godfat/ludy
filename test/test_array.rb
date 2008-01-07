@@ -1,6 +1,7 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
 require 'ludy/array'
+require 'ludy/symbol/to_proc'
 
 class TestArray < Test::Unit::TestCase
   def test_filter
@@ -8,7 +9,7 @@ class TestArray < Test::Unit::TestCase
   end
   def test_folds
     assert_equal  6, [1,2,3].foldl(:+.to_proc, 0)
-    assert_equal -6, [1,2,3].foldl(:-.to_proc, 0)
+    assert_equal(-6, [1,2,3].foldl(:-.to_proc, 0))
     assert_equal  6, [1,2,3].foldr(:+.to_proc, 0)
     assert_equal  2, [1,2,3].foldr(:-.to_proc, 0)
   end

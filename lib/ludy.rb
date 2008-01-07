@@ -4,6 +4,9 @@
 # Used to prevent the class/module from being loaded more than once
 # unless defined? Ludy
 
+require 'rubygems'
+require 'rake'
+
 module Ludy
 
   # :stopdoc:
@@ -45,6 +48,17 @@ module Ludy
         ::File.join(::File.dirname(fname), dir, '**', '*.rb'))
 
     Dir.glob(search_me).sort.each {|rb| require rb}
+  end
+
+  def self.require_all_in dir
+    FileList["lib/ludy/#{dir}/*.rb"].each{ |i|
+      if i.pathmap('%-1d') == '.'
+        i = i.ext.pathmap('%f')
+      else
+        i = i.ext.pathmap('%-1d/%f')
+      end
+      require "ludy/#{i}"
+    }
   end
 
 end  # module Ludy

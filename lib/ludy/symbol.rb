@@ -1,3 +1,3 @@
 
 require 'ludy'
-Ludy.require_all_libs_relative_to __FILE__, 'symbol'
+Ludy.require_all_in 'symbol'

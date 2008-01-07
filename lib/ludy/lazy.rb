@@ -2,7 +2,7 @@
 module Ludy
 
   class Lazy
-    instance_methods.each{|m| undef_method m unless m =~ /^__/}
+    instance_methods.each{|m| undef_method m unless (m =~ /^__/ || m.to_sym == :object_id)}
 
     def initialize func = nil, &block
       if block_given? then @func = block
