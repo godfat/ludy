@@ -1,0 +1,93 @@
+ludy
+    by Lin Jen-Shin(a.k.a. godfat)
+    http://godfat.org/
+
+== DESCRIPTION:
+  
+Aims to extend Ruby standard library, providing some useful tools that's not existed in the standard library.
+
+== FEATURES/PROBLEMS:
+  
+* ludy standard library extension
+* puzzle_generator
+* c++ erb meta-programming tasks
+
+== SYNOPSIS:
+
+curry:
+  require 'ludy/curry'
+  assert_equal 29, :+.to_proc.curry[18][11]
+
+bind:
+  require 'ludy/bind'
+  assert_equal [9,8,7], ([1,2,3].map &(lambda{|lhs, rhs| lhs-rhs}.bind 10, :_1))
+
+chain:
+  f1 = lambda{|v| v+1}
+  f2 = lambda{|v| v+2}
+  f3 = f1.chain f2
+  assert_equal [6,7], f3[5]
+
+compose:
+  f1 = lambda{|v| v+1}
+  f2 = lambda{|v| v*2}
+  f3 = f1.compose f2
+  assert_equal 21, f3[10]
+
+untranspose:
+  assert_equal [a, b], [a, b].transpose.untranspose
+
+lazy:
+  Y = lambda{|f|
+    lambda{|x| lazy{f[x[x]]} }[lambda{|x| lazy{f[x[x]]} }]
+  }
+
+y_combinator:
+  fact = Y[lambda{|this|
+    lambda{|n| n==1 ? 1 : n*this[n-1]}
+  }]
+  assert_equal(3628800, fact[10])
+
+variable:
+  include Ludy
+  class Qoo
+    def cool
+      'cool ~~~~'
+    end
+  end
+  x = var Qoo.new
+  y = x
+  assert_equal 'cool ~~~~', x.cool
+  assert_equal 'cool ~~~~', y.cool
+
+  x.__obj__ = nil
+
+  assert x.nil?
+  assert y.nil?
+
+== REQUIREMENTS:
+
+* ruby 1.8
+* gem facets in some features
+
+== INSTALL:
+
+* sudo gem install ludy
+
+== LICENSE:
+
+Apache License 2.0
+
+Copyright (c) 2008, Lin Jen-Shin（a.k.a. godfat 真常）
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

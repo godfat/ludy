@@ -1,0 +1,17 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/ludy
+lib/ludy.rb
+spec/ludy_spec.rb
+tasks/annotations.rake
+tasks/doc.rake
+tasks/gem.rake
+tasks/manifest.rake
+tasks/rubyforge.rake
+tasks/setup.rb
+tasks/spec.rake
+tasks/svn.rake
+tasks/test.rake
+test/test_ludy.rb

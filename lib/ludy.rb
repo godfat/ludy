@@ -1,23 +1,56 @@
-#!/usr/bin/env ruby
+# $Id$
 
-#    Copyright (c) 2007, Lin Jen-Shin¡]a.k.a. godfat ¯u±`¡^
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
+# Equivalent to a header guard in C/C++
+# Used to prevent the class/module from being loaded more than once
+unless defined? Ludy
 
-def require_ludy target = nil
-  if target
-    require(File.join(File.dirname(__FILE__), 'ludy', target))
-  else
-    require_all_in_dir __FILE__, 'ludy'
+module Ludy
+
+  # :stopdoc:
+  VERSION = '0.1.0'
+  LIBPATH = ::File.expand_path(::File.dirname(__FILE__)) + ::File::SEPARATOR
+  PATH = ::File.dirname(LIBPATH) + ::File::SEPARATOR
+  # :startdoc:
+
+  # Returns the version string for the library.
+  #
+  def self.version
+    VERSION
   end
-end
+
+  # Returns the library path for the module. If any arguments are given,
+  # they will be joined to the end of the libray path using
+  # <tt>File.join</tt>.
+  #
+  def self.libpath( *args )
+    args.empty? ? LIBPATH : ::File.join(LIBPATH, *args)
+  end
+
+  # Returns the lpath for the module. If any arguments are given,
+  # they will be joined to the end of the path using
+  # <tt>File.join</tt>.
+  #
+  def self.path( *args )
+    args.empty? ? PATH : ::File.join(PATH, *args)
+  end
+
+  # Utility method used to rquire all files ending in .rb that lie in the
+  # directory below this file that has the same name as the filename passed
+  # in. Optionally, a specific _directory_ name can be passed in such that
+  # the _filename_ does not have to be equivalent to the directory.
+  #
+  def self.require_all_libs_relative_to( fname, dir = nil )
+    dir ||= ::File.basename(fname, '.*')
+    search_me = ::File.expand_path(
+        ::File.join(::File.dirname(fname), dir, '**', '*.rb'))
+
+    Dir.glob(search_me).sort.each {|rb| require rb}
+  end
+
+end  # module Ludy
+
+Ludy.require_all_libs_relative_to __FILE__
+
+end  # unless defined?
+
+# EOF
