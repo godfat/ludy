@@ -1,5 +1,8 @@
 
 require 'ludy/pattern_matcher'
+if RUBY_VERSION < '1.9.0'
+  require 'ludy/kernel/singleton_method'
+end
 
 module Ludy
   class MessageDispatcher
@@ -37,10 +40,10 @@ module Ludy
             if self.respond_to? :method_missing
               self.method_missing msg, *args#, &block
             else
-              raise NoMethodError.new("#{@actor.inspect} doesn't respond to \"#{msg}\"")
+              raise NoMethodError.new("#{self.inspect} doesn't respond to \"#{msg}\"")
             end
           else
-            fun.call *args#, &block
+            fun.call(*args)#, &block)
           end
         end
       # end

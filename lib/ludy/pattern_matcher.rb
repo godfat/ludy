@@ -10,11 +10,9 @@ module Ludy
     # this is not the best match. maybe someday i could
     # implement the match policy accordingly or selectable policy.
     def first_match args
-      puts 'tsetsetset'
-      p @params
       @params.find{ |parameters, fun|
         match? parameters, args
-      }.last
+      }.ergo.last
     end
     # delegate all the rest message to @params array
     def method_missing msg, *args, &block
@@ -26,6 +24,7 @@ module Ludy
     end
     private
     def match? parameters, arguments
+      return false unless parameters.size == arguments.size
       parameters.zip(arguments).each{ |param, arg|
         if param.kind_of? Class
           return false unless arg.kind_of?(param)
