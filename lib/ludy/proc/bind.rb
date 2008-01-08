@@ -1,5 +1,10 @@
 
 class Proc
+  # C++ TR1 style bind
+  # use _#{n} for placeholders
+  # _1 => 1st arg
+  # _2 => 2nd arg
+  # ...
   def bind *args
     lambda{ |*new_args|
       self[*(args.map{ |arg|

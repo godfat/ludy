@@ -53,6 +53,8 @@ module Ludy
     Dir.glob(search_me).sort.each {|rb| require rb}
   end
 
+  # require all files in the dir, only work for ludy.
+  # i.e., Ludy.require_all_in 'proc' => require 'ludy/proc/*.rb'
   def self.require_all_in dir
     Dir.glob("#{LIBPATH}ludy/#{dir}/*.rb").each{ |i|
       require(if dir == '.'

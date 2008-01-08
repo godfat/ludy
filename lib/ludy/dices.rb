@@ -4,6 +4,7 @@ module Ludy
   # dices, e.g., 4d6, 2d20, etc.
   class Dices
     attr_reader :amounts, :faces
+    # the default dice is 1d20
     def initialize amounts = 1, faces = 20
       @amounts = amounts
       @faces = faces

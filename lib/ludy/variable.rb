@@ -8,10 +8,12 @@ module Ludy
   class Variable
     undef_all_methods
 
+    # init the refered instance
     def initialize obj
       @__obj__ = obj
     end
 
+    # delegator
     def method_missing msg, *arg, &block
       @__obj__.public_send msg, *arg, &block
     end

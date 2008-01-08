@@ -43,6 +43,8 @@
 
 * http://ludy.rubyforge.org would now insist on the latest rdoc.
 
+* Array#reverse_map, Array#body, Array#rotate, Array#combos, etc. is added.
+
 == ludy 0.0.9, 2008.01.07
 
 * Proc#bind added, see test/tc_bind.rb
