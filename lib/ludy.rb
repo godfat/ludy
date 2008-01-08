@@ -3,6 +3,7 @@
 # Equivalent to a header guard in C/C++
 # Used to prevent the class/module from being loaded more than once
 unless defined? LudyHeaderGuard
+#:nodoc:
 module LudyHeaderGuard; end
 
 require 'rubygems'

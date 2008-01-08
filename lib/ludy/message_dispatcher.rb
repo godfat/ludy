@@ -5,8 +5,10 @@ if RUBY_VERSION < '1.9.0'
 end
 
 module Ludy
+
   class MessageDispatcher
-    # create a dispatcher or append arg_list to the existed dispatcher
+    # create a dispatcher or append arg_list to the existed dispatcher,
+    # see Kernel#defun
     def self.create actor, msg, args, &fun
       if (@patchers ||= {})[[actor, msg]].nil?
         @patchers[[actor, msg]] = MessageDispatcher.new actor, msg, args, &fun
@@ -49,5 +51,6 @@ module Ludy
       # end
     end
   end
-end
+
+end # of Ludy
 

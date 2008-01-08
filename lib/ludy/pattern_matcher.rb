@@ -3,6 +3,7 @@ require 'ludy/kernel/public_send'
 
 module Ludy
   # someone who does the pattern matching thing
+  # see Kernel#defun
   class PatternMatcher
     # init for the first parameter
     def initialize args, &fun; @params = [[args, fun]]; end
@@ -22,6 +23,7 @@ module Ludy
         raise NoMethodError.new("PatternMatcher doesn't respond to #{msg}")
       end
     end
+
     private
     def match? parameters, arguments
       return false unless parameters.size == arguments.size
@@ -35,4 +37,5 @@ module Ludy
       return true
     end
   end
-end
+
+end # of Ludy

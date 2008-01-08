@@ -4,6 +4,7 @@ require 'ludy/class/undef_all_methods'
 
 module Ludy
 
+  # a variable reference, used for side effect...
   class Variable
     undef_all_methods
 
@@ -18,6 +19,7 @@ module Ludy
     attr_accessor :__obj__
   end
 
+  # provided for creating lazy object more convient
   def var arg
     Variable.new arg
   end

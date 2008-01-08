@@ -1,9 +1,11 @@
 
+require 'rubygems'
 require 'facets'
 require 'facets/enumerable/combos'
 
 module Kernel
 
+# forward template functions' generator
 def for_template_parameters_within range, modifiers = ['volatile', 'const volatile']
   modifiers = ['', 'const'] + modifiers
   range.to_a.map_with_index{ |size, i|
@@ -19,6 +21,7 @@ def for_template_parameters_within range, modifiers = ['volatile', 'const volati
   }.flatten.each{ |args_list| yield args_list }
 end
 
+# parameter for template
 def template_parameters args_list
   size = args_list.count(',') + 1
   '<' + (['class T']*size).map_with_index{ |t, index|
@@ -26,10 +29,12 @@ def template_parameters args_list
   }.join(', ') + '>'
 end
 
+# the parameters' list
 def forward_parameters args_list
   args_list
 end
 
+# the arguments it passed
 def arguments args_list
   size = args_list.count(',') + 1
   Array.new(size).map_with_index{ |not_important, i|
@@ -37,4 +42,4 @@ def arguments args_list
   }.join(', ')
 end
 
-end
+end # of ludy

@@ -4,9 +4,12 @@ require 'ludy/class/undef_all_methods'
 
 module Ludy
 
+  # a lazy object would be evaluated until the time it called,
+  # and save the result for futher use.
   class Lazy
     undef_all_methods
 
+    # supply the evaluation function through first argument or block
     def initialize func = nil, &block
       if block_given? then @func = block
       else
@@ -15,11 +18,13 @@ module Ludy
       end
     end
 
+    # :nodoc:
     def method_missing msg, *arg, &block
       (@obj ||= @func.call).public_send msg, *arg, &block
     end
   end
 
+  # provided for creating lazy object more convient
   def lazy arg = nil, &block
     Lazy.new arg, &block
   end

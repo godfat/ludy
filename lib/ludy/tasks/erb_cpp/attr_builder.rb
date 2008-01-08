@@ -40,4 +40,4 @@ def member_only type, *pros
   result << "#{@prefix}#{@indent}#{type} #{pros.map{|p|"#{p}_"}.join(", ")};\n"
 end
 
-end
+end # of ludy

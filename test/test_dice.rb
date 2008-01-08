@@ -9,7 +9,7 @@ class TestDice < Test::Unit::TestCase
     50.times{ assert((2..40).include?(2.roll)) }
     50.times{ assert((3..18).include?(3.roll(6))) }
 
-    _4d20 = 4.dice
+    _4d20 = 4.dices
     assert_equal 4, _4d20.min
     assert_equal 4*20, _4d20.max
     50.times{ assert((4..80).include?(_4d20.roll)) }
@@ -24,7 +24,7 @@ class TestDice < Test::Unit::TestCase
     assert_equal _4d20.max+_5d12.max, ds.max
     50.times{ assert((ds.min..ds.max).include?(ds.roll)) }
 
-    du = DiceSet.new ds, 6.dice(6)
+    du = DiceSet.new ds, 6.dices(6)
     assert_equal ds.min+6, du.min
     assert_equal ds.max+36, du.max
     50.times{ assert((du.min..du.max).include?(du.roll)) }

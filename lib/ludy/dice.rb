@@ -1,7 +1,7 @@
 
 module Ludy
 
-  class Dice
+  class Dices
     attr_reader :amounts, :faces
     def initialize amounts = 1, faces = 20
       @amounts = amounts
@@ -40,6 +40,7 @@ module Ludy
 end
 
 class Numeric
+  # roll dices (with amounts equal to self.to_i) with faces = ?
   def roll faces = 20
     return nil unless self > 0 &&  self.integer? &&
                      faces > 0 && faces.integer?
@@ -47,7 +48,9 @@ class Numeric
     1.step(self){ |i| result += rand(faces) + 1 }
     result
   end
-  def dice faces = 20
+
+  # create dices with faces = ?
+  def dices faces = 20
     Ludy::Dice.new self, faces
   end
 end

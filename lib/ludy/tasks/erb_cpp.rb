@@ -32,4 +32,4 @@ namespace :erb do
     end
   }
 
-end
+end # of namespace erb
