@@ -1,7 +1,5 @@
 
 class Array
-  # the opposite of transpose
-  # something.transpose.untranspose would return the original something
   def untranspose
     result = ([nil]*self.first.size).map{[]}
     self.each{ |zipped|
@@ -10,7 +8,5 @@ class Array
     }
     result
   end
-
-  # the in-place version of untranspose
   def untranspose!; replace untranspose; end
 end

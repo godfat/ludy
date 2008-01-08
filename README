@@ -61,10 +61,6 @@ defun:
   assert_equal 3, f(1,1)
   assert_raise NoMethodError do f('1', 2); end
 
-untranspose:
-  require 'ludy/array/untranspose'
-  assert_equal [a, b], [a, b].transpose.untranspose
-
 lazy:
   require 'ludy/lazy'
   Y = lambda{|f|

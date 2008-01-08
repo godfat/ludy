@@ -1,6 +1,5 @@
 
 require 'rubygems'
-require 'facets'
 require 'facets/enumerable/combos'
 
 module Kernel
