@@ -1,3 +1,3 @@
 
 require 'test/unit'
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', '..')
+require File.join(File.dirname(__FILE__), '..', '..', 'ludy')

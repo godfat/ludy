@@ -7,8 +7,8 @@ require File.join(pwd, 'map')
 
 require 'rubygems'
 
-gem 'ludy', '>=0.0.7'   # for Array#combine
-require 'ludy/ludy_ext'
+# gem 'ludy', '>=0.1.0'   # for Array#combine
+require 'ludy/array/combine'
 
 gem 'facets', '>=2.0.0' # for lots of things
 require 'facets/random' # for Array#pick

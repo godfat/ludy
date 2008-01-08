@@ -2,7 +2,8 @@
 
 # Equivalent to a header guard in C/C++
 # Used to prevent the class/module from being loaded more than once
-# unless defined? Ludy
+unless defined? LudyHeaderGuard
+module LudyHeaderGuard; end
 
 require 'rubygems'
 require 'rake'
@@ -13,6 +14,7 @@ module Ludy
   VERSION = '0.1.0'
   LIBPATH = ::File.expand_path(::File.dirname(__FILE__)) + ::File::SEPARATOR
   PATH = ::File.dirname(LIBPATH) + ::File::SEPARATOR
+  $LOAD_PATH << LIBPATH
   # :startdoc:
 
   # Returns the version string for the library.
@@ -51,13 +53,12 @@ module Ludy
   end
 
   def self.require_all_in dir
-    FileList["lib/ludy/#{dir}/*.rb"].each{ |i|
-      if i.pathmap('%-1d') == '.'
-        i = i.ext.pathmap('%f')
-      else
-        i = i.ext.pathmap('%-1d/%f')
-      end
-      require "ludy/#{i}"
+    Dir.glob("#{LIBPATH}ludy/#{dir}/*.rb").each{ |i|
+      require(if dir == '.'
+                i.pathmap('ludy/%n')
+              else
+                i.pathmap("ludy/#{dir}/%n")
+              end)
     }
   end
 
@@ -65,6 +66,6 @@ end  # module Ludy
 
 # Ludy.require_all_libs_relative_to __FILE__
 
-# end  # unless defined?
+end  # unless defined?
 
 # EOF

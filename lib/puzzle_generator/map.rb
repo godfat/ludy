@@ -6,8 +6,8 @@ require File.join(pwd, 'chain')
 
 require 'rubygems'
 
-gem 'ludy', '>=0.0.7'   # for Array#untranspose
-require 'ludy/ludy_ext'
+# gem 'ludy', '>=0.0.7'   # for Array#untranspose
+require 'ludy/array/untranspose'
 
 gem 'facets', '>=2.0.0' # for lots of things
 require 'facets'        # for Array#combos
