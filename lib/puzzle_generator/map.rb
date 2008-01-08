@@ -1,16 +1,12 @@
 
-pwd = File.dirname __FILE__
-
-require File.join(pwd, 'misc')
-require File.join(pwd, 'chain')
+require 'puzzle_generator/misc'
+require 'puzzle_generator/chain'
+require 'ludy/array/body'
 
 require 'rubygems'
-
-# gem 'ludy', '>=0.0.7'   # for Array#untranspose
-require 'ludy/array/untranspose'
-
-gem 'facets', '>=2.0.0' # for lots of things
-require 'facets'        # for Array#combos
+gem 'facets', '>=2.0.0'
+require 'facets/enumerable/combos'
+require 'facets/enumerable/uniq_by'
 require 'facets/random' # for Kernel#maybe
 
 # a = [[1,2],[3,4],[5,6]]
@@ -48,7 +44,7 @@ module PuzzleGenerator
     def each_column; @data.each{ |column| yield column }; end
     def clone_with_map
       Map.new @option.merge(
-        :data => @data.transpose.map{ |row| row.map{ |i| yield i } }.untranspose,
+        :data => @data.transpose.map{ |row| row.map{ |i| yield i } }.transpose,
         :chains => chains
       )
     end

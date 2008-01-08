@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), 'misc')
+require 'puzzle_generator/misc'
 
 module PuzzleGenerator
   class ColoredMap # :nodoc:

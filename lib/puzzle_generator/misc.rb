@@ -1,7 +1,7 @@
 
 require 'rubygems'
-require 'facets'          # for Array#deep_clone
-# require 'ludy/ludy_ext' # for Kernel#curry
+require 'facets/kernel/deep_clone'
+require 'facets/array/pad'
 
 module PuzzleGenerator
   Up, Right, Left = (0..2).to_a

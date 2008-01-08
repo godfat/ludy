@@ -155,7 +155,7 @@ template_forward_parameters:
 
 * ruby 1.8/1.9 (1.9 is prefered...)
 * rake
-* gem facets in some features
+* gem facets if you are using puzzle_generator
 
 == INSTALL:
 

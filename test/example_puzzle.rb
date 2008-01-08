@@ -1,5 +1,6 @@
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'puzzle_generator')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
+require 'puzzle_generator'
 
 PuzzleGenerator.debug = true
 p = PuzzleGenerator::Puzzle.new :level => 4, :timeout => 10, :invoke_max => 5

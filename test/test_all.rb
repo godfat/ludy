@@ -5,7 +5,6 @@ require 'ludy/all'
 class TestAll < Test::Unit::TestCase
   def test_all
     assert [].respond_to?(:combine)
-    assert [].respond_to?(:untranspose)
     assert :x.respond_to?(:to_proc)
     assert :x.respond_to?(:to_msg)
     assert Object.const_defined?(:Ludy)

@@ -1,6 +1,5 @@
 
-require 'rubygems'
-require 'facets/enumerable/combos'
+require 'ludy/array/combos'
 
 module Kernel
 

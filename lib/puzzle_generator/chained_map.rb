@@ -1,18 +1,14 @@
 
-pwd = File.dirname __FILE__
+require 'puzzle_generator/misc'
+require 'puzzle_generator/chain'
+require 'puzzle_generator/map'
 
-require File.join(pwd, 'misc')
-require File.join(pwd, 'chain')
-require File.join(pwd, 'map')
-
-require 'rubygems'
-
-# gem 'ludy', '>=0.1.0'   # for Array#combine
 require 'ludy/array/combine'
 
-gem 'facets', '>=2.0.0' # for lots of things
-require 'facets/random' # for Array#pick
+require 'rubygems'
+gem 'facets', '>=2.0.0'
 require 'facets/enumerable/combos'
+require 'facets/random' # for Array#pick
 
 module PuzzleGenerator
 

@@ -27,17 +27,21 @@ class TestArray < Test::Unit::TestCase
 
     assert_equal ['ab','ba'], ['a','b'].combine(['b','a'])
   end
-  def test_unzip_and_untranspose
-    a = [1,2,3]
-    b = %w{a b c}
-    assert_equal [a, b], a.zip(b).to_a.untranspose
-    assert_equal [a, b], [a, b].transpose.untranspose
-    assert_equal a, a.zip(b).to_a.unzip
-
-    c = [nil, false, true]
-    assert_equal [a, b, c], a.zip(b, c).to_a.untranspose
-    assert_equal [a, b, c], [a, b, c].transpose.untranspose
-    assert_equal a, a.zip(b, c).to_a.unzip
+  def test_rotate
+    assert_equal [3,1,2], [1,2,3].rotate
+    assert_equal [2,3,1], [1,2,3].rotate(2)
+    assert_equal [1,2,3], [1,2,3].rotate(3)
+    assert_equal [1,2,3], [1,2,3].rotate(0)
+    assert_equal [2,3,1], [1,2,3].rotate(-1)
+    assert_equal [3,1,2], [1,2,3].rotate(-2)
+    assert_equal [1,2,3], [1,2,3].rotate(-3)
+  end
+  def test_combos
+    assert_equal [[0,2],[0,3],[1,2],[1,3]], [[0,1],[2,3]].combos
+    assert_equal [[0,2,4],[0,2,5],[0,3,4],[0,3,5],[1,2,4],[1,2,5],[1,3,4],[1,3,5]], [[0,1],[2,3],[4,5]].combos
+    assert_equal [[0,3],[0,4],[0,5],[1,3],[1,4],[1,5],[2,3],[2,4],[2,5]], [[0,1,2],[3,4,5]].combos
+    assert_equal [[0,3],[0,4],[1,3],[1,4],[2,3],[2,4]], [[0,1,2],[3,4]].combos
+    assert_equal [[0,2],[0,3],[0,4],[1,2],[1,3],[1,4]], [[0,1],[2,3,4]].combos
   end
 end
 

@@ -1,10 +1,10 @@
 
 # alpha at 2007.10.14
 
-require File.join(File.dirname(__FILE__), 'puzzle_generator', 'puzzle')
+require 'puzzle_generator/puzzle'
 
 require 'rubygems'
-require 'facets'   # for Hash#reverse_merge
+require 'facets/hash/reverse_merge'
 require 'facets/timer'
 
 module PuzzleGenerator

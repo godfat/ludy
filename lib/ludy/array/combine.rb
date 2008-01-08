@@ -1,5 +1,5 @@
 
-require 'ludy/symbol/to_msg'
+require 'ludy/symbol/to_proc'
 
 class Array
   # [1,2,3].combine [2,4,6]
@@ -10,7 +10,7 @@ class Array
   #
   # ['a','b'].combine ['b','a']
   # => ['ab','ba']
-  def combine *target; self.zip(*target).map{|i|i.inject(&:+)}; end
+  def combine *target; zip(*target).map{|i|i.inject(&:+)}; end
   # in-place version of combine
   def combine! *target; replace combine(*target); end
 end
