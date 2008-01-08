@@ -9,7 +9,7 @@ class Proc
 
   # make the caller be a curried function
   # lambda{|a,b,c| [a,b,c]}.curry[1][2][3]
-  # => [1,2,3]
+  # -> [1,2,3]
   def curry
     class << self
       alias_method :__call__, :call

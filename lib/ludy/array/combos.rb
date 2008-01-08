@@ -6,7 +6,7 @@ require 'ludy/array/foldr'
 class Array
   # for each combos
   # [[0,1],[2,3]].combos
-  # => [[0,2],[0,3],[1,2],[1,3]]
+  # -> [[0,2],[0,3],[1,2],[1,3]]
   def combos
     result = []
     radixs = reverse_map(&:size)
