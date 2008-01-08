@@ -2,14 +2,13 @@
 require 'ludy/kernel/public_send'
 
 class Proc
-  # :nodoc:
-  def __curry__ *pre
+  def __curry__ *pre # :nodoc:
     lambda{ |*post| self[*(pre + post)] }
   end
 
   # make the caller be a curried function
-  # lambda{|a,b,c| [a,b,c]}.curry[1][2][3]
-  # -> [1,2,3]
+  #   lambda{|a,b,c| [a,b,c]}.curry[1][2][3]
+  #   => [1,2,3]
   def curry
     class << self
       alias_method :__call__, :call
