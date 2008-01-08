@@ -21,11 +21,11 @@ PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = '0.1.0'
-PROJ.exclude << '.DS_Store'
-PROJ.dependencies += ['rake']
+PROJ.exclude << '.DS_Store' << '^tmp'
+PROJ.dependencies << 'rake'
 
 PROJ.rdoc_main = 'README'
-PROJ.rdoc_exclude << 'deprecated' << 'Manifest'
+PROJ.rdoc_exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
 PROJ.rdoc_include << '\w+'
 
 PROJ.spec_opts << '--color'
