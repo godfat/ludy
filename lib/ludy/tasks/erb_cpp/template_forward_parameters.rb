@@ -2,6 +2,8 @@
 require 'facets'
 require 'facets/enumerable/combos'
 
+module Kernel
+
 def for_template_parameters_within range, modifiers = ['volatile', 'const volatile']
   modifiers = ['', 'const'] + modifiers
   range.to_a.map_with_index{ |size, i|
@@ -33,4 +35,6 @@ def arguments args_list
   Array.new(size).map_with_index{ |not_important, i|
     (i+10).to_s 36
   }.join(', ')
+end
+
 end
