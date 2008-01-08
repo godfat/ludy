@@ -1,10 +1,10 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
-require 'ludy/dice'
+require 'ludy/dices'
 
-class TestDice < Test::Unit::TestCase
+class TestDices < Test::Unit::TestCase
   include Ludy
-  def test_dice
+  def test_dices
     50.times{ assert((1..20).include?(1.roll)) }
     50.times{ assert((2..40).include?(2.roll)) }
     50.times{ assert((3..18).include?(3.roll(6))) }
@@ -14,7 +14,7 @@ class TestDice < Test::Unit::TestCase
     assert_equal 4*20, _4d20.max
     50.times{ assert((4..80).include?(_4d20.roll)) }
 
-    _5d12 = 5.dice 12
+    _5d12 = 5.dices 12
     assert_equal 5, _5d12.min
     assert_equal 5*12, _5d12.max
     50.times{ assert((5..60).include?(_5d12.roll)) }
