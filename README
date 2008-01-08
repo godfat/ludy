@@ -1,74 +1,163 @@
-= ludy
+= ludy 0.1.0
     by Lin Jen-Shin (a.k.a. godfat 真常)
-    http://ludy.rubyforge.org/
-    http://godfat.org/
+    strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org
+    http://ludy.rubyforge.org
+    http://godfat.org
 
 == DESCRIPTION:
   
 Aims to extend Ruby standard library, providing some useful tools that's not existed in the standard library.
 
 == FEATURES:
-  
+
 * ludy standard library extension
 * puzzle_generator
-* c++ erb meta-programming tasks
+* c++ erb meta-programming
 
 == SYNOPSIS:
 
+please see unit test for all examples.
+
+    $ ludy test # run all ludy tests
+    $ ludy      # see all tasks related to ludy
+
+ please don't run any task about release... contact me first
+ if you would like to make changes into official ludy release.
+
+    require 'ludy/all'        # for all ludy things
+    require 'ludy/kernel'     # for all kernel methods
+    require 'ludy/tasks'      # for all ludy tasks
+    require 'ludy/proc/curry' # for proc's method curry
+
+ you can make any change and then $ ludy gem:install on your local machine.
+ below is some example extracted from unit test.
+
 curry:
-  require 'ludy/curry'
+  require 'ludy/proc/curry'
   assert_equal 29, :+.to_proc.curry[18][11]
 
 bind:
-  require 'ludy/bind'
+  require 'ludy/proc/bind'
   assert_equal [9,8,7], ([1,2,3].map &(lambda{|lhs, rhs| lhs-rhs}.bind 10, :_1))
 
-chain:
-  f1 = lambda{|v| v+1}
-  f2 = lambda{|v| v+2}
-  f3 = f1.chain f2
-  assert_equal [6,7], f3[5]
+defun:
+  require 'ludy/kernel/defun'
+  defun :fact, 0 do |n|
+    1
+  end
 
-compose:
-  f1 = lambda{|v| v+1}
-  f2 = lambda{|v| v*2}
-  f3 = f1.compose f2
-  assert_equal 21, f3[10]
+  defun :fact, Integer do |n|
+    n * fact(n-1)
+  end
+
+  assert_equal 3628800, fact(10)
+
+  defun :f, Integer do |n| 1; end
+  defun :f, String do |n| '2'; end
+  defun(:f, Integer, Integer) do |n,g| 3; end
+
+  assert_equal 1, f(10)
+  assert_equal '2', f('')
+  assert_equal 3, f(1,1)
+  assert_raise NoMethodError do f('1', 2); end
 
 untranspose:
+  require 'ludy/array/untranspose'
   assert_equal [a, b], [a, b].transpose.untranspose
 
 lazy:
+  require 'ludy/lazy'
   Y = lambda{|f|
     lambda{|x| lazy{f[x[x]]} }[lambda{|x| lazy{f[x[x]]} }]
   }
 
 y_combinator:
+  require 'ludy/y_combinator'
   fact = Y[lambda{|this|
     lambda{|n| n==1 ? 1 : n*this[n-1]}
   }]
   assert_equal(3628800, fact[10])
 
-variable:
-  include Ludy
-  class Qoo
-    def cool
-      'cool ~~~~'
-    end
-  end
-  x = var Qoo.new
-  y = x
-  assert_equal 'cool ~~~~', x.cool
-  assert_equal 'cool ~~~~', y.cool
 
-  x.__obj__ = nil
+ludy tasks:
 
-  assert x.nil?
-  assert y.nil?
+
+header_guard:
+  require 'ludy/tasks/erb_cpp/header_guard'
+  PROJ = 'header_sample' # remember to set project name
+
+  # in utils/SimpleTest.hpp.erb
+  <%= header_guard %>
+
+  # run preprocessing task
+  $ rake erb:preprocessing
+
+  # produce:
+  #ifndef _HEADER_SAMPLE_UTILS_SIMPLETEST_
+  #define _HEADER_SAMPLE_UTILS_SIMPLETEST_
+
+attr_builder:
+  require 'ludy/tasks/erb_cpp' # it would require all erb_cpp tasks.
+
+  # in MapSetting.hpp.erb
+  class MapSetting{
+  <%= accessor :int, :frequency %>
+  <%= accessor :double, :speed, :damage_factor %>
+  <%= reader :int, :width, :height, :size %>
+  };
+
+  # run preprocessing task
+  $ rake erb:preprocessing
+
+  # produce:
+  class MapSetting{
+  public:
+      int frequency() const{ return frequency_; }
+  public:
+      MapSetting& frequency(int const& new_frequency){ frequency_ = new_frequency; return *this; }
+  private:
+      int frequency_;
+
+  public:
+      double speed() const{ return speed_; }
+      double damage_factor() const{ return damage_factor_; }
+  public:
+      MapSetting& speed(double const& new_speed){ speed_ = new_speed; return *this; }
+      MapSetting& damage_factor(double const& new_damage_factor){ damage_factor_ = new_damage_factor; return *this; }
+  private:
+      double speed_, damage_factor_;
+
+  public:
+      int width() const{ return width_; }
+      int height() const{ return height_; }
+      int size() const{ return size_; }
+  private:
+      int width_, height_, size_;
+  };
+
+template_forward_parameters:
+  require 'ludy/tasks/erb_cpp/template_forward_parameters'
+
+  # in test.hpp.erb
+  <% for_template_parameters_within(1..5, []){ |args_list| %>
+      template <%= template_parameters args_list %>
+      static element_type create(<%= forward_parameters args_list %>){
+          return element_type(SPool::Instance().construct(<%= arguments args_list %>), Deleter());
+      }
+  <% } %>
+
+  # run preprocessing task
+  $ rake erb:preprocessing
+
+  # one of the produce: (can't list all...)
+  template <class T0, class T1, class T2, class T3>
+  static element_type create(T0 const& a, T1 const& b, T2 & c, T3 const& d){
+      return element_type(SPool::Instance().construct(a, b, c, d), Deleter());
+  }
 
 == REQUIREMENTS:
 
-* ruby 1.8/1.9
+* ruby 1.8/1.9 (1.9 is prefered...)
 * rake
 * gem facets in some features
 

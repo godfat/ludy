@@ -24,6 +24,8 @@ class TestArray < Test::Unit::TestCase
     a = [18,29]
     a.combine! [12, 1]
     assert_equal [30, 30], a
+
+    assert_equal ['ab','ba'], ['a','b'].combine(['b','a'])
   end
   def test_unzip_and_untranspose
     a = [1,2,3]

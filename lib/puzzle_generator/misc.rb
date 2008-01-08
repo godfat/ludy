@@ -7,20 +7,21 @@ module PuzzleGenerator
   Up, Right, Left = (0..2).to_a
   DefaultOption = {:width => 6, :height => 10, :level => 4, :colors => 4,
                    :invoke => 3, :invoke_max => 5, :timeout => 5}
+  # whenever the generation is falied, this exception would raise
   class GenerationFailed < RuntimeError; end
   class << self
     attr_writer :debug
     def debug; @debug || false; end
   end
 
-  module DisplayMap
+  module DisplayMap # :nodoc:
     attr_reader :result_map
     def display_map
       result_map.transpose.reverse_each{ |row| puts row.map{ |color| '%2d' % color }.join(' ') }
     end
   end
 
-  module MapUtils
+  module MapUtils # :nodoc:
     def make_map_array; (Array.new(@option[:width])).map{ [0]*@option[:height] }; end
     def resolve_map result_map = @result_map, maps = @maps
       result_map.replace maps.inject(make_map_array){ |result, map|

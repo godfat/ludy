@@ -19,7 +19,7 @@ require 'facets/random' # for Kernel#maybe
 
 module PuzzleGenerator
 
-  class Map
+  class Map # :nodoc:
     include DisplayMap, Enumerable
     attr_reader :chains
     def result_map; @data; end

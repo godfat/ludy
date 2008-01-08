@@ -1,7 +1,7 @@
 
 class Array
   # the opposite of transpose
-  # something.transpose.untranspose would return original something
+  # something.transpose.untranspose would return the original something
   def untranspose
     result = ([nil]*self.first.size).map{[]}
     self.each{ |zipped|

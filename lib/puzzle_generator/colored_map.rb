@@ -2,7 +2,7 @@
 require File.join(File.dirname(__FILE__), 'misc')
 
 module PuzzleGenerator
-  class ColoredMap
+  class ColoredMap # :nodoc:
     include DisplayMap, MapUtils
     def initialize chained_map, colors = (1..chained_map.option[:colors]).to_a
       @result_map = []

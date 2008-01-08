@@ -14,7 +14,7 @@ end
 PROJ.name = 'ludy'
 PROJ.summary = 'Aims to extend Ruby standard library, providing some useful tools that\'s not existed in the standard library.'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
-PROJ.email = 'strip number: 135godfat7911@246godfat.890org'
+PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
 PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = paragraphs_of('README', 1).join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")

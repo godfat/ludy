@@ -23,7 +23,7 @@ module PuzzleGenerator
   # 2. c. check if the position + direct is ok? ok pass, failed choose again
   # 2. d. goto 2
 
-  class ChainedMap
+  class ChainedMap # :nodoc:
     include DisplayMap, MapUtils
     attr_reader :maps, :option
     def initialize option = {}

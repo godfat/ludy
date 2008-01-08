@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'misc')
 
 module PuzzleGenerator
 
-  class Chain
+  class Chain # :nodoc:
     include Enumerable
     def initialize position = [0, 0], direct = Up, invoke = DefaultOption[:invoke]
       @direct = direct

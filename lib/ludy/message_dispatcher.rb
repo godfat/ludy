@@ -27,6 +27,8 @@ module Ludy
     def listen arg_list, &fun
       @matcher << [arg_list, fun]
     end
+
+    private
     def define_method_in_actor
       # if @actor.respond_to? @msg
         # raise RuntimeError.new("#{@actor.inspect}'s method \"#{@msg}\" already defined.")
