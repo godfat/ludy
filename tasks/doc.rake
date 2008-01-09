@@ -24,6 +24,7 @@ namespace :doc do
     title = "#{PROJ.rubyforge_name}'s " + title if PROJ.rubyforge_name != title
 
     rd.options << "-t #{title}"
+    # FIXME: please add rdoc option to Rakefile, then i don't have to add this line.
     rd.options << '--charset=utf-8' << '--inline-source' << '--line-numbers'
   end
 

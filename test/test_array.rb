@@ -43,5 +43,11 @@ class TestArray < Test::Unit::TestCase
     assert_equal [[0,3],[0,4],[1,3],[1,4],[2,3],[2,4]], [[0,1,2],[3,4]].combos
     assert_equal [[0,2],[0,3],[0,4],[1,2],[1,3],[1,4]], [[0,1],[2,3,4]].combos
   end
+  def test_map_with_index
+    assert_equal [1,3,5], [1,2,3].map_with_index{|e,i|e+i}
+  end
+  def test_tail
+    assert_equal [2,3,4], [1,2,3,4].tail
+  end
 end
 

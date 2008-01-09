@@ -1,5 +1,12 @@
 = ludy changes history
 
+== ludy 0.1.1, 2008.01.10
+
+* add Array#tail and Array#map_with_index to make the task of
+  template forward parameters work again. (without depend on facets)
+
+* add some todo notes.
+
 == ludy 0.1.0, 2008.01.08
 
 * directory structure rearranged

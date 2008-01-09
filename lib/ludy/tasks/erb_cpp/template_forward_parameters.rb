@@ -1,5 +1,7 @@
 
 require 'ludy/array/combos'
+require 'ludy/array/map_with_index'
+require 'ludy/array/tail'
 
 module Kernel
 

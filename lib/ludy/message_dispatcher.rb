@@ -35,6 +35,7 @@ module Ludy
       # else
         matcher = @matcher
         msg = @msg # make them close in the closure
+        # TODO: how to distinct that you want instance method or singleton method?
         define_method = @actor.kind_of?(Class) ? :define_method : :define_singleton_method
 
         # comment off &block in lambda for ruby 1.8 compatibility
