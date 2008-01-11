@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.2
+
+* aims to add functional stuffs.
+
 == ludy 0.1.1, 2008.01.10
 
 * add Array#tail and Array#map_with_index to make the task of

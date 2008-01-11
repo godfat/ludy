@@ -12,7 +12,7 @@ task :default do
 end
 
 PROJ.name = 'ludy'
-PROJ.summary = 'Aims to extend Ruby standard library, providing some useful tools that\'s not existed in the standard library.'
+PROJ.summary = 'Aims to extend Ruby standard library, providing some useful tools that\'s not existed in the standard library, especially for functional programming.'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
 PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
 PROJ.url = 'http://ludy.rubyforge.org/'

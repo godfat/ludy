@@ -6,7 +6,7 @@
 
 == DESCRIPTION:
   
-Aims to extend Ruby standard library, providing some useful tools that's not existed in the standard library.
+Aims to extend Ruby standard library, providing some useful tools that's not existed in the standard library, especially for functional programming.
 
 == FEATURES:
 
