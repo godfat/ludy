@@ -90,6 +90,7 @@ module Ludy
   # they would be used in find options. e.g.,
   #  RailsPaginator.new Model, :order => 'created_at DESC'
   # would invoke Model.find :all, :offset => ?, :limit => ?, order => 'created_at DESC'
+  # TODO: conditions/options invoker...
   class RailsPaginator < Paginator
     attr_reader :model_class
     def initialize model_class, opts = {}
