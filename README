@@ -1,4 +1,4 @@
-= ludy 0.1.1
+= ludy 0.1.2
     by Lin Jen-Shin (a.k.a. godfat 真常)
     strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org
     http://ludy.rubyforge.org
@@ -10,9 +10,10 @@ Aims to extend Ruby standard library, providing some useful tools that's not exi
 
 == FEATURES:
 
-* ludy standard library extension
-* puzzle_generator
-* c++ erb meta-programming
+1. ludy standard library extension, especially for functional programming.
+2. rails/array paginator, included since 0.1.2
+3. c++ erb meta-programming, included since 0.1.0
+4. puzzle_generator, included since 0.0.8
 
 == SYNOPSIS:
 
@@ -74,6 +75,28 @@ y_combinator:
   }]
   assert_equal(3628800, fact[10])
 
+paginator:
+  pager = Ludy::RailsPaginator.new(Topic)
+  pager = Ludy::ArrayPaginator.new(TestPaginator.data)
+  # or the most flexible paginator:
+  pager = Ludy::Paginator.new(
+  lambda{ |offset, per_page|
+    # if for rails,
+    # Data.find :all, :offset => offset, :limit => per_page
+    TestPaginator.data[offset, per_page]
+  }, lambda{
+    # if for rails,
+    # Data.count
+    TestPaginator.data.size
+  })
+  pager.per_page = 10
+
+  pager.page(1)
+  pager[1] # same as above
+  pager.page(2).next_page.prev_page.each{|e| e} # you can enumerate
+  pager[3].map{|e| e*2}
+  pager.size # number of pages
+  pager.inject(0){|r, i| r += i.inject &:+ } # total sum of all data
 
 ludy tasks:
 

@@ -2,7 +2,7 @@
 module Ludy
   # fib = 0 : 1 : [x+y | (x, y) <- zip fib (tail fib)]
   # combos = List[->(x,y){[x,y]}, 0..1, 2..3]
-  class List
+  class List # :nodoc:
     private :initialize
     class << self
       def [] target, *args

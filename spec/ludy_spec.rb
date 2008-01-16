@@ -1,6 +1,6 @@
 
 # bowling.rb
-class Bowling
+class Bowling # :nodoc:
   def hit(pins)
   end
 

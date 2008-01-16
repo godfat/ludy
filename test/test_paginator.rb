@@ -1,12 +1,14 @@
 
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
 require 'ludy/paginator'
+require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
 
 class TestPaginator < Test::Unit::TestCase
   def self.data; @data ||= (0..100).to_a; end
   def for_pager pager
     # assume data.size is 101, data is [0,1,2,3...]
     pager.per_page = 10
+    assert_equal 11, pager.size
 
     assert_nil pager[0]
     assert_equal((0..9).to_a, pager.page(1).to_a)
@@ -22,6 +24,9 @@ class TestPaginator < Test::Unit::TestCase
     assert_nil(pager[10].next_page.next_page)
 
     assert_equal pager[4].data, pager[4].fetch
+    assert_equal(pager[1], pager.pages.first)
+    assert_equal(pager[2], pager.to_a[1])
+    assert_equal(5050, pager.inject(0){|r, i| r += i.inject(&:+) })
   end
   def test_basic
     pager = Ludy::Paginator.new(
