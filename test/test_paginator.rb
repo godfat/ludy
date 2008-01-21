@@ -18,15 +18,17 @@ class TestPaginator < Test::Unit::TestCase
     assert_equal([100], pager.page(11).to_a)
     assert_nil(pager.page(12))
 
-    assert_equal(pager[1], pager[2].prev_page)
-    assert_equal(pager.page(11), pager[10].next_page)
-    assert_nil(pager[1].prev_page)
-    assert_nil(pager[10].next_page.next_page)
+    assert_equal(pager[1], pager[2].prev)
+    assert_equal(pager.page(11), pager[10].next)
+    assert_nil(pager[1].prev)
+    assert_nil(pager[10].next.next)
 
     assert_equal pager[4].data, pager[4].fetch
     assert_equal(pager[1], pager.pages.first)
     assert_equal(pager[2], pager.to_a[1])
     assert_equal(5050, pager.inject(0){|r, i| r += i.inject(&:+) })
+
+    assert_equal 4, pager[4].page
   end
   def test_basic
     pager = Ludy::Paginator.new(

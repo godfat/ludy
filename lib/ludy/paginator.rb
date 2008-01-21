@@ -10,13 +10,13 @@ module Ludy
   # call Page#fetch
   class Page
     undef_method :to_a if RUBY_VERSION < '1.9.0'
-    attr_reader :pager
+    attr_reader :pager, :page
     # don't create a page instance yourself unless you have to
     def initialize pager, page; @pager, @page = pager, page; end
     # return the page instance next to this page
-    def next_page; @pager.page(@page+1); end
+    def next; @pager.page(@page+1); end
     # return the page instance prev to this page
-    def prev_page; @pager.page(@page-1); end
+    def prev; @pager.page(@page-1); end
     # if the page numbers and the pagers are equal,
     # then the pages are equal.
     def == rhs
