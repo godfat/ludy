@@ -102,9 +102,8 @@ module Ludy
       })
     end
     # it simply call super(page.to_i), so RailsPaginator also eat string.
-    def page page
-      super page.to_i
-    end
+    def page page; super page.to_i; end
+    alias_method :[], :page
   end
   # array paginator would just simply assume your data is an array,
   # and create pages simply for your_data[offset, per_page]
