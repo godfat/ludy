@@ -5,6 +5,7 @@
 * renamed next_page to next, and prev_page to prev
 * added Page#page to get the page number of that page.
 * added Ludy::eout to use in erb's block
+* better header_guard usage
 
 == ludy 0.1.2, 2008.01.17
 

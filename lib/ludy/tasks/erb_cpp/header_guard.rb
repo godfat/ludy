@@ -10,7 +10,7 @@ def header_guard random_suffix = nil, &block
 
   Ludy::eout "#ifndef #{defined}
 #define #{defined}", block.binding
-  Ludy::eout block.call, block.binding
+  block.call
   Ludy::eout '#endif', block.binding
 end
 
