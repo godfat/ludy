@@ -1,7 +1,6 @@
 
 require 'puzzle_generator/misc'
 require 'puzzle_generator/chain'
-require 'ludy/array/body'
 
 require 'rubygems'
 gem 'facets', '>=2.0.0'
