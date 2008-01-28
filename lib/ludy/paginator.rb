@@ -24,9 +24,13 @@ module Ludy
       @pager == rhs.instance_variable_get('@pager')
     end
     # explicitly fetch the data from pager
-    def fetch; @data = @pager.fetcher[@pager.offset(@page), @pager.per_page]; end
+    def fetch; @data = @pager.fetcher[self.begin, @pager.per_page]; end
     # get the data fetched from pager
     def data; @data ||= fetch; end
+    # the real beginning index
+    def begin; @pager.offset @page; end
+    # the real ending index (need fetch, because we don't know the size)
+    def end; self.begin + self.size - 1; end
     # any other method call would delegate to the data,
     # e.g., each, to_a, map, first, method_you_defined, etc.
     def method_missing msg, *args, &block
@@ -68,14 +72,13 @@ module Ludy
     # nil would be returned. note, page start at 1, not zero.
     def page page
       offset = (page-1)*@per_page
-      size = @counter.call
-      return nil unless page > 0 and offset <= size
+      return nil unless page > 0 and offset <= count
       Page.new self, page
     end
-    # return the number of pages
-    def size
-      (@counter.call/@per_page.to_f).ceil
-    end
+    # return the amount of pages
+    def size; (count/@per_page.to_f).ceil; end
+    # simply call @counter.call
+    def count; @counter.call; end
     alias_method :[], :page
     # get the offset property about the page.
     # it is simply (page-1)*@per_page

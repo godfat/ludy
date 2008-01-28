@@ -29,6 +29,10 @@ class TestPaginator < Test::Unit::TestCase
     assert_equal(5050, pager.inject(0){|r, i| r += i.inject(&:+) })
 
     assert_equal 4, pager[4].page
+
+    assert_equal 10, pager[2].begin
+    assert_equal 19, pager[2].end
+    assert_equal 100, pager[11].end
   end
   def test_basic
     pager = Ludy::Paginator.new(
