@@ -14,11 +14,11 @@ namespace :preprocess do
   erb_inputs = FileList['**/*.erb']
   erb_outputs = erb_inputs.ext
 
-  task :erb_begin do; puts "processing templates: #{erb_inputs.inspect}\n\n"; end
-  task :end do; puts "processing done."; end
+  task :erb_begin do; puts "erb processing templates: #{erb_inputs.inspect}\n\n"; end
+  task :erb_end do; puts "processing done."; end
 
   desc 'automaticly translate all *.cpp.erb into *.cpp'
-  task :erb => [:erb_begin, erb_outputs, :end].flatten
+  task :erb => [:erb_begin, erb_outputs, :erb_end].flatten
 
   def preprocess template_engine, input, output
     puts "processing... #{output}"
@@ -44,11 +44,11 @@ namespace :preprocess do
     erubis_inputs = FileList['**/*.eruby']
     erubis_outputs = erubis_inputs.ext
 
-    task :erubis_begin do; puts "processing templates: #{erubis_inputs.inspect}\n\n"; end
-    task :end do; puts "processing done."; end
+    task :erubis_begin do; puts "erubis processing templates: #{erubis_inputs.inspect}\n\n"; end
+    task :erubis_end do; puts "processing done."; end
 
     desc 'automaticly translate all *.cpp.eruby into *.cpp'
-    task :erubis => [:erubis_begin, erubis_outputs, :end].flatten
+    task :erubis => [:erubis_begin, erubis_outputs, :erubis_end].flatten
 
     erubis_inputs.zip(erubis_outputs).each{ |input, output|
       file output => input do

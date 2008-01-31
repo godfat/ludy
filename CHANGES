@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.5, 2008.01.31
+
+* fixed task preprocess:erubis presentation error.
+
 == ludy 0.1.4, 2008.01.31
 
 * added Page#begin and Page#end for real index in the data
