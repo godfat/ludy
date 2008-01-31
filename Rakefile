@@ -6,6 +6,7 @@ load 'tasks/setup.rb'
 
 ensure_in_path 'lib'
 require 'ludy'
+require 'ludy/tasks'
 
 task :default do
   sh 'rake --tasks'
@@ -20,7 +21,7 @@ PROJ.description = paragraphs_of('README', 1).join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
-PROJ.version = '0.1.3'
+PROJ.version = '0.1.4'
 PROJ.exclude << '.DS_Store' << '^tmp'
 PROJ.dependencies << 'rake'
 

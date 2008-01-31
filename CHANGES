@@ -1,9 +1,15 @@
 = ludy changes history
 
-== ludy 0.1.4, ?
+== ludy 0.1.4, 2008.01.31
 
 * added Page#begin and Page#end for real index in the data
 * added Paginator#count for counter.call wrapper
+
+* rename from Ludy::eout to Ludy::erbout
+* added erubis support
+* rename task from erb:preprocess to preprocess:erb and preprocess:erubis
+* task preprocess would preprocess with erb and erubis
+* rename PROJ to Project with open struct. use Project.name now
 
 == ludy 0.1.3, 2008.01.23
 
