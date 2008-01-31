@@ -10,9 +10,10 @@ module Kernel
   def debug_hook name, &block
     Ludy::erbout name, block.binding
     block.call
-    Ludy::erbout \
-"#ifndef NDEBUG
-std::cerr << \"method #{name} called, for \" << this << \" at \" << __FILE__ << \": \" << __LINE__ << '\\n';
-#endif", block.binding
+    Ludy::erbout "
+#ifndef NDEBUG
+std::cerr << \"method #{name} called, for \" << this << \" at #{@file}: #{eval '__LINE__', block.binding}\\n\";
+#endif
+", block.binding
   end
 end
