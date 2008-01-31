@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.7, 2008.01.31
+
+* added preprocess_cpp tools, debug_hook and debug_include
+
 == ludy 0.1.6, 2008.01.31
 
 * make erubis don't trim...
