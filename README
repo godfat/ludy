@@ -1,4 +1,4 @@
-= ludy 0.1.7
+= ludy 0.1.8
     by Lin Jen-Shin (a.k.a. godfat 真常)
     strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org
     http://ludy.rubyforge.org
@@ -12,7 +12,7 @@ Aims to extend Ruby standard library, providing some useful tools that's not exi
 
 1. ludy standard library extension, especially for functional programming.
 2. rails/array paginator, included since 0.1.2
-3. c++ erb meta-programming, included since 0.1.0
+3. c++ erb meta-programming, included since 0.1.0 (support erubis 2.5+)
 4. puzzle_generator, included since 0.0.8
 
 == SYNOPSIS:
