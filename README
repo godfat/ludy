@@ -103,7 +103,7 @@ ludy tasks:
 
 header_guard:
   require 'ludy/tasks/erb_cpp/header_guard'
-  PROJ = 'header_sample' # remember to set project name
+  Project.name = 'header_sample' # remember to set project name
 
   # in utils/SimpleTest.hpp.erb
   <% header_guard do %>
@@ -111,7 +111,7 @@ header_guard:
   <% end %>
 
   # run preprocessing task
-  $ rake erb:preprocessing
+  $ rake preprocessing
 
   # produce:
   #ifndef _HEADER_SAMPLE_UTILS_SIMPLETEST_
@@ -130,7 +130,7 @@ attr_builder:
   };
 
   # run preprocessing task
-  $ rake erb:preprocessing
+  $ rake preprocessing
 
   # produce:
   class MapSetting{
@@ -170,7 +170,7 @@ template_forward_parameters:
   <% } %>
 
   # run preprocessing task
-  $ rake erb:preprocessing
+  $ rake preprocessing
 
   # one of the produce: (can't list all...)
   template <class T0, class T1, class T2, class T3>
@@ -183,6 +183,7 @@ template_forward_parameters:
 * ruby 1.8/1.9 (1.9 is prefered...)
 * rake
 * gem facets if you are using puzzle_generator
+* gem erubis if you are using preprocess:erubis
 
 == INSTALL:
 
