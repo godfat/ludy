@@ -28,13 +28,13 @@ namespace :preprocess do
       @indent = '    '
       @prefix = ''
       Project.name ||= 'please_set_Project_name_for_your_header_name'
-      o << template_engine.new(input).result(binding)
+      o << template_engine[input].result(binding)
     end
   end
 
   erb_inputs.zip(erb_outputs).each{ |input, output|
     file output => input do
-      preprocess ERB, open(input).read, output
+      preprocess lambda{|input| ERB.new input}, open(input).read, output
     end
   }
 
@@ -53,7 +53,7 @@ namespace :preprocess do
     erubis_inputs.zip(erubis_outputs).each{ |input, output|
       file output => input do
         class ErboutEruby < Erubis::Eruby; include Erubis::ErboutEnhancer; end
-        preprocess ErboutEruby, open(input).read, output
+        preprocess lambda{|input| ErboutEruby.new input, :trim => false}, open(input).read, output
       end
     }
   rescue LoadError; end # no erubis
