@@ -11,3 +11,7 @@
 * defun is re-implemented gem multi:
     gem install multi
     http://multi.rubyforge.org/
+
+* preprocessing tools with erubis:
+    gem install erubis
+    http://www.kuwata-lab.com/erubis/
