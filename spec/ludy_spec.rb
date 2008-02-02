@@ -1,3 +1,9 @@
+# $Id$
+
+require File.join(File.dirname(__FILE__), %w[spec_helper])
+
+describe Ludy do
+end
 
 # bowling.rb
 class Bowling # :nodoc:
@@ -20,3 +26,5 @@ describe Bowling do
     @bowling.score.should == 0
   end
 end
+
+# EOF

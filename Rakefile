@@ -28,6 +28,8 @@ PROJ.dependencies << 'rake'
 PROJ.rdoc_main = 'README'
 PROJ.rdoc_exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
 PROJ.rdoc_include << '\w+'
+PROJ.rdoc_opts << '--diagram' if !WIN32 and `which dot` =~ %r/\/dot/
+PROJ.rdoc_opts << '--charset=utf-8' << '--inline-source' << '--line-numbers'
 
 PROJ.spec_opts << '--color'
 

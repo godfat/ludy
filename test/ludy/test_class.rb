@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy/test/helper')
+require File.join(File.dirname(__FILE__), '..', 'test_helper')
 require 'ludy/class/undef_all_methods'
 
 class TestClass < Test::Unit::TestCase
