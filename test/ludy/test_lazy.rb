@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'test_helper')
+require File.join(File.dirname(__FILE__), '..', 'helper')
 require 'ludy/lazy'
 
 class TestLazy < Test::Unit::TestCase

@@ -1,6 +1,7 @@
 
-require File.join(File.dirname(__FILE__), '..', 'test_helper')
+require File.join(File.dirname(__FILE__), '..', 'helper')
 require 'ludy/proc'
+require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
 
 class TestProc < Test::Unit::TestCase
   def test_bind
