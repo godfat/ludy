@@ -15,3 +15,7 @@
 * preprocessing tools with erubis:
     gem install erubis
     http://www.kuwata-lab.com/erubis/
+
+* multiruby test with ZenTest (test for ruby 1.8.6-p111, 1.9.0-0, svn trunk)
+    gem install ZenTest
+    http://www.zenspider.com/ZSS/Products/ZenTest/

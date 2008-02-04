@@ -184,6 +184,7 @@ template_forward_parameters:
 * rake
 * gem facets if you are using puzzle_generator
 * gem erubis if you are using preprocess:erubis
+* gem ZenTest if you are running multiruby.sh in test
 
 == INSTALL:
 
