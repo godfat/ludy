@@ -49,7 +49,7 @@ class TestPaginator < Test::Unit::TestCase
   end
   class Topic
     class << self
-      def count
+      def count opts = {}
         101
       end
       def find all, opts = {}

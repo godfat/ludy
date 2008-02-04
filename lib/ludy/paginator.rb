@@ -101,7 +101,7 @@ module Ludy
       super(lambda{ |offset, per_page|
         @model_class.find :all, opts.merge(:offset => offset, :limit => per_page)
       }, lambda{
-        @model_class.count, opts
+        @model_class.count opts
       })
     end
     # it simply call super(page.to_i), so RailsPaginator also eat string.
