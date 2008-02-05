@@ -86,7 +86,7 @@ module PuzzleGenerator
       }
     end
     def check_overlap_and_resolve_it
-      @result_map_preview = @maps_preview.body.inject(make_map_array){ |result, map|
+      @result_map_preview = @maps_preview[0...-1].inject(make_map_array){ |result, map|
         result.each_with_index{ |column, x|
           column.each_with_index{ |value, y|
             # assert one of them is zero or they are all zero
@@ -97,7 +97,7 @@ module PuzzleGenerator
       }
     end
     def check_broken_except_last
-      @maps_preview.body.all?{ |map|
+      @maps_preview[0...-1].all?{ |map|
         result = true
         map.each_with_index_2d{ |i, x, y|
           result &&= !check_left_chain( map, x, y) &&

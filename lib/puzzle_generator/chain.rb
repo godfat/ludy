@@ -9,9 +9,9 @@ module PuzzleGenerator
       @direct = direct
       x, y = position
       @data = case @direct
-                when Up   : ([x]*invoke).zip((y...y+invoke).to_a)
-                when Right: (x...x+invoke).to_a.zip([y]*invoke)
-                when Left : (x-invoke+1..x).to_a.zip([y]*invoke)
+                when Up   ; ([x]*invoke).zip((y...y+invoke).to_a)
+                when Right; (x...x+invoke).to_a.zip([y]*invoke)
+                when Left ; (x-invoke+1..x).to_a.zip([y]*invoke)
               end
     end
     def <=> rhs; @data <=> rhs.instance_variable_get('@data'); end
