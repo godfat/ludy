@@ -73,7 +73,7 @@ rakefiles.unshift(rakefiles.delete('tasks/post_load.rake')).compact!
 import(*rakefiles)
 
 # Setup some constants
-WIN32 = %r/win32/ =~ RUBY_PLATFORM unless defined? WIN32
+WIN32 = %r/djgpp|(cyg|ms|bcc)win|mingw/ =~ RUBY_PLATFORM unless defined? WIN32
 
 DEV_NULL = WIN32 ? 'NUL:' : '/dev/null'
 
@@ -102,7 +102,7 @@ SUDO = if WIN32 then ''
 RCOV = WIN32 ? 'rcov.cmd'  : 'rcov'
 GEM  = WIN32 ? 'gem.cmd'   : 'gem'
 
-%w(rcov spec/rake/spectask rubyforge bones).each do |lib|
+%w(rcov spec/rake/spectask rubyforge bones facets/ansicode).each do |lib|
   begin
     require lib
     Object.instance_eval {const_set "HAVE_#{lib.tr('/','_').upcase}", true}
