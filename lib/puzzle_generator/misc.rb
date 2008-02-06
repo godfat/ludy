@@ -1,6 +1,7 @@
 
+require 'ludy/kernel/deep_copy'
+
 require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/kernel/deep_clone'
 require 'facets/array/pad'
 
 module PuzzleGenerator
@@ -35,7 +36,7 @@ module PuzzleGenerator
       }
     end
     def check_answer_correctness result_map = @result_map
-      map = Map.new @option.merge(:data => result_map.deep_clone)
+      map = Map.new @option.merge(:data => result_map.deep_copy)
       drop_blocks map # because of answer is stripped
 
       @chained = true

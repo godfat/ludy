@@ -1,5 +1,5 @@
 
-require 'ludy/symbol/to_proc'
+require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
 
 class Array
   #   [1,2,3].combine [2,4,6]

@@ -4,11 +4,10 @@ require 'puzzle_generator/chain'
 require 'puzzle_generator/map'
 
 require 'ludy/array/combine'
+require 'ludy/array/rotate'
+require 'ludy/kernel/deep_copy'
+require 'ludy/array/choice' # for Array#choice!
 require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
-# require 'facets/enumerable/combos'
-
-require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/random' # for Array#pick
 
 module PuzzleGenerator
 
@@ -41,7 +40,7 @@ module PuzzleGenerator
       @maps = [make_map]
       @result_map = make_map_array
       # @picked_chain = make_init_chains([(0..@option[:width]-@option[:invoke]), [0]].combos).pick
-      @picked_chain = make_init_chains((0..@option[:width]-@option[:invoke]).to_a.product([0])).pick
+      @picked_chain = make_init_chains((0..@option[:width]-@option[:invoke]).to_a.product([0])).choice
       put_picked_chain_on @maps
       resolve_map
     end
@@ -52,7 +51,7 @@ module PuzzleGenerator
 
     def chain_ok?
       raise GenerationFailed.new("ChainedMap: last result_map: #{@result_map.inspect}") if @picked_chain.nil?
-      @maps_preview = @maps.deep_clone
+      @maps_preview = @maps.deep_copy
       put_picked_chain_on @maps_preview
 
       result = check_overlap_and_resolve_it &&
@@ -67,8 +66,8 @@ module PuzzleGenerator
       @maps << (new_map || make_map)
       chains = @maps[-1].break_chains @maps[-2], @result_map
 
-      @picked_chain = chains.pick!
-      @picked_chain = chains.pick! until chain_ok?
+      @picked_chain = chains.choice!
+      @picked_chain = chains.choice! until chain_ok?
 
       put_picked_chain_on @maps
       @picked_chain = nil

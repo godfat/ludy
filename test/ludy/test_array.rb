@@ -1,7 +1,7 @@
 
 require File.join(File.dirname(__FILE__), '..', 'helper')
 require 'ludy/array'
-require 'ludy/symbol/to_proc'
+require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
 
 class TestArray < Test::Unit::TestCase
   def test_filter

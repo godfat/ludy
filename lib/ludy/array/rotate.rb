@@ -10,10 +10,9 @@ class Array
   #
   #   [1,2,3].rotate 2
   #   => [2,3,1]
-  def rotate size = 1
-    head = size > 0 ? last(size) : self[(-size)..-1]
-    tail = self - head
-    head + tail
+  def rotate n = 1
+    return self if empty? or n == 0
+    self[-n..-1] + self[0...-n]
   end
   # in-place version of rotate
   def rotate!

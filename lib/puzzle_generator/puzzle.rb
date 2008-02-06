@@ -3,8 +3,10 @@ require 'puzzle_generator/misc'
 require 'puzzle_generator/chained_map'
 require 'puzzle_generator/colored_map'
 
+# require 'facets/array/rotate'
+require 'ludy/array/rotate'
+
 require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/array/rotate'
 require 'facets/timer'
 
 module PuzzleGenerator
