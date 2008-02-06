@@ -1,6 +1,6 @@
 = ludy changes history
 
-== ludy 0.1.9
+== ludy 0.1.9, 2008.02.07
 
 * fixed a bug in RailsPaginator, which ignored opts for count.
 * fixed a possible bug in puzzle_generator... (not happened before?)
