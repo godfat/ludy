@@ -170,7 +170,7 @@ template_forward_parameters:
   <% } %>
 
   # run preprocessing task
-  $ rake preprocessing
+  $ rake preprocess
 
   # one of the produce: (can't list all...)
   template <class T0, class T1, class T2, class T3>

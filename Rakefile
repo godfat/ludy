@@ -22,7 +22,7 @@ PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
-PROJ.exclude << '.DS_Store' << '^tmp'
+PROJ.exclude << '.DS_Store' << '^tmp' << '\.rbc$'
 PROJ.dependencies << 'rake'
 
 PROJ.rdoc_main = 'README'
