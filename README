@@ -182,9 +182,10 @@ template_forward_parameters:
 == REQUIREMENTS:
 
 * ruby 1.8/1.9 (1.9 is prefered...)
-* rake
-* gem facets if you are using puzzle_generator
+* rake in some features
+* erb in task preprocess:erb
 * gem erubis if you are using preprocess:erubis
+* gem facets is recommended if you are using puzzle_generator
 * gem ZenTest if you are running multiruby.sh in test
 
 == INSTALL:

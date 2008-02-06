@@ -4,7 +4,7 @@
     gem install bones
     http://codeforpeople.rubyforge.org/bones/
 
-* for puzzle_generator, Ruby Facets is needed:
+* for puzzle_generator, Ruby Facets is needed: (no longer needed now!)
     gem install facets
     http://facets.rubyforge.org/
 

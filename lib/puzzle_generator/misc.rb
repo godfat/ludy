@@ -79,7 +79,10 @@ module PuzzleGenerator
       }
     end
     def drop_blocks map
-      map.each_column{ |column| column.map!{ |i| i==0 ? nil : i }.compact!.pad!(@option[:height], 0) }
+      map.each_column{ |column|
+        column.map!{ |i| i==0 ? nil : i }.compact!
+        column.pad!(@option[:height], 0)
+      }
     end
     def check_left_chain map, x, y
       # this should be rewrited

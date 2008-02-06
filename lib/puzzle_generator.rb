@@ -5,8 +5,9 @@ require 'puzzle_generator/puzzle'
 
 require 'ludy/hash/reverse_merge'
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/timer'
+# require 'rubygems' if RUBY_VERSION < '1.9.0'
+# require 'facets/timer'
+require 'ludy/timer' # simple and stupid timer....
 
 module PuzzleGenerator
 
@@ -18,7 +19,7 @@ module PuzzleGenerator
 
   LastTriedInfo = {}
   def self.generate timeout = 5, &generator
-    timer = Timer.new(timeout).start
+    timer = Ludy::Timer.new(timeout).start
     tried_times = 1
     begin
       result = generator.call
@@ -27,7 +28,7 @@ module PuzzleGenerator
         result = generator.call
       end
     ensure
-      timer.stop
+      # timer.stop
       LastTriedInfo.merge! :tried_times => tried_times, :tried_duration => timer.total_time
     end
     result

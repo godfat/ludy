@@ -3,15 +3,15 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
 require 'puzzle_generator'
 
 PuzzleGenerator.debug = true
-p = PuzzleGenerator::Puzzle.new :level => 4, :timeout => 10, :invoke_max => 5
+pg = PuzzleGenerator::Puzzle.new :level => 4, :timeout => 2, :invoke_max => 5
 begin
-  p.generate
-  p.display_map
-# rescue Timeout::Error
-#   puts 'Timeout!!'
+  pg.generate
+  pg.display_map
+rescue Ludy::Timeout => e
+  puts e
 ensure
-  p p.tried_times
-  p p.tried_duration
+  p pg.tried_times
+  p pg.tried_duration
 end
 
 # level => 7

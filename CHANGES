@@ -2,20 +2,28 @@
 
 == ludy 0.1.9
 
-* updated tasks from bones 1.3.1
-* better Rakefile support, with version automatic extraction from README and
-  better way to display tasks for default task. (no sh 'rake -T' now)
 * fixed a bug in RailsPaginator, which ignored opts for count.
+* fixed a possible bug in puzzle_generator... (not happened before?)
+* fixed a stupid timeout message bug...
 
-* change my nickname to binary string... for ruby-svn
-* renamed test_helper to helper
 * added multiruby test (from ZenTest) with ruby 1.8.6-p111, 1.9.0-0, svn
-
 * added Array#head, Array#choice!, Array#count
-* removed Array#reverse_map, use reverse.map instead
 * added Array#product, which came from ruby 1.9 (implemented by combos in ruby 1.8)
 * added Kernel#deep_copy, by Marshal idiom
 * added Hash#reverse_merge
+* added a simple and stupid timer........
+
+* removed Array#reverse_map, use reverse.map instead
+* renamed test_helper to helper
+
+* puzzle_generator was never always dependent on facets now!
+* ludy was never always dependent on rake now!
+
+* change my nickname to binary string... for ruby-svn
+* updated tasks from bones 1.3.2
+* better Rakefile support, with version automatic extraction from README and
+  better way to display tasks for default task. (no sh 'rake --tasks' now)
+* rake clean now clean out the *.rbc for rubinius
 
 == ludy 0.1.8, 2008.01.31
 
