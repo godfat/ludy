@@ -2,10 +2,11 @@
 require 'puzzle_generator/misc'
 require 'puzzle_generator/chain'
 
-require 'rubygems'
-gem 'facets', '>=2.0.0'
-require 'facets/enumerable/combos'
-require 'facets/enumerable/uniq_by'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
+require 'ludy/array/count' if RUBY_VERSION < '1.9.0'
+require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
+# require 'facets/enumerable/combos'
+
 require 'facets/random' # for Kernel#maybe
 
 # a = [[1,2],[3,4],[5,6]]
@@ -88,7 +89,8 @@ module PuzzleGenerator
     end
     def with_directs target
       # [target, [Up] + [Right, Left]*10].combos
-      [target, [Up, Right, Left]].combos
+      # [target, [Up, Right, Left]].combos
+      target.product [Up, Right, Left]
       # e.g., [[[0, 0], Up], [[0, 0], Right], [[0, 0], Left], [[1, 0], Up], ...]
     end
     def to_chains target
@@ -101,7 +103,8 @@ module PuzzleGenerator
     def strip_duplicated_chain target
       # target.uniq never works for non-num nor non-string :(
       # target.sort.inject([]){ |r, i| r.last == i ? r : r<<i }
-      target.uniq_by{|i|i}
+      # target.uniq_by{|i|i}
+      target.uniq # it works when hash and eql? take effect...
     end
     def strip_out_bounded_chain target
       target.select{ |chain| chain.bound_ok? @option[:width], @option[:height] }

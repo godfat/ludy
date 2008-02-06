@@ -4,10 +4,10 @@ require 'puzzle_generator/chain'
 require 'puzzle_generator/map'
 
 require 'ludy/array/combine'
+require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
+# require 'facets/enumerable/combos'
 
-require 'rubygems'
-gem 'facets', '>=2.0.0'
-require 'facets/enumerable/combos'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'facets/random' # for Array#pick
 
 module PuzzleGenerator
@@ -40,7 +40,8 @@ module PuzzleGenerator
     def init_map
       @maps = [make_map]
       @result_map = make_map_array
-      @picked_chain = make_init_chains([(0..@option[:width]-@option[:invoke]), [0]].combos).pick
+      # @picked_chain = make_init_chains([(0..@option[:width]-@option[:invoke]), [0]].combos).pick
+      @picked_chain = make_init_chains((0..@option[:width]-@option[:invoke]).to_a.product([0])).pick
       put_picked_chain_on @maps
       resolve_map
     end

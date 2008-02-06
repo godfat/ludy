@@ -1,6 +1,5 @@
 
-require 'rubygems'
-gem 'facets', '>=2.0.0'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'facets/kernel/deep_clone'
 require 'facets/array/pad'
 

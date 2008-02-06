@@ -3,8 +3,7 @@ require 'puzzle_generator/misc'
 require 'puzzle_generator/chained_map'
 require 'puzzle_generator/colored_map'
 
-require 'rubygems'
-gem 'facets', '>=2.0.0'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'facets/array/rotate'
 require 'facets/timer'
 

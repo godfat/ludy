@@ -6,7 +6,7 @@ unless defined? LudyHeaderGuard
 module LudyHeaderGuard # :nodoc:
 end
 
-require 'rubygems'
+require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'rake'
 
 module Ludy

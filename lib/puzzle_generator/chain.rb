@@ -16,6 +16,8 @@ module PuzzleGenerator
     end
     def <=> rhs; @data <=> rhs.instance_variable_get('@data'); end
     def == rhs; (self <=> rhs) == 0; end
+    alias_method :eql?, :==
+    def hash; @data.hash; end
     def each &block; @data.each &block; self end
     def [] index; @data[index]; end
     def to_a; @data.clone; end
