@@ -26,7 +26,7 @@ class Array
     #   => [[0,2],[0,3],[1,2],[1,3]]
     # simply: array.first.product *array.tail
     def combos
-      first.product *tail
+      first.product(*tail)
     end
   end
 end

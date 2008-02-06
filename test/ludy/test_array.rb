@@ -49,5 +49,15 @@ class TestArray < Test::Unit::TestCase
   def test_tail
     assert_equal [2,3,4], [1,2,3,4].tail
   end
+  def test_pad
+    assert_equal [1,2,3,nil,nil], [1,2,3].pad(5)
+    assert_equal [1,2,3], [1,2,3].pad(3)
+    assert_equal [1,2,3], [1,2,3].pad(2)
+    assert_equal [1,2,3], [1,2,3].pad(-2)
+    assert_equal [1,2,3], [1,2,3].pad(0)
+    a = [1,2,3]
+    a.pad! 5, 6
+    assert_equal [1,2,3,6,6], a
+  end
 end
 

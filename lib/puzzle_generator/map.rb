@@ -2,11 +2,9 @@
 require 'puzzle_generator/misc'
 require 'puzzle_generator/chain'
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
+require 'ludy/kernel/maybe'
 require 'ludy/array/count' if RUBY_VERSION < '1.9.0'
 require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
-
-require 'facets/random' # for Kernel#maybe
 
 # a = [[1,2],[3,4],[5,6]]
 # [a, [1,2,3]].combos

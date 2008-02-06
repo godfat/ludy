@@ -11,7 +11,11 @@
 * renamed test_helper to helper
 * added multiruby test (from ZenTest) with ruby 1.8.6-p111, 1.9.0-0, svn
 
-
+* added Array#head, Array#choice!, Array#count
+* removed Array#reverse_map, use reverse.map instead
+* added Array#product, which came from ruby 1.9 (implemented by combos in ruby 1.8)
+* added Kernel#deep_copy, by Marshal idiom
+* added Hash#reverse_merge
 
 == ludy 0.1.8, 2008.01.31
 

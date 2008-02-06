@@ -1,8 +1,6 @@
 
 require 'ludy/kernel/deep_copy'
-
-require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/array/pad'
+require 'ludy/array/pad'
 
 module PuzzleGenerator
   Up, Right, Left = (0..2).to_a

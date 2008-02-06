@@ -3,8 +3,9 @@
 
 require 'puzzle_generator/puzzle'
 
+require 'ludy/hash/reverse_merge'
+
 require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/hash/reverse_merge'
 require 'facets/timer'
 
 module PuzzleGenerator
