@@ -5,9 +5,6 @@ require 'puzzle_generator/colored_map'
 
 require 'ludy/array/rotate'
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'facets/timer'
-
 module PuzzleGenerator
 
   class Puzzle

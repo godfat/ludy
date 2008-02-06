@@ -8,6 +8,8 @@ ensure_in_path 'lib'
 require 'ludy'
 require 'ludy/tasks'
 
+CLEAN.include Dir['**/*.rbc']
+
 task :default do
   Rake.application.options.show_task_pattern = /./
   Rake.application.display_tasks_and_comments
@@ -23,7 +25,7 @@ PROJ.rubyforge_name = 'ludy'
 
 PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
 PROJ.exclude << '.DS_Store' << '^tmp' << '\.rbc$'
-PROJ.dependencies << 'rake'
+# PROJ.dependencies << 'rake'
 
 PROJ.rdoc_main = 'README'
 PROJ.rdoc_exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'

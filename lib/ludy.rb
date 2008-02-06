@@ -6,9 +6,6 @@ unless defined? LudyHeaderGuard
 module LudyHeaderGuard # :nodoc:
 end
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
-require 'rake'
-
 module Ludy
 
   # :stopdoc:
@@ -56,6 +53,8 @@ module Ludy
   # require all files in the dir, only work for ludy.
   # i.e., Ludy.require_all_in 'proc' => require 'ludy/proc/*.rb'
   def self.require_all_in dir
+    require 'rubygems' if RUBY_VERSION < '1.9.0'
+    require 'rake'
     Dir.glob("#{LIBPATH}ludy/#{dir}/*.rb").each{ |i|
       require(if dir == '.'
                 i.pathmap('ludy/%n')

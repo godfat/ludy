@@ -7,8 +7,8 @@ p = PuzzleGenerator::Puzzle.new :level => 4, :timeout => 10, :invoke_max => 5
 begin
   p.generate
   p.display_map
-rescue Timeout::Error
-  puts 'Timeout!!'
+# rescue Timeout::Error
+#   puts 'Timeout!!'
 ensure
   p p.tried_times
   p p.tried_duration
