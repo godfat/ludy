@@ -1,6 +1,7 @@
 
 class Array
-  # simply array[1..-1]
+  # simply call
+  #  array[1..-1]
   def tail
     self[1..-1]
   end

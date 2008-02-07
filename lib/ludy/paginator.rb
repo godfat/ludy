@@ -10,6 +10,7 @@ module Ludy
   # call Page#fetch
   class Page
     undef_method :to_a if RUBY_VERSION < '1.9.0'
+    # pager to get the original pager; page to get the number of this page
     attr_reader :pager, :page
     # don't create a page instance yourself unless you have to
     def initialize pager, page; @pager, @page = pager, page; end
@@ -93,8 +94,8 @@ module Ludy
   # they would be used in find options. e.g.,
   #  RailsPaginator.new Model, :order => 'created_at DESC'
   # would invoke Model.find :all, :offset => ?, :limit => ?, order => 'created_at DESC'
-  # TODO: conditions/options invoker...
   class RailsPaginator < Paginator
+    # the model class that you passed in this paginator
     attr_reader :model_class
     def initialize model_class, opts = {}
       @model_class = model_class
@@ -112,6 +113,7 @@ module Ludy
   # and create pages simply for your_data[offset, per_page]
   # if your data is much more complex, use Paginator instead of this
   class ArrayPaginator < Paginator
+    # data that you passed in this paginator
     attr_reader :data
     def initialize data
       @data = data

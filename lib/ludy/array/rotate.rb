@@ -14,7 +14,7 @@ class Array
     return self if empty? or n == 0
     self[-n..-1] + self[0...-n]
   end
-  # in-place version of rotate
+  # inplace version of rotate
   def rotate!
     replace rotate
   end

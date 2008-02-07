@@ -3,6 +3,7 @@ module Ludy
 
   # dices, e.g., 4d6, 2d20, etc.
   class Dices
+    # dices amounts of this dices; faces of this kind of dice
     attr_reader :amounts, :faces
     # the default dice is 1d20
     def initialize amounts = 1, faces = 20
@@ -21,6 +22,7 @@ module Ludy
 
   # a dice set could contain 4d6 + 2d20 and more dices.
   class DiceSet
+    # the min and max possible value of this dice set.
     attr_reader :min, :max
     def initialize *args
       @diceset = args

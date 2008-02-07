@@ -3,13 +3,15 @@ require 'ludy/kernel/deep_copy'
 require 'ludy/array/pad'
 
 module PuzzleGenerator
-  Up, Right, Left = (0..2).to_a
+  Up, Right, Left = (0..2).to_a # :nodoc:
   DefaultOption = {:width => 6, :height => 10, :level => 4, :colors => 4,
                    :invoke => 3, :invoke_max => 5, :timeout => 5}
   # whenever the generation is falied, this exception would raise
   class GenerationFailed < RuntimeError; end
   class << self
+    # specify whether to show the answer in the puzzle
     attr_writer :debug
+    # specify whether to show the answer in the puzzle
     def debug; @debug || false; end
   end
 

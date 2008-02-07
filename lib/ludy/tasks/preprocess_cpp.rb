@@ -53,8 +53,10 @@ namespace :preprocess do
 
     erubis_inputs.zip(erubis_outputs).each{ |input, output|
       file output => input do
-        class ErboutEruby < Erubis::Eruby; include Erubis::ErboutEnhancer; end
-        preprocess lambda{|input| ErboutEruby.new input, :trim => false}, input, output
+        class ErboutEruby < Erubis::Eruby #:nodoc:
+          include Erubis::ErboutEnhancer
+        end
+        preprocess lambda{|in_str| ErboutEruby.new in_str, :trim => false}, input, output
       end
     }
   rescue LoadError; end # no erubis

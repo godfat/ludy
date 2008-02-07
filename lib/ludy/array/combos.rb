@@ -4,8 +4,8 @@ class Array
     require 'ludy/array/foldr'
     require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
     # for each combos
-    #   [[0,1],[2,3]].combos
-    #   => [[0,2],[0,3],[1,2],[1,3]]
+    #  [[0,1],[2,3]].combos
+    #  => [[0,2],[0,3],[1,2],[1,3]]
     def combos
       result = []
       radixs = reverse.map(&:size)
@@ -22,9 +22,10 @@ class Array
   else
     require 'ludy/array/tail'
     # for each combos
-    #   [[0,1],[2,3]].combos
-    #   => [[0,2],[0,3],[1,2],[1,3]]
-    # simply: array.first.product *array.tail
+    #  [[0,1],[2,3]].combos
+    #  => [[0,2],[0,3],[1,2],[1,3]]
+    # simply:
+    #  array.first.product *array.tail
     def combos
       first.product(*tail)
     end

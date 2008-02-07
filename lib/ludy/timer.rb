@@ -4,6 +4,7 @@ module Ludy
   class Timeout < Exception; end
   # simple and stupid timer for puzzle_generator...
   class Timer
+    # create a timer for timeout seconds.
     def initialize timeout
       @timeout = timeout
     end

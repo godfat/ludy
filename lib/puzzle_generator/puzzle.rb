@@ -10,10 +10,13 @@ module PuzzleGenerator
   class Puzzle
     include DisplayMap
     attr_reader :tried_times, :tried_duration
+    # create a puzzle with option. this won't start generating,
+    # call Puzzle::generate to start generating.
     def initialize option = {}
       @option = DefaultOption.merge option
       @tried_times, @tried_duration = [0, 0], [0, 0]
     end
+    # start generate a puzzle with options that created this puzzle instance.
     def generate
       raw_colors = (1..@option[:colors]).to_a
       step_colors = raw_colors.rotate
@@ -35,7 +38,7 @@ module PuzzleGenerator
     end
 
     private
-    Chain, Color = 0, 1
+    Chain, Color = 0, 1 # :nodoc:
     def make_chain
       begin
         @result_chain =

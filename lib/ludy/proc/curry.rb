@@ -12,7 +12,7 @@ class Proc
   def curry
     class << self
       alias_method :__call__, :call
-      def call *args, &block
+      def call *args, &block # :nodoc:
         if self.arity == -1
           begin # let's try if arguments are ready
             # is there any better way to determine this?

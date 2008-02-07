@@ -6,10 +6,6 @@ require 'ludy/kernel/maybe'
 require 'ludy/array/count' if RUBY_VERSION < '1.9.0'
 require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
 
-# a = [[1,2],[3,4],[5,6]]
-# [a, [1,2,3]].combos
-# => [[[1, 2], 1], [[1, 2], 2], [[1, 2], 3], [[3, 4], 1], [[3, 4], 2], [[3, 4], 3], [[5, 6], 1], [[5, 6], 2], [[5, 6], 3]]
-
 module PuzzleGenerator
 
   class Map # :nodoc:

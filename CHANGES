@@ -1,12 +1,22 @@
 = ludy changes history
 
+== ludy 0.1.10, 2008.02.07
+
+* fixed an offset bug in paginator. if the offset was equal to the count,
+  there should be no page existed.
+* fixed and updated rdoc presentation
+* fixed a warning of shadowing variables in ruby 1.9
+
+* added the offset test in test_paginator
+* make some Kernel method private
+
 == ludy 0.1.9, 2008.02.07
 
 * fixed a bug in RailsPaginator, which ignored opts for count.
 * fixed a possible bug in puzzle_generator... (not happened before?)
 * fixed a stupid timeout message bug...
 
-* added multiruby test (from ZenTest) with ruby 1.8.6-p111, 1.9.0-0, svn
+* added multiruby test (from ZenTest) with ruby 1.8.6-p111, 1.9.0-0, svn trunk
 * added Array#head, Array#choice!, Array#count
 * added Array#product, which came from ruby 1.9 (implemented by combos in ruby 1.8)
 * added Kernel#deep_copy, by Marshal idiom
