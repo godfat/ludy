@@ -72,7 +72,7 @@ module Ludy
     # nil would be returned. note, page start at 1, not zero.
     def page page
       offset = (page-1)*@per_page
-      return nil unless page > 0 and offset <= count
+      return nil unless page > 0 and offset < count
       Page.new self, page
     end
     # return the amount of pages

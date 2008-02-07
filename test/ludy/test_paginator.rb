@@ -47,6 +47,14 @@ class TestPaginator < Test::Unit::TestCase
     })
     for_pager pager
   end
+  def test_offset_bug
+    a = (0..9).to_a
+    pager = ArrayPaginator.new a
+    pager.per_page = 5
+    assert_equal 5, pager[1].size
+    assert_equal 5, pager[2].size
+    assert_nil pager[3]
+  end
   class Topic
     class << self
       def count opts = {}
