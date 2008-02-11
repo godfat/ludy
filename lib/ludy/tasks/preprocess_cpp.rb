@@ -35,7 +35,7 @@ namespace :preprocess do
 
   erb_inputs.zip(erb_outputs).each{ |input, output|
     file output => input do
-      preprocess lambda{|input| ERB.new input}, input, output
+      preprocess lambda{|input_str| ERB.new input_str}, input, output
     end
   }
 
