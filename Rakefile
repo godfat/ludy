@@ -16,7 +16,7 @@ task :default do
 end
 
 PROJ.name = 'ludy'
-PROJ.authors = "Lin Jen-Shin (a.k.a. godfat \347\234\237\345\270\270)"
+PROJ.authors = "Lin Jen-Shin (a.k.a. godfat 真常)"
 PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
 PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\n\n")
