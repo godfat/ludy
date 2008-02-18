@@ -4,7 +4,7 @@ require 'ludy/array/map_with_index'
 require 'ludy/array/tail'
 
 module Kernel
-
+private
 # forward template functions' generator
 def for_template_parameters_within range, modifiers = ['volatile', 'const volatile']
   modifiers = ['', 'const'] + modifiers
@@ -42,4 +42,4 @@ def arguments args_list
   }.join(', ')
 end
 
-end # of ludy
+end # of Kernel

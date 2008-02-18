@@ -2,7 +2,7 @@
 require 'ludy/tasks/common'
 
 module Kernel
-
+private
 # C/C++ header guard generator, you shold provide the final #endif yourself,
 # and you should provide PROJ name for header guard prefix
 def header_guard random_suffix = nil, &block
@@ -14,4 +14,4 @@ def header_guard random_suffix = nil, &block
   Ludy::erbout '#endif', block.binding
 end
 
-end # of ludy
+end # of Kernel

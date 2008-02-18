@@ -1,6 +1,6 @@
 
 module Kernel
-
+private
 # just like attr_accessor for c++
 def accessor type, *pros
   (reader_only type, *pros) +
@@ -46,4 +46,4 @@ def member_only type, *pros
   result << "#{@prefix}#{@indent}#{type} #{pros.map{|p|"#{p}_"}.join(", ")};\n"
 end
 
-end # of ludy
+end # of Kernel

@@ -2,6 +2,7 @@
 require 'ludy/tasks/common'
 
 module Kernel
+private
   # it simply output:
   #  #ifndef NDEBUG
   #  #include <iostream>
@@ -32,4 +33,4 @@ std::cerr << \"method #{name} called, for \" << this << \" at #{@file}: #{eval '
 #endif
 ", block.binding
   end
-end
+end # of Kernel

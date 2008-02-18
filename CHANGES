@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.11, ?
+
+* fixed tasks function into private method of Kernel.
+
 == ludy 0.1.10, 2008.02.07
 
 * fixed an offset bug in paginator. if the offset was equal to the count,
