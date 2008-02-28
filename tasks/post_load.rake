@@ -6,6 +6,12 @@
 PROJ.rdoc_exclude << "^#{Regexp.escape(PROJ.manifest_file)}$"
 PROJ.exclude << "^#{Regexp.escape(PROJ.ann_file)}$"
 
+PROJ.instance_variable_get(:@table).each do |key,val|
+  next unless val.instance_of? Array
+  next if key == :dependencies
+  val.flatten!
+end
+
 PROJ.changes ||= paragraphs_of(PROJ.history_file, 0..1).join("\n\n")
 
 PROJ.description ||= paragraphs_of(PROJ.readme_file, 'description').join("\n\n")
