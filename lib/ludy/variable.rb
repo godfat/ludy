@@ -1,5 +1,5 @@
 
-require 'ludy/kernel/public_send' unless RUBY_VERSION < '1.9.0'
+require 'ludy/kernel/public_send'
 require 'ludy/class/undef_all_methods'
 
 module Ludy

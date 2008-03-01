@@ -1,5 +1,5 @@
 
-require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
+require 'ludy/symbol/to_proc'
 
 class Array
   # example:

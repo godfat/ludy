@@ -1,5 +1,6 @@
 
-require 'ludy/kernel/public_send' if RUBY_VERSION < '1.9.0'
+require 'ludy/version'
+require 'ludy/kernel/public_send'
 
 module Ludy
   # which was produced by Paginator#page / Paginator#[],
@@ -9,7 +10,7 @@ module Ludy
   # was fetched, it won't fetch again. it you need refetch,
   # call Page#fetch
   class Page
-    undef_method :to_a if RUBY_VERSION < '1.9.0'
+    undef_method :to_a if Ludy::ruby_before '1.9.0'
     # pager to get the original pager; page to get the number of this page
     attr_reader :pager, :page
     # don't create a page instance yourself unless you have to

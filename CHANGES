@@ -3,6 +3,7 @@
 == ludy 0.1.11, ?
 
 * fixed tasks function into private method of Kernel.
+* fixed version comparison.
 
 == ludy 0.1.10, 2008.02.07
 

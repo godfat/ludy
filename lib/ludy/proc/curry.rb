@@ -1,7 +1,8 @@
 
-require 'ludy/kernel/public_send'
+require 'ludy/version'
 
-if RUBY_VERSION < '1.9.0'
+if Ludy::ruby_before '1.9.0'
+  require 'ludy/kernel/public_send'
   class Proc
     def __curry__ *pre # :nodoc:
       lambda{ |*post| self[*(pre + post)] }

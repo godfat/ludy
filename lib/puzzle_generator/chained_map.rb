@@ -7,7 +7,7 @@ require 'ludy/kernel/deep_copy'
 require 'ludy/array/combine'
 require 'ludy/array/rotate'
 require 'ludy/array/choice' # for Array#choice!
-require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
+require 'ludy/array/product'
 
 module PuzzleGenerator
 

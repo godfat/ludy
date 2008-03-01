@@ -3,8 +3,8 @@ require 'puzzle_generator/misc'
 require 'puzzle_generator/chain'
 
 require 'ludy/kernel/maybe'
-require 'ludy/array/count' if RUBY_VERSION < '1.9.0'
-require 'ludy/array/product' if RUBY_VERSION < '1.9.0'
+require 'ludy/array/count'
+require 'ludy/array/product'
 
 module PuzzleGenerator
 

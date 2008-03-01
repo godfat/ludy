@@ -3,6 +3,7 @@
 # Equivalent to a header guard in C/C++
 # Used to prevent the class/module from being loaded more than once
 unless defined? LudyHeaderGuard
+
 module LudyHeaderGuard # :nodoc:
 end
 
@@ -53,7 +54,7 @@ module Ludy
   # require all files in the dir, only work for ludy.
   # i.e., Ludy.require_all_in 'proc' => require 'ludy/proc/*.rb'
   def self.require_all_in dir
-    require 'rubygems' if RUBY_VERSION < '1.9.0'
+    require 'rubygems'
     require 'rake'
     Dir.glob("#{LIBPATH}ludy/#{dir}/*.rb").each{ |i|
       require(if dir == '.'

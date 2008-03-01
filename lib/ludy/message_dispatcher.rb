@@ -1,8 +1,6 @@
 
 require 'ludy/pattern_matcher'
-if RUBY_VERSION < '1.9.0'
-  require 'ludy/kernel/singleton_method'
-end
+require 'ludy/kernel/singleton_method'
 
 module Ludy
 

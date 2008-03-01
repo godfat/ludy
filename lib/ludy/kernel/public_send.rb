@@ -1,5 +1,7 @@
 
-if RUBY_VERSION < '1.9.0'
+require 'ludy/version'
+
+if Ludy::ruby_before '1.9.0'
   module Kernel
     # it would be defined if RUBY_VERSION < '1.9.0', see rdoc in ruby 1.9
     def public_send msg, *args, &block
