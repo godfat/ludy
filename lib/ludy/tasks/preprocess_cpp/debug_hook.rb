@@ -29,7 +29,7 @@ private
     block.call
     Ludy::erbout "
 #ifndef NDEBUG
-std::cerr << \"method #{name} called, for \" << this << \" at #{@file}: #{eval '__LINE__', block.binding}\\n\";
+std::clog << \"method #{name} called, for \" << this << \" at #{@file}: #{eval '__LINE__', block.binding}\\n\";
 #endif
 ", block.binding
   end

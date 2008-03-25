@@ -1,9 +1,11 @@
 = ludy changes history
 
-== ludy 0.1.11, ?
+== ludy 0.1.11, 2008-03-25
 
 * fixed tasks function into private method of Kernel.
 * fixed version comparison.
+* fixed encoding using # -*- coding: utf-8 -*- instead of $KCODE
+* updated tasks/preprocess_cpp/debug_hook from std::cerr to std::clog.
 
 == ludy 0.1.10, 2008.02.07
 
