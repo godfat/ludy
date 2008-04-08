@@ -21,18 +21,18 @@ PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
 PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
-PROJ.rubyforge_name = 'ludy'
+PROJ.rubyforge.name = 'ludy'
 
 PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
 PROJ.exclude << '.DS_Store' << '^tmp' << '\.rbc$'
 # PROJ.dependencies << 'rake'
 
-PROJ.rdoc_main = 'README'
-PROJ.rdoc_exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
-PROJ.rdoc_include << '\w+'
-PROJ.rdoc_opts << '--diagram' if !WIN32 and `which dot` =~ %r/\/dot/
-PROJ.rdoc_opts << '--charset=utf-8' << '--inline-source' << '--line-numbers' << '--promiscuous'
+PROJ.rdoc.main = 'README'
+PROJ.rdoc.exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
+PROJ.rdoc.include << '\w+'
+PROJ.rdoc.opts << '--diagram' if !WIN32 and `which dot` =~ %r/\/dot/
+PROJ.rdoc.opts << '--charset=utf-8' << '--inline-source' << '--line-numbers' << '--promiscuous'
 
-PROJ.spec_opts << '--color'
+PROJ.spec.opts << '--color'
 
 # EOF
