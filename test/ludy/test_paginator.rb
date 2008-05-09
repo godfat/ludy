@@ -49,7 +49,7 @@ class TestPaginator < Test::Unit::TestCase
   end
   def test_offset_bug
     a = (0..9).to_a
-    pager = ArrayPaginator.new a
+    pager = Ludy::ArrayPaginator.new a
     pager.per_page = 5
     assert_equal 5, pager[1].size
     assert_equal 5, pager[2].size
