@@ -74,9 +74,11 @@ class TestPaginator < Test::Unit::TestCase
   def test_null_paginator
     nullpage = Ludy::NullPage.instance
     assert_equal 0, nullpage.page
-    assert_equal 0, nullpage.next.page
+    assert_nil nullpage.next
     assert_equal 0, nullpage.size
     assert_equal [], nullpage.data
-    assert_equal nullpage.object_id, nullpage.pager.page(2).object_id
+    assert_equal nullpage.object_id, nullpage.pager.page(0).object_id
+    assert_nil Ludy::Paginator.null.page(1)
+    assert_equal nullpage.object_id, Ludy::Page.null.object_id
   end
 end

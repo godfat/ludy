@@ -17,7 +17,7 @@ module Ludy
     # don't create a page instance yourself unless you have to
     def initialize pager, page; @pager, @page = pager, page; end
     # return a null page that stubs anything to 0
-    def null; NullPage.instance; end
+    def self.null; NullPage.instance; end
     # return the page instance next to this page
     def next; @pager.page(@page+1); end
     # return the page instance prev to this page
@@ -140,6 +140,6 @@ module Ludy
   class NullPaginator < Paginator
     include Singleton
     def initialize; super(lambda{|*a|[]}, lambda{0}); end
-    def page page; NullPage.instance; end
+    def page page; page == 0 ? NullPage.instance : nil; end
   end
 end
