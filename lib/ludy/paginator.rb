@@ -1,6 +1,7 @@
 
 require 'ludy/version'
 require 'ludy/kernel/public_send'
+require 'singleton'
 
 module Ludy
   # which was produced by Paginator#page / Paginator#[],
@@ -15,6 +16,8 @@ module Ludy
     attr_reader :pager, :page
     # don't create a page instance yourself unless you have to
     def initialize pager, page; @pager, @page = pager, page; end
+    # return a null page that stubs anything to 0
+    def null; NullPage.instance; end
     # return the page instance next to this page
     def next; @pager.page(@page+1); end
     # return the page instance prev to this page
@@ -57,6 +60,8 @@ module Ludy
       @fetcher = fetcher
       @counter = counter
     end
+    # return a null pager that stubs anything to 0
+    def self.null; NullPaginator.instance; end
     # if two paginators are equal, then the properties of
     # per_page, fetcher, counter are all equal.
     def == rhs
@@ -124,5 +129,17 @@ module Ludy
         @data.size
       })
     end
+  end
+
+  # a null page that stubs anything to 0 or [], etc.
+  class NullPage < Page
+    include Singleton
+    def initialize; super(NullPaginator.instance, 0); end
+  end
+  # a null paginator that stubs any page into a null page.
+  class NullPaginator < Paginator
+    include Singleton
+    def initialize; super(lambda{|*a|[]}, lambda{0}); end
+    def page page; NullPage.instance; end
   end
 end
