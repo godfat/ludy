@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.12,
+
+* added NullPaginator and NullPage for represent 0 page.
+
 == ludy 0.1.11, 2008-03-25
 
 * fixed tasks function into private method of Kernel.
