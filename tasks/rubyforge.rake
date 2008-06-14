@@ -17,7 +17,7 @@ namespace :gem do
       puts "rf.add_file #{PROJ.rubyforge.name.inspect}, #{PROJ.name.inspect}, release_id, \"#{pkg}.gem\""
     end
 
-    rf = RubyForge.new
+    rf = RubyForge.new.configure
     puts 'Logging in'
     rf.login
 
