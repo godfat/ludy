@@ -23,6 +23,15 @@ namespace :gem do
   end
 end
 
+namespace :git do
+  desc 'push to rubyforge and github'
+  task 'push' do
+    sh 'git push rubyforge master'
+    puts
+    sh 'git push github master'
+  end
+end
+
 PROJ.name = 'ludy'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
 PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
