@@ -1,8 +1,9 @@
 = ludy changes history
 
-== ludy 0.1.12,
+== ludy 0.1.12, 2008-06-14
 
 * added NullPaginator and NullPage for represent 0 page.
+* changed repository from svn to git.
 
 == ludy 0.1.11, 2008-03-25
 

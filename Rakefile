@@ -15,6 +15,13 @@ task :default do
   Rake.application.display_tasks_and_comments
 end
 
+namespace :gem do
+  desc 'create ludy.gemspec'
+  task 'gemspec' do
+    sh 'rake gem:debug > ludy.gemspec'
+  end
+end
+
 PROJ.name = 'ludy'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
 PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
