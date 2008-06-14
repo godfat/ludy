@@ -18,7 +18,8 @@ end
 namespace :gem do
   desc 'create ludy.gemspec'
   task 'gemspec' do
-    sh 'rake gem:debug > ludy.gemspec'
+    puts 'rake gem:debug > ludy.gemspec'
+    File.open('ludy.gemspec', 'w'){|spec| spec << `rake gem:debug`.sub(/.*/, '')}
   end
 end
 
@@ -29,13 +30,14 @@ PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge.name = 'ludy'
-
 PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
-PROJ.exclude << '.DS_Store' << '^tmp' << '\.rbc$'
-# PROJ.dependencies << 'rake'
+
+PROJ.gem.executables = 'bin/ludy'
+PROJ.gem.files = []
+Dir.glob('**/*'){ |file| PROJ.gem.files << file if file !~ /^pkg|^tmp|^doc/ }
 
 PROJ.rdoc.main = 'README'
-PROJ.rdoc.exclude << 'deprecated' << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
+PROJ.rdoc.exclude << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
 PROJ.rdoc.include << '\w+'
 PROJ.rdoc.opts << '--diagram' if !WIN32 and `which dot` =~ %r/\/dot/
 PROJ.rdoc.opts << '--charset=utf-8' << '--inline-source' << '--line-numbers' << '--promiscuous'

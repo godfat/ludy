@@ -1,5 +1,9 @@
 = ludy changes history
 
+== ludy 0.1.13, 2008-06-14
+
+* fixed the package... i am so dumb
+
 == ludy 0.1.12, 2008-06-14
 
 * added NullPaginator and NullPage for represent 0 page.
