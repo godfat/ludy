@@ -1,7 +1,7 @@
 
 require 'ludy/version'
 
-if Ludy::ruby_before '1.9.0'
+if Ludy::ruby_before '1.8.7'
   begin
     require 'facets/enumerable/combos'
   rescue LoadError
