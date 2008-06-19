@@ -7,6 +7,8 @@ require 'ludy/xhtml_formatter'
 require 'rubygems'
 require 'active_record'
 
+File.delete 'tmp.sqlite3' if File.exists? 'tmp.sqlite3'
+
 ActiveRecord::Base.establish_connection(
   :adapter  => 'sqlite3',
   :database => 'tmp.sqlite3'
@@ -30,13 +32,17 @@ class Article < ActiveRecord::Base
 
   rff_filters[:after_save] << [
     [:content, :author],
-    lambda{ |input|
+    [lambda{ |input|
       Ludy::XhtmlFormatter.format_article input,
         :a, :pre, :object, :img, :b, :strong, :em, :li, :ul, :ol, :i
-    }
+    }, :append_id]
   ]
 
   rff_setup
+
+  def append_id content
+    "#{content} #{id}"
+  end
 end
 
 Article.create :author => 'lin jen-shin',
@@ -54,7 +60,7 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal 'Lin Jen Shin', article.author
 
     article.save
-    assert_equal 'nihs nej nil', article.author
-    assert_equal target, article.content
+    assert_equal 'nihs nej nil 1', article.author
+    assert_equal "#{target} 1", article.content
   end
 end

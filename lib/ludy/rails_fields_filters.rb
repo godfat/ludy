@@ -12,7 +12,11 @@ module Ludy
             [fields].flatten.each{ |field|
               record.__send__ "#{field}=",
                 [filters].flatten.inject(record.__send__(field)){ |result, filter|
-                  filter[result]
+                  if filter.kind_of? Symbol
+                    record.__send__ filter, result
+                  else
+                    filter[result]
+                  end
                 }
             }
           }
