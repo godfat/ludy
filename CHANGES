@@ -1,5 +1,8 @@
 = ludy changes history
 
+* added xhtml_formatter from another project.
+* added rails_fields_filters from project above metioned.
+
 == ludy 0.1.13, 2008-06-14
 
 * fixed the package... i am so dumb
