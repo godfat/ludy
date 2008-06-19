@@ -5,7 +5,7 @@ class Proc
   #  _1 => 1st arg
   #  _2 => 2nd arg
   #  ...and so on
-  def bind *args
+  def _bind *args
     lambda{ |*new_args|
       self[*(args.map{ |arg|
         if (arg.kind_of? Symbol) && arg.to_s =~ /^_(\d+)$/

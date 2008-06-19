@@ -1,7 +1,11 @@
 = ludy changes history
 
-* added xhtml_formatter from another project.
-* added rails_fields_filters from project above metioned.
+== ludy 0.1.14,
+
+* added Ludy::XhtmlFormatter from another project.
+* added Ludy::RailsFieldsFilters from project above metioned.
+* renamed Proc#bind to Proc#_bind because active_support
+  took that name..... *cry*
 
 == ludy 0.1.13, 2008-06-14
 
