@@ -57,7 +57,8 @@ svn 其實也差不多是要慢慢式微了...
 很多知名 library 都有 haskell binding 了，wxWidgets,
 OpenGL, 還有一些 web cgi 之類的東西也有。
 
-現在切入正是時機啊... XD', format_autolink(str)
+現在切入正是時機啊... XD', s = format_autolink(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_persent
     str =
@@ -66,7 +67,8 @@ http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~
 
     assert_equal \
 'XDDDD
-<a href="http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~Ar-tonelico2-hymmnos-concert-Side-%E7%B4%85~/dp/B000VKZL30/ref=pd_sbs_sw_img_2" title="http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~Ar-tonelico2-hymmnos-concert-Side-%E7%B4%85~/dp/B000VKZL30/ref=pd_sbs_sw_img_2">http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%...</a> orz', format_autolink(str)
+<a href="http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~Ar-tonelico2-hymmnos-concert-Side-%E7%B4%85~/dp/B000VKZL30/ref=pd_sbs_sw_img_2" title="http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~Ar-tonelico2-hymmnos-concert-Side-%E7%B4%85~/dp/B000VKZL30/ref=pd_sbs_sw_img_2">http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%...</a> orz', s = format_autolink(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_img_src
     str = 
@@ -75,17 +77,20 @@ http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~
 
 2007年12月14日
 '
-    assert_equal str, format_autolink(str)
+    assert_equal str, s = format_autolink(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_wikipedia_persent
-    str = ' http://en.wikipedia.org/wiki/Haskell_%28programming_language%29 '
+    str = 'http://en.wikipedia.org/wiki/Haskell_%28programming_language%29'
     assert_equal \
-' <a href="http://en.wikipedia.org/wiki/Haskell_%28programming_language%29" title="http://en.wikipedia.org/wiki/Haskell_%28programming_language%29">http://en.wikipedia.org/wiki/Haskell_%28program...</a> ', format_autolink(str)
+'<a href="http://en.wikipedia.org/wiki/Haskell_%28programming_language%29" title="http://en.wikipedia.org/wiki/Haskell_%28programming_language%29">http://en.wikipedia.org/wiki/Haskell_%28program...</a>', s = format_autolink(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_wikipedia_parentheses
-    str = ' http://en.wikipedia.org/wiki/Haskell_(programming_language) '
+    str = 'http://en.wikipedia.org/wiki/Haskell_(programming_language)'
     assert_equal \
-' <a href="http://en.wikipedia.org/wiki/Haskell_" title="http://en.wikipedia.org/wiki/Haskell_" class="XD">http://en.wikipedia.org/wiki/Haskell_</a>(programming_language) ', format_autolink(str, :class => 'XD')
+'<a href="http://en.wikipedia.org/wiki/Haskell_" title="http://en.wikipedia.org/wiki/Haskell_" class="XD">http://en.wikipedia.org/wiki/Haskell_</a>(programming_language)', s = format_autolink(str, :class => 'XD')
+    assert_equal s, format_autolink_regexp(str, :class => 'XD')
   end
   def test_fixing_html
     str = 'test<p>if missing end of p'
@@ -96,7 +101,8 @@ http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~
   def test_www_url
     str = 'go to www.google.com to see if you can see'
     assert_equal 'go to <a href="http://www.google.com" title="http://www.google.com">www.google.com</a> to see if you can see',
-      format_autolink(str)
+      s = format_autolink(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_escape_html_and_correct_html
     str = 'test<p>if missing end of p'
@@ -113,7 +119,8 @@ http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~
   def test_trim_url
     str = 'test with http://8901234567890123456789012345678901234567890.com'
 
-    assert_equal 'test with <a href="http://8901234567890123456789012345678901234567890.com" title="http://8901234567890123456789012345678901234567890.com">http://8901234567890123456789012345678901234567...</a>', format_article(str)
+    assert_equal 'test with <a href="http://8901234567890123456789012345678901234567890.com" title="http://8901234567890123456789012345678901234567890.com">http://8901234567890123456789012345678901234567...</a>', s = format_article(str)
+    assert_equal s, format_autolink_regexp(str)
   end
   def test_escape_html
     str = 'a lambda expression is &lambda; x. x+1'
@@ -122,12 +129,12 @@ http://www.amazon.co.jp/%E3%80%8C%E7%84%94~%E3%83%9B%E3%83%A0%E3%83%A9%E3%80%8D~
     assert_equal str, format_article(str)
   end
   def test_html_with_pre_and_newline2br
-    # File.open('complex_article.html', 'w') << format_article(File.open('test/unit/complex_article.txt').read, :pre)
     assert_equal File.open('test/sample/complex_article_result.txt').read,
       format_article(File.open('test/sample/complex_article.txt').read, :pre)
   end
   def test_simple_link
     s = '今天是我一歲生日 <a href="http://godfat.org/" title="http://godfat.org/">http://godfat.org/</a> 真的嗎？'
     assert_equal s, format_article(s, :a)
+    assert_equal s, format_autolink_regexp(s)
   end
 end

@@ -1,7 +1,5 @@
 
 require 'set'
-require 'rubygems'
-require 'hpricot'
 
 module Ludy
 
@@ -9,18 +7,50 @@ module Ludy
   module XhtmlFormatter
     module_function
     def format_article html, *allowed_tags
+      require 'rubygems'
+      require 'hpricot'
+
       allowed_tags = allowed_tags.to_set
       XhtmlFormatter.format_article_elems Hpricot.parse(
         XhtmlFormatter.escape_all_inside_pre(html, allowed_tags)), allowed_tags
     end
 
     def format_autolink html, attrs = {}
+      require 'rubygems'
+      require 'hpricot'
+
       doc = Hpricot.parse html
       doc.each_child{ |c|
         next unless c.kind_of?(Hpricot::Text)
         c.content = format_url c.content, attrs
       }
       doc.to_html
+    end
+
+    # translated from drupal-6.2/modules/filter/filter.module
+    def format_autolink_regexp text, attrs = {}
+      attrs = attrs.map{ |k,v| " #{k}=\"#{v}\""}.join
+      # Match absolute URLs.
+      " #{text}".gsub(%r{(<p>|<li>|<br\s*/?>|[ \n\r\t\(])((http://|https://|ftp://|mailto:|smb://|afp://|file://|gopher://|news://|ssl://|sslv2://|sslv3://|tls://|tcp://|udp://)([a-zA-Z0-9@:%_+*~#?&=.,/;-]*[a-zA-Z0-9@:%_+*~#&=/;-]))([.,?!]*?)(?=(</p>|</li>|<br\s*/?>|[ \n\r\t\)])?)}i){ |match|
+        match = [match, $1, $2, $3, $4, $5]
+        match[2] = match[2] # escape something here
+        caption = XhtmlFormatter.trim match[2]
+        # match[2] = sanitize match[2]
+        match[1]+'<a href="'+match[2]+'" title="'+match[2]+"\"#{attrs}>"+
+          caption+'</a>'+match[5]
+
+      # Match e-mail addresses.
+      }.gsub(%r{(<p>|<li>|<br\s*/?>|[ \n\r\t\(])([A-Za-z0-9._-]+@[A-Za-z0-9._+-]+\.[A-Za-z]{2,4})([.,?!]*?)(?=(</p>|</li>|<br\s*/?>|[ \n\r\t\)]))}i, '\1<a href="mailto:\2">\2</a>\3').
+
+      # Match www domains/addresses.
+      gsub(%r{(<p>|<li>|[ \n\r\t\(])(www\.[a-zA-Z0-9@:%_+*~#?&=.,/;-]*[a-zA-Z0-9@:%_+~#\&=/;-])([.,?!]*?)(?=(</p>|</li>|<br\s*/?>|[ \n\r\t\)]))}i){ |match|
+        match = [match, $1, $2, $3, $4, $5]
+        match[2] = match[2] # escape something here
+        caption = XhtmlFormatter.trim match[2]
+        # match[2] = sanitize match[2]
+        match[1]+'<a href="http://'+match[2]+'" title="http://'+match[2]+"\"#{attrs}>"+
+          caption+'</a>'+match[3]
+      }[1..-1]
     end
 
     def format_url text, attrs = {}
