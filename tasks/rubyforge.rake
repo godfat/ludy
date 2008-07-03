@@ -1,4 +1,3 @@
-# $Id$
 
 if PROJ.rubyforge.name.valid? && HAVE_RUBYFORGE
 
@@ -17,7 +16,8 @@ namespace :gem do
       puts "rf.add_file #{PROJ.rubyforge.name.inspect}, #{PROJ.name.inspect}, release_id, \"#{pkg}.gem\""
     end
 
-    rf = RubyForge.new.configure
+    rf = RubyForge.new
+    rf.configure rescue nil
     puts 'Logging in'
     rf.login
 
