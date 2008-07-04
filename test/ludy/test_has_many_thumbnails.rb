@@ -76,6 +76,8 @@ class TestHasManyThumbnails < Test::Unit::TestCase
 
     assert_dimension Dims90[0..-2], logo2.log.sort
     assert_dimension Dims90[0..-2] << Dims00[-1], read_dimension
+
+    cleanup
   end
 
   def assert_dimension should, real
@@ -87,5 +89,8 @@ class TestHasManyThumbnails < Test::Unit::TestCase
     Magick::ImageList.new.read(*Dir['misc/tmp/*.png']).to_a.map{ |img|
       [img.columns, img.rows]
     }.sort
+  end
+  def cleanup
+    File.delete *Dir['misc/tmp/*.png']
   end
 end
