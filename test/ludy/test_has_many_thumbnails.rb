@@ -37,8 +37,8 @@ class RubyLogo
     }
   end
 
-  # same as thumbnail.fileuri
-  def thumbnail_fileuri thumbnail
+  # same as thumbnail.filename
+  def thumbnail_filename thumbnail
     "#{self.class}_#{checksum}_#{ThumbnailsNameTable[thumbnail.label]}.#{thumbnail.fileext}"
   end
   def thumbnail_default_fileext

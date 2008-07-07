@@ -17,22 +17,14 @@ module Ludy
         @thumbnails ||= init_thumbnails
       end
 
-      # same as thumbnail.filename
+      # same as thumbnail.filename, for writing
       def thumbnail_filename thumbnail
         "#{object_id}_#{thumbnail.label}.#{thumbnail.fileext}"
       end
 
-      # same as thumbnail.fileuri
+      # same as thumbnail.fileuri, for fetching
       def thumbnail_fileuri thumbnail
         thumbnail_filename thumbnail
-      end
-      def thumbnail_format
-        case format = thumbnails[:original].format
-          when 'BMP';  'PNG'
-          when 'BMP2'; 'PNG'
-          when 'BMP3'; 'PNG'
-          else; format
-        end
       end
       def thumbnail_mime_type
         thumbnails[:original].mime_type
@@ -98,9 +90,14 @@ module Ludy
 
     # e.g.,
     # thumbnails[:original].from_blob uploaded_file.read
-    def from_blob blob
-      self.image = Magick::ImageList.new.from_blob blob
+    def from_blob blob, &block
+      self.image = Magick::ImageList.new.from_blob blob, &block
       self
+    end
+
+    # convert format to website displable image format
+    def convert_format_for_website
+      image.format = 'PNG' unless ['GIF', 'JPEG'].include?(image.format)
     end
 
     # create thumbnails in the image list (Magick::ImageList)
