@@ -1,5 +1,6 @@
 
 require 'ludy/kernel/public_send'
+require 'ludy/kernel/ergo'
 
 module Ludy
   # someone who does the pattern matching thing

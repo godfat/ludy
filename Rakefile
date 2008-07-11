@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 # Look in the tasks/setup.rb file for the various options that can be
 # configured in this Rakefile. The .rake files in the tasks directory
 # are where the options are used.
@@ -41,7 +41,7 @@ PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge.name = 'ludy'
 PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
 
-PROJ.gem.executables = 'bin/ludy'
+PROJ.gem.executables = ['bin/ludy']
 PROJ.gem.files = []
 Dir.glob('**/*'){ |file| PROJ.gem.files << file if file !~ /^pkg|^tmp|^doc/ }
 

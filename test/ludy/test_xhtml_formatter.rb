@@ -1,4 +1,4 @@
-
+# encoding: utf-8
 require File.join(File.dirname(__FILE__), '..', 'helper')
 require 'ludy/xhtml_formatter'
 

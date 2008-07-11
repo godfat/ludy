@@ -1,7 +1,7 @@
 
 require File.join(File.dirname(__FILE__), '..', 'helper')
 require 'ludy/proc'
-require 'ludy/symbol/to_proc' if RUBY_VERSION < '1.9.0'
+require 'ludy/symbol/to_proc' if Ludy::ruby_before '1.9.0'
 
 class TestProc < Test::Unit::TestCase
   def test_bind
@@ -21,7 +21,11 @@ class TestProc < Test::Unit::TestCase
     xd = multiply['XD', 5]
     assert_equal 'XDXDXDXDXD', xd
 
-    assert_equal 29, :+.to_proc.curry[18][11]
+    if Ludy::ruby_before '1.9.0'
+      assert_equal 29, :+.to_proc.curry[18][11]
+    else
+      assert_equal 29, :+.to_proc.curry(2)[18][11]
+    end
     assert_equal((0..4).to_a, lambda{|a,b,c,d,e|[a,b,c,d,e]}.curry[0][1][2][3][4])
   end
   def test_compose

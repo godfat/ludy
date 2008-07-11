@@ -156,10 +156,10 @@ module Ludy
     def method_missing msg, *args, &block
       raise 'fetch image first if you want to operate the image' unless @image
 
-      if image.respond_to?(msg) # operate ImageList
-        image.__send__ msg, *args, &block
+      if image.__respond_to__?(msg) # operate ImageList, a dirty way because of RMagick...
+         image.__send__ msg, *args, &block
       elsif image.first.respond_to?(msg) # operate each Image in ImageList
-        image.each{ |layer| layer.__send__ msg, *args, &block }
+        image.__map__{ |layer| layer.__send__ msg, *args, &block }
       else # no such method...
         super msg, *args, &block
       end
@@ -168,6 +168,10 @@ module Ludy
     # attribute
     def dimension
       [image.first.columns, image.first.rows]
+    end
+
+    def mime_type
+      image.first.mime_type
     end
 
     def filename; owner.thumbnail_filename self; end
