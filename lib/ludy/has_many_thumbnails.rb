@@ -159,7 +159,7 @@ module Ludy
       if image.__respond_to__?(msg) # operate ImageList, a dirty way because of RMagick...
          image.__send__ msg, *args, &block
       elsif image.first.respond_to?(msg) # operate each Image in ImageList
-        image.__map__{ |layer| layer.__send__ msg, *args, &block }
+        image.to_a.map{ |layer| layer.__send__ msg, *args, &block }
       else # no such method...
         super msg, *args, &block
       end
