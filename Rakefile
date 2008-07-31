@@ -39,11 +39,14 @@ PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
 PROJ.rubyforge.name = 'ludy'
-PROJ.version = paragraphs_of('README', 0).first.split("\n").first[7..-1]
+PROJ.version = paragraphs_of('README', 0).first.split("\n").first.split(' ').last
 
 PROJ.gem.executables = ['bin/ludy']
-PROJ.gem.files = []
-Dir.glob('**/*'){ |file| PROJ.gem.files << file if file !~ /^pkg|^tmp|^doc/ }
+# PROJ.gem.files = []
+
+PROJ.manifest_file = 'Manifest'
+PROJ.exclude << 'Manifest' << '^tmp'
+# Dir.glob('**/*'){ |file| PROJ.gem.files << file if file !~ /^pkg|^tmp|^doc/ }
 
 PROJ.rdoc.main = 'README'
 PROJ.rdoc.exclude << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'

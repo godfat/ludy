@@ -55,8 +55,8 @@ module Ludy
     #  fetcher is function that fetch the data,
     #  counter is function that count the data.
     # the default per_page is 20. you can reset per_page property later.
-    def initialize fetcher, counter
-      @per_page = 20
+    def initialize fetcher, counter, per_page = 20
+      @per_page = per_page
       @fetcher = fetcher
       @counter = counter
     end
@@ -103,7 +103,7 @@ module Ludy
   class RailsPaginator < Paginator
     # the model class that you passed in this paginator
     attr_reader :model_class
-    def initialize model_class, opts = {}
+    def initialize model_class, per_page = 20, opts = {}
       @model_class = model_class
       super(lambda{ |offset, per_page|
         @model_class.find :all, opts.merge(:offset => offset, :limit => per_page)
@@ -121,13 +121,13 @@ module Ludy
   class ArrayPaginator < Paginator
     # data that you passed in this paginator
     attr_reader :data
-    def initialize data
+    def initialize data, per_page = 20
       @data = data
       super(lambda{ |offset, per_page|
         @data[offset, per_page]
       }, lambda{
         @data.size
-      })
+      }, per_page)
     end
   end
 
