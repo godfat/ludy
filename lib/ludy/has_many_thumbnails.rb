@@ -198,7 +198,7 @@ module Ludy
     end
 
     def uri_full
-      "#{owner.class.host_with_protocol}/#{owner.class.path}/#{fileuri}"
+      "#{owner.host_with_protocol}/#{owner.path}/#{fileuri}"
     end
 
     private

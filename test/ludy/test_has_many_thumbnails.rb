@@ -50,9 +50,9 @@ class RubyLogo
   def checksum; 'abcdefg'; end
 
   # you must define this for HasManyThumbnails to produce full url
-  def self.host_with_protocol; '.'; end
+  def host_with_protocol; '.'; end
   # you must define this for HasManyThumbnails to produce full url
-  def self.path; 'misc/tmp'; end
+  def path; 'misc/tmp'; end
 end
 
 class TestHasManyThumbnails < Test::Unit::TestCase
