@@ -3,8 +3,8 @@
 # configured in this Rakefile. The .rake files in the tasks directory
 # are where the options are used.
 load 'tasks/setup.rb'
-
 ensure_in_path 'lib'
+
 require 'ludy'
 require 'ludy/tasks'
 
@@ -34,7 +34,7 @@ end
 
 PROJ.name = 'ludy'
 PROJ.authors = 'Lin Jen-Shin (a.k.a. godfat 真常)'
-PROJ.email = 'strip any number: 18god29fat7029 (at] godfat32 -dooot- 20org'
+PROJ.email = 'godfat (XD) godfat.org'
 PROJ.url = 'http://ludy.rubyforge.org/'
 PROJ.description = PROJ.summary = paragraphs_of('README', 'description').join("\n\n")
 PROJ.changes = paragraphs_of('CHANGES', 0..1).join("\n\n")
@@ -45,15 +45,17 @@ PROJ.gem.executables = ['bin/ludy']
 # PROJ.gem.files = []
 
 PROJ.manifest_file = 'Manifest'
-PROJ.exclude << 'Manifest' << '^tmp'
-# Dir.glob('**/*'){ |file| PROJ.gem.files << file if file !~ /^pkg|^tmp|^doc/ }
+PROJ.exclude += ['Manifest', '^tmp', 'tmp$', '^pkg', '.gitignore', '^ann-']
 
+PROJ.readme_file = 'README'
 PROJ.rdoc.main = 'README'
 PROJ.rdoc.exclude << 'Manifest' << 'Rakefile' << 'tmp$' << '^tmp'
 PROJ.rdoc.include << '\w+'
 PROJ.rdoc.opts << '--diagram' if !WIN32 and `which dot` =~ %r/\/dot/
-PROJ.rdoc.opts << '--charset=utf-8' << '--inline-source' << '--line-numbers' << '--promiscuous'
+PROJ.rdoc.opts += ['--charset=utf-8', '--inline-source',
+                   '--line-numbers', '--promiscuous']
 
 PROJ.spec.opts << '--color'
 
-# EOF
+PROJ.ann.file = "ann-pagify-#{PROJ.version}"
+PROJ.ann.paragraphs.concat %w[LINKS SYNOPSIS REQUIREMENTS INSTALL LICENSE]

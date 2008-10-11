@@ -5,3 +5,4 @@ doc
 Manifest*
 *.sqlite3
 *.png
+*.rbc
