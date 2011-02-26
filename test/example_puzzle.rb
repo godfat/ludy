@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'ludy')
+require 'ludy'
 require 'puzzle_generator'
 
 PuzzleGenerator.debug = true
