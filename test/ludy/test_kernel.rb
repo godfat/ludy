@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/kernel'
 
 class TestKernel < Test::Unit::TestCase

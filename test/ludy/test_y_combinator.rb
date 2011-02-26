@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/y_combinator'
 
 include Ludy # why should this be here?

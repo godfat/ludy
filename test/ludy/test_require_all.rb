@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/all'
 
 class TestAll < Test::Unit::TestCase

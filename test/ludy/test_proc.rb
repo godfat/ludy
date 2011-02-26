@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/proc'
 require 'ludy/symbol/to_proc' if Ludy.ruby_before '1.9.0'
 

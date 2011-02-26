@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/kernel/defun'
 
 class TestDefun < Test::Unit::TestCase

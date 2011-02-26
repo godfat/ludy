@@ -1,5 +1,5 @@
 
-require File.join(File.dirname(__FILE__), '..', 'helper')
+require './test/helper'
 require 'ludy/z_combinator'
 
 class TestZCombinator < Test::Unit::TestCase
