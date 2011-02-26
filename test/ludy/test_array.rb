@@ -28,13 +28,13 @@ class TestArray < Test::Unit::TestCase
     assert_equal ['ab','ba'], ['a','b'].combine(['b','a'])
   end
   def test_rotate
-    assert_equal [3,1,2], [1,2,3].rotate
-    assert_equal [2,3,1], [1,2,3].rotate(2)
-    assert_equal [1,2,3], [1,2,3].rotate(3)
-    assert_equal [1,2,3], [1,2,3].rotate(0)
-    assert_equal [2,3,1], [1,2,3].rotate(-1)
-    assert_equal [3,1,2], [1,2,3].rotate(-2)
+    assert_equal [2,3,1], [1,2,3].rotate
+    assert_equal [2,3,1], [1,2,3].rotate(-2)
     assert_equal [1,2,3], [1,2,3].rotate(-3)
+    assert_equal [1,2,3], [1,2,3].rotate(0)
+    assert_equal [2,3,1], [1,2,3].rotate(1)
+    assert_equal [3,1,2], [1,2,3].rotate(2)
+    assert_equal [1,2,3], [1,2,3].rotate(3)
   end
   def test_combos
     assert_equal [[0,2],[0,3],[1,2],[1,3]], [[0,1],[2,3]].combos
