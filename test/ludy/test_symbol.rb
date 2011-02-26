@@ -5,7 +5,7 @@ require 'ludy/symbol'
 class TestSymbol < Test::Unit::TestCase
   def test_curry
     a = [1,2,3]
-    if Ludy::ruby_before '1.9.0'
+    if Ludy.ruby_before '1.9.0'
       assert_equal nil, a.find(&:==.curry[0])
       assert_equal 2, a.find(&:==.curry[2])
     else

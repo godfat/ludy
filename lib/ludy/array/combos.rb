@@ -2,9 +2,9 @@
 require 'ludy/version'
 
 class Array
-  if Ludy::ruby_before '1.9.0'
+  if Ludy.ruby_before '1.9.0'
     require 'ludy/array/foldr'
-    require 'ludy/symbol/to_proc' if Ludy::ruby_before '1.9.0'
+    require 'ludy/symbol/to_proc' if Ludy.ruby_before '1.9.0'
     # for each combos
     #  [[0,1],[2,3]].combos
     #  => [[0,2],[0,3],[1,2],[1,3]]
