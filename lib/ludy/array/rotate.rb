@@ -13,9 +13,9 @@ class Array
   def rotate n = 1
     return self if empty? or n == 0
     self[-n..-1] + self[0...-n]
-  end
+  end unless method_defined?(:rotate)
   # inplace version of rotate
   def rotate!
     replace rotate
-  end
+  end unless method_defined?(:rotate!)
 end
