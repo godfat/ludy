@@ -124,7 +124,7 @@ module Ludy
           new_width, new_height = new_height, new_width if long == height
 
           layer.scale new_width, new_height
-         end
+        end
       }
 
       self

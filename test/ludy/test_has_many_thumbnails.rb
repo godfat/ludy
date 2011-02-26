@@ -59,7 +59,7 @@ class TestHasManyThumbnails < Test::Unit::TestCase
   Dims00 = [[ 24, 24], [ 48, 48], [ 75, 75],
             [109,110], [200,200], [239,240],
             [499,500], [799,800], [995,996]]
-  Dims90 = Dims00.map &:reverse
+  Dims90 = Dims00.map(&:reverse)
 
   def test_first
     logo = RubyLogo.new File.open('misc/ruby.png').read
@@ -91,6 +91,6 @@ class TestHasManyThumbnails < Test::Unit::TestCase
     }.sort
   end
   def cleanup
-    File.delete *Dir['misc/tmp/*.png']
+    File.delete(*Dir['misc/tmp/*.png'])
   end
 end
