@@ -80,7 +80,7 @@ module PuzzleGenerator
         x, y = pos
         maps.each{ |map|
           column = map[x]
-          column.replace(column[0...y] + column[y..-1].rotate)
+          column.replace(column[0...y] + column[y..-1].rotate(-1))
         }
         maps.last[x, y] = maps.size
       }

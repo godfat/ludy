@@ -19,7 +19,7 @@ module PuzzleGenerator
     # start generate a puzzle with options that created this puzzle instance.
     def generate
       raw_colors = (1..@option[:colors]).to_a
-      step_colors = raw_colors.rotate
+      step_colors = raw_colors.rotate(-1)
 
       make_chain
       make_color raw_colors
@@ -27,10 +27,10 @@ module PuzzleGenerator
         if step_colors == raw_colors
           make_chain
           make_color raw_colors
-          step_colors = raw_colors.rotate
+          step_colors = raw_colors.rotate(-1)
         else
           make_color step_colors
-          step_colors.rotate!
+          step_colors.rotate!(-1)
         end
       end
 
