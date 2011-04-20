@@ -1,6 +1,22 @@
 = ludy changes history
 
-== ludy 0.1.14,
+== ludy 0.1.15, 2011-04-20
+
+* So, after _3_ years from last release, I don't mean to maintain this
+  anymore. But we need some codes in this library for CuBeat,
+  https://github.com/godfat/cubeat
+  In particular, the preprocessing stuffs for C++. I should move them
+  into another standalone repository, instead of this outdated, mixed
+  repository. This release is only intended for modern Ruby to run those
+  preprocessing stuffs, and tested with 1.8.7 and 1.9.2.
+
+* removed Ludy::XhtmlFormatter, which is now
+  https://github.com/godfat/friendly_format
+
+* removed Ludy::HasManyThumbnails, which is now
+  https://github.com/godfat/thumbo
+
+== ludy 0.1.14, never
 
 * added Ludy::XhtmlFormatter from another project.
 * added Ludy::RailsFieldsFilters from project above metioned.
