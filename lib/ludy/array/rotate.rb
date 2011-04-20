@@ -12,7 +12,7 @@ class Array
   #   => [3,1,2]
   def rotate n = 1
     return self if empty? or n == 0
-    self[n..-1] + self[0...-n]
+    self[n..-1] + self[0...n]
   end unless method_defined?(:rotate)
   # inplace version of rotate
   def rotate!
